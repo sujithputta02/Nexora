@@ -1,0 +1,10 @@
+{
+  "role_permissions": true,
+  "access_control": true,
+  "document_filtering": true,
+  "metadata_protection": true,
+  "strict_mode": true,
+  "role_hierarchy": true,
+  "access_denial": true,
+  "empty_list_handling": true
+}

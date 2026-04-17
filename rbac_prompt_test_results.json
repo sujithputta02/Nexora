@@ -1,0 +1,7 @@
+{
+  "prompt_access_control": true,
+  "response_filtering": true,
+  "denial_consistency": true,
+  "mixed_documents": true,
+  "realistic_scenarios": true
+}

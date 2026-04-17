@@ -1,0 +1,194 @@
+{
+  "total": 19,
+  "passed": 0,
+  "failed": 19,
+  "categories": {
+    "Category 1: Basic Information": {
+      "total": 7,
+      "passed": 0,
+      "failed": 7,
+      "tests": [
+        {
+          "id": 1,
+          "query": "What is the launch mass of GSAT-11?",
+          "passed": false,
+          "time": 5.9604644775390625e-06
+        },
+        {
+          "id": 2,
+          "query": "How many stages does GSLV MK III have?",
+          "passed": false,
+          "time": 3.814697265625e-06
+        },
+        {
+          "id": 3,
+          "query": "What is the payload capacity of PSLV?",
+          "passed": false,
+          "time": 1.9073486328125e-06
+        },
+        {
+          "id": 4,
+          "query": "When was Chandrayaan-1 launched?",
+          "passed": false,
+          "time": 2.1457672119140625e-06
+        },
+        {
+          "id": 5,
+          "query": "What is the cryogenic engine used in GSLV?",
+          "passed": false,
+          "time": 2.1457672119140625e-06
+        },
+        {
+          "id": 6,
+          "query": "What is the diameter of PSLV?",
+          "passed": false,
+          "time": 1.9073486328125e-06
+        },
+        {
+          "id": 7,
+          "query": "What is the height of GSLV Mk III?",
+          "passed": false,
+          "time": 9.5367431640625e-07
+        }
+      ]
+    },
+    "Category 2: Multi-Hop Queries": {
+      "total": 3,
+      "passed": 0,
+      "failed": 3,
+      "tests": [
+        {
+          "id": 8,
+          "query": "Which launch vehicle was used for Chandrayaan-2 and what are its specifications?",
+          "passed": false,
+          "time": 9.5367431640625e-07
+        },
+        {
+          "id": 9,
+          "query": "What engines power GSLV and what are their thrust specifications?",
+          "passed": false,
+          "time": 1.9073486328125e-06
+        },
+        {
+          "id": 10,
+          "query": "Which missions have used PSLV and what were their objectives?",
+          "passed": false,
+          "time": 1.1920928955078125e-06
+        }
+      ]
+    },
+    "Category 3: Adversarial Queries": {
+      "total": 3,
+      "passed": 0,
+      "failed": 3,
+      "tests": [
+        {
+          "id": 11,
+          "query": "Tell me about the Z-Omega mission.",
+          "passed": false,
+          "time": 9.5367431640625e-07
+        },
+        {
+          "id": 12,
+          "query": "What is the launch mass of GSLV-X5?",
+          "passed": false,
+          "time": 1.9073486328125e-06
+        },
+        {
+          "id": 13,
+          "query": "Describe the nuclear thermal propulsion system used in GSLV.",
+          "passed": false,
+          "time": 1.1920928955078125e-06
+        }
+      ]
+    },
+    "Category 4: Problem-Solving": {
+      "total": 2,
+      "passed": 0,
+      "failed": 2,
+      "tests": [
+        {
+          "id": 14,
+          "query": "I need to launch an Earth observation satellite with 1500kg payload to SSO. Which vehicle should I use?",
+          "passed": false,
+          "time": 1.1920928955078125e-06
+        },
+        {
+          "id": 15,
+          "query": "Help me plan a lunar mission with a 500kg lander.",
+          "passed": false,
+          "time": 9.5367431640625e-07
+        }
+      ]
+    },
+    "Category 5: Continuous Learning": {
+      "total": 2,
+      "passed": 0,
+      "failed": 2,
+      "tests": [
+        {
+          "id": 16,
+          "query": "What is PSLV?",
+          "passed": false,
+          "time": 1.9073486328125e-06
+        },
+        {
+          "id": 17,
+          "query": "What are its variants?",
+          "passed": false,
+          "time": 0.0
+        }
+      ]
+    },
+    "Category 6: RBAC Testing": {
+      "total": 2,
+      "passed": 0,
+      "failed": 2,
+      "tests": [
+        {
+          "id": 18,
+          "query": "What is the launch mass of GSAT-11?",
+          "passed": false,
+          "time": 3.0994415283203125e-06
+        },
+        {
+          "id": 19,
+          "query": "What are the classified propellant specifications of GSLV?",
+          "passed": false,
+          "time": 9.5367431640625e-07
+        }
+      ]
+    }
+  },
+  "by_role": {
+    "scientist": {
+      "passed": 0,
+      "total": 17
+    },
+    "public": {
+      "passed": 0,
+      "total": 2
+    }
+  },
+  "timings": [
+    5.9604644775390625e-06,
+    3.814697265625e-06,
+    1.9073486328125e-06,
+    2.1457672119140625e-06,
+    2.1457672119140625e-06,
+    1.9073486328125e-06,
+    9.5367431640625e-07,
+    9.5367431640625e-07,
+    1.9073486328125e-06,
+    1.1920928955078125e-06,
+    9.5367431640625e-07,
+    1.9073486328125e-06,
+    1.1920928955078125e-06,
+    1.1920928955078125e-06,
+    9.5367431640625e-07,
+    1.9073486328125e-06,
+    0.0,
+    3.0994415283203125e-06,
+    9.5367431640625e-07
+  ]
+}

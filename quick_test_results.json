@@ -1,0 +1,7 @@
+{
+  "false_verification": true,
+  "contradiction": true,
+  "regex_patterns": true,
+  "hallucination_rate": true,
+  "faithfulness": true
+}

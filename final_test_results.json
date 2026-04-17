@@ -1,0 +1,50 @@
+{
+  "total": 11,
+  "passed": 8,
+  "failed": 3,
+  "categories": {
+    "Category 1: Basic Information": {
+      "passed": 2,
+      "total": 3,
+      "rate": 66.66666666666666
+    },
+    "Category 2: Multi-Hop": {
+      "passed": 2,
+      "total": 2,
+      "rate": 100.0
+    },
+    "Category 3: Adversarial (Hallucination)": {
+      "passed": 1,
+      "total": 2,
+      "rate": 50.0
+    },
+    "Category 4: RBAC - Public": {
+      "passed": 2,
+      "total": 2,
+      "rate": 100.0
+    },
+    "Category 5: RBAC - Scientist": {
+      "passed": 1,
+      "total": 2,
+      "rate": 50.0
+    }
+  },
+  "metrics": {
+    "avg_time": 12.65241061557423,
+    "hallucination_rate": 66.66666666666666,
+    "rbac_pass_rate": 75.0
+  },
+  "timings": [
+    2.460212230682373,
+    15.33272910118103,
+    16.52234387397766,
+    33.701526165008545,
+    20.1615469455719,
+    21.180654048919678,
+    0.08288979530334473,
+    0.014000177383422852,
+    29.62681818008423,
+    0.07934808731079102,
+    0.014448165893554688
+  ]
+}

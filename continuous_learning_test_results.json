@@ -1,0 +1,9 @@
+{
+  "session_creation": true,
+  "learning_from_interactions": true,
+  "personalized_context": true,
+  "recommendations": true,
+  "session_summary": true,
+  "user_learning_profile": true,
+  "continuous_conversation": true
+}

@@ -1,0 +1,9 @@
+{
+  "mission_plan_generation": true,
+  "technical_specification": true,
+  "mission_analysis": true,
+  "learning_from_previous": true,
+  "document_export": true,
+  "parameter_extraction": true,
+  "vehicle_recommendation": true
+}

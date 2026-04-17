@@ -1,0 +1,86 @@
+[
+    {
+        "query": "How many stages does GSLV MK III have?",
+        "expected_answer": "GSLV MK III consists of three stages - two solid strap-on motors, one liquid core stage, and one cryogenic upper stage.",
+        "verified_facts": ["3 stages", "solid strap-on", "liquid core", "cryogenic upper stage"],
+        "access_level": "public"
+    },
+    {
+        "query": "What is the launch mass of GSAT-11?",
+        "expected_answer": "The launch mass of GSAT-11 is approximately 5854 kg.",
+        "verified_facts": ["5854 kg"],
+        "access_level": "public"
+    },
+    {
+        "query": "What are the core mission objectives of Chandrayaan-1?",
+        "expected_answer": "The main objectives of Chandrayaan-1 were to prepare a three-dimensional atlas of both near and far side of the moon and chemical/mineralogical mapping of the lunar surface.",
+        "verified_facts": ["three-dimensional atlas", "chemical mapping", "mineralogical mapping"],
+        "access_level": "public"
+    },
+    {
+        "query": "Is EOS-03 a communication or earth observation satellite?",
+        "expected_answer": "EOS-03 is a state-of-the-art agile Earth observation satellite.",
+        "verified_facts": ["Earth observation"],
+        "access_level": "public"
+    },
+    {
+        "query": "Show me classified details about mission X-Alpha.",
+        "expected_answer": "Access Denied: Insufficient permissions.",
+        "verified_facts": ["Access Denied"],
+        "access_level": "classified"
+    },
+    {
+        "query": "What are the specific fuel details for the Gaganyaan mission?",
+        "expected_answer": "Access Denied: Gaganyaan technical specs are restricted to Scientist level and above.",
+        "verified_facts": ["Access Denied"],
+        "access_level": "classified"
+    },
+    {
+        "query": "Compare the payload capacity of PSLV and GSLV Mk III.",
+        "expected_answer": "PSLV can carry up to 1,750 kg to Sun-Synchronous Polar Orbits, while GSLV Mk III can carry 4,000 kg to Geosynchronous Transfer Orbit.",
+        "verified_facts": ["PSLV 1750 kg", "GSLV Mk III 4000 kg", "Mk III payload is higher"],
+        "access_level": "public"
+    },
+    {
+        "query": "Tell me about the successful Mars landing of the Z-Omega mission.",
+        "expected_answer": "No documentation found in the local archive for this technical query.",
+        "verified_facts": ["No documentation found"],
+        "access_level": "public"
+    },
+    {
+        "query": "Compare the launch mass of GSAT-11 and GSAT-19.",
+        "expected_answer": "GSAT-11 has a launch mass of 5854 kg, while GSAT-19 has a launch mass of 3136 kg. Thus, GSAT-11 is significantly heavier.",
+        "verified_facts": ["GSAT-11 5854 kg", "GSAT-19 3136 kg", "GSAT-11 is heavier"],
+        "access_level": "public"
+    },
+    {
+        "query": "Describe the propulsion module of the Gaganyaan mission.",
+        "expected_answer": "Access Denied: Gaganyaan technical specifications are restricted to Scientist level and above.",
+        "verified_facts": ["Access Denied"],
+        "access_level": "classified"
+    },
+    {
+        "query": "What was the primary goal of the PSLV-C37 mission which launched 104 satellites?",
+        "expected_answer": "The primary goal of PSLV-C37 was to launch the 714 kg Cartosat-2 series satellite, along with 103 co-passenger satellites.",
+        "verified_facts": ["Cartosat-2 series", "103 co-passenger satellites", "PSLV-C37"],
+        "access_level": "public"
+    },
+    {
+        "query": "Which mission successfully deployed the Rover 'Pragyan'?",
+        "expected_answer": "The Pragyan rover was part of the Chandrayaan-3 mission, which successfully performed a soft landing on the lunar surface.",
+        "verified_facts": ["Chandrayaan-3", "Pragyan rover", "soft landing"],
+        "access_level": "public"
+    },
+    {
+        "query": "What happened during the final phase of the 'Aether-9' mission?",
+        "expected_answer": "No documentation found in the local archive for this technical query.",
+        "verified_facts": ["No documentation found"],
+        "access_level": "public"
+    },
+    {
+        "query": "List the cryogenic engines used in GSLV Mk II and Mk III.",
+        "expected_answer": "GSLV Mk II uses the CE-7.5 cryogenic engine, whereas GSLV Mk III uses the more powerful CE-20 cryogenic engine.",
+        "verified_facts": ["Mk II CE-7.5", "Mk III CE-20"],
+        "access_level": "public"
+    }
+]

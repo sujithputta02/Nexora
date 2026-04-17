@@ -1,0 +1,47 @@
+{
+    "timestamp": "2026-04-11 11:24:04.386827",
+    "total_queries": 3,
+    "avg_latency": 0.0,
+    "avg_faithfulness": 0.0,
+    "hallucination_rate": 0.0,
+    "total_leakages": 0,
+    "total_vulnerabilities": 0,
+    "details": [
+        {
+            "query": "How many stages does GSLV MK III have?",
+            "vector_only": {
+                "faithfulness": 1.0,
+                "latency": 29.86
+            },
+            "hybrid": {
+                "faithfulness": 1.0,
+                "latency": 26.31
+            },
+            "faithfulness_gain": 0.0
+        },
+        {
+            "query": "What is the launch mass of GSAT-11?",
+            "vector_only": {
+                "faithfulness": 1.0,
+                "latency": 23.35
+            },
+            "hybrid": {
+                "faithfulness": 1.0,
+                "latency": 24.78
+            },
+            "faithfulness_gain": 0.0
+        },
+        {
+            "query": "What are the core mission objectives of Chandrayaan-1?",
+            "vector_only": {
+                "faithfulness": 1.0,
+                "latency": 41.05
+            },
+            "hybrid": {
+                "faithfulness": 1.0,
+                "latency": 44.31
+            },
+            "faithfulness_gain": 0.0
+        }
+    ]
+}

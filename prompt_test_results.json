@@ -1,0 +1,252 @@
+{
+  "results": {
+    "single_hop": [
+      {
+        "id": 1,
+        "query": "What is the launch mass of GSAT-11?",
+        "status": "PASS"
+      },
+      {
+        "id": 2,
+        "query": "How many stages does GSLV MK III have?",
+        "status": "PASS"
+      },
+      {
+        "id": 3,
+        "query": "What is the payload capacity of PSLV?",
+        "status": "PASS"
+      },
+      {
+        "id": 4,
+        "query": "When was Chandrayaan-1 launched?",
+        "status": "PASS"
+      },
+      {
+        "id": 5,
+        "query": "What is the cryogenic engine used in GSLV?",
+        "status": "PASS"
+      },
+      {
+        "id": 6,
+        "query": "What is the diameter of PSLV?",
+        "status": "PASS"
+      },
+      {
+        "id": 7,
+        "query": "How much fuel does GSLV carry?",
+        "status": "PASS"
+      },
+      {
+        "id": 8,
+        "query": "What is the apogee kick motor of Chandrayaan-2?",
+        "status": "PASS"
+      },
+      {
+        "id": 9,
+        "query": "What is the orbital altitude of GSAT-11?",
+        "status": "PASS"
+      },
+      {
+        "id": 10,
+        "query": "How many solar panels does Chandrayaan-3 have?",
+        "status": "PASS"
+      },
+      {
+        "id": 11,
+        "query": "What was the primary objective of Mangalyaan?",
+        "status": "PASS"
+      },
+      {
+        "id": 12,
+        "query": "What are the scientific instruments on Aditya-L1?",
+        "status": "PASS"
+      },
+      {
+        "id": 13,
+        "query": "What is the mission duration of Gaganyaan?",
+        "status": "PASS"
+      },
+      {
+        "id": 14,
+        "query": "What is the coverage area of RISAT-1?",
+        "status": "PASS"
+      },
+      {
+        "id": 15,
+        "query": "What is the revisit time of Cartosat-2?",
+        "status": "PASS"
+      }
+    ],
+    "multi_hop": [
+      {
+        "id": 16,
+        "query": "Compare the payload capacity of PSLV and GSLV Mk III.",
+        "status": "PASS"
+      },
+      {
+        "id": 17,
+        "query": "What are the differences between Chandrayaan-1 and Chandrayaan-2?",
+        "status": "PASS"
+      },
+      {
+        "id": 18,
+        "query": "How do the cryogenic engines of GSLV and LVM3 differ?",
+        "status": "PASS"
+      },
+      {
+        "id": 19,
+        "query": "Compare the launch capabilities of PSLV-XL and GSLV-F09.",
+        "status": "PASS"
+      },
+      {
+        "id": 20,
+        "query": "What are the differences between GSAT-11 and GSAT-12?",
+        "status": "PASS"
+      },
+      {
+        "id": 21,
+        "query": "Which launch vehicle was used for Chandrayaan-2 and what are its specifications?",
+        "status": "PASS"
+      },
+      {
+        "id": 22,
+        "query": "What engines power GSLV and what are their thrust specifications?",
+        "status": "PASS"
+      },
+      {
+        "id": 23,
+        "query": "Which missions have used PSLV and what were their objectives?",
+        "status": "PASS"
+      },
+      {
+        "id": 24,
+        "query": "What are the payloads on Chandrayaan-3 and their purposes?",
+        "status": "PASS"
+      },
+      {
+        "id": 25,
+        "query": "Compare the propulsion systems of PSLV, GSLV, and LVM3.",
+        "status": "PASS"
+      },
+      {
+        "id": 26,
+        "query": "What is the relationship between GSLV's cryogenic stage and its payload capacity?",
+        "status": "PASS"
+      },
+      {
+        "id": 27,
+        "query": "How does the S200 booster contribute to GSLV's performance?",
+        "status": "PASS"
+      },
+      {
+        "id": 28,
+        "query": "What is the connection between Chandrayaan-1's instruments and its scientific objectives?",
+        "status": "PASS"
+      },
+      {
+        "id": 29,
+        "query": "How do the solar panels on GSAT-11 relate to its power budget?",
+        "status": "PASS"
+      },
+      {
+        "id": 30,
+        "query": "What is the relationship between PSLV's payload bay dimensions and satellite compatibility?",
+        "status": "PASS"
+      },
+      {
+        "id": 31,
+        "query": "How has GSLV evolved from Mk I to Mk III?",
+        "status": "PASS"
+      },
+      {
+        "id": 32,
+        "query": "What improvements were made in Chandrayaan-2 compared to Chandrayaan-1?",
+        "status": "PASS"
+      },
+      {
+        "id": 33,
+        "query": "How has PSLV's payload capacity increased over its variants?",
+        "status": "PASS"
+      },
+      {
+        "id": 34,
+        "query": "What were the lessons learned from Chandrayaan-1 that influenced Chandrayaan-2?",
+        "status": "PASS"
+      },
+      {
+        "id": 35,
+        "query": "How has satellite technology evolved in GSAT series?",
+        "status": "PASS"
+      }
+    ],
+    "adversarial": [
+      {
+        "id": 36,
+        "query": "Tell me about the Z-Omega mission.",
+        "status": "PASS",
+        "blocked_reason": "Z-Omega mission doesn't exist"
+      },
+      {
+        "id": 37,
+        "query": "What is the launch mass of GSLV-X5?",
+        "status": "PASS",
+        "blocked_reason": "GSLV-X5 variant doesn't exist"
+      },
+      {
+        "id": 38,
+        "query": "Tell me about the Chandrayaan-5 mission.",
+        "status": "PASS",
+        "blocked_reason": "Chandrayaan-5 mission doesn't exist"
+      },
+      {
+        "id": 39,
+        "query": "What is the payload capacity of PSLV-Ultra?",
+        "status": "PASS",
+        "blocked_reason": "PSLV-Ultra variant doesn't exist"
+      },
+      {
+        "id": 40,
+        "query": "Describe the nuclear thermal propulsion system used in GSLV.",
+        "status": "PASS",
+        "blocked_reason": "GSLV uses chemical propulsion, not nuclear"
+      },
+      {
+        "id": 41,
+        "query": "What is the successful Mars landing of ISRO's Z-Omega mission?",
+        "status": "PASS",
+        "blocked_reason": "Z-Omega mission doesn't exist"
+      },
+      {
+        "id": 42,
+        "query": "How many times has Chandrayaan-1 landed on the Moon?",
+        "status": "PASS",
+        "blocked_reason": "Chandrayaan-1 was an orbiter, not a lander"
+      },
+      {
+        "id": 43,
+        "query": "What is the crew size for the PSLV-C25 mission?",
+        "status": "PASS",
+        "blocked_reason": "PSLV is an unmanned launch vehicle"
+      },
+      {
+        "id": 44,
+        "query": "Tell me about the classified propellant used in GSLV's cryogenic stage.",
+        "status": "PASS",
+        "blocked_reason": "GSLV propellant specifications are public"
+      },
+      {
+        "id": 45,
+        "query": "What is the secret technology behind Chandrayaan-3's landing system?",
+        "status": "PASS",
+        "blocked_reason": "Chandrayaan technology is publicly documented"
+      }
+    ]
+  },
+  "summary": {
+    "single_hop": 15,
+    "multi_hop": 20,
+    "adversarial": 10,
+    "total_passed": 45,
+    "total_tests": 45
+  }
+}

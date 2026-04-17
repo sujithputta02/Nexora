@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="420" viewBox="0 0 680 420" font-family="'Times New Roman', serif">
+  <!-- Legend -->
+  <g transform="translate(140, 25)">
+    <rect x="0" y="0" width="12" height="12" rx="2" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+    <text x="18" y="11" font-size="12" fill="#666666">Vector-RAG</text>
+    <rect x="110" y="0" width="12" height="12" rx="2" fill="#9FE1CB" stroke="#1D9E75" stroke-width="0.5"/>
+    <text x="128" y="11" font-size="12" fill="#666666">GraphRAG</text>
+    <rect x="220" y="0" width="12" height="12" rx="2" fill="#534AB7" stroke="#26215C" stroke-width="0.5"/>
+    <text x="238" y="11" font-size="12" fill="#666666">NEXORA</text>
+  </g>
+
+  <!-- Y-Axis labels and grid lines -->
+  <g transform="translate(65, 65)" font-size="11" fill="#888888" text-anchor="end">
+    <text x="-10" y="300">0%</text>
+    <text x="-10" y="225">25%</text>
+    <text x="-10" y="150">50%</text>
+    <text x="-10" y="75">75%</text>
+    <text x="-10" y="0">100%</text>
+    
+    <!-- Grid lines -->
+    <line x1="0" y1="0" x2="580" y2="0" stroke="#EEEEEE" stroke-width="1"/>
+    <line x1="0" y1="75" x2="580" y2="75" stroke="#EEEEEE" stroke-width="1"/>
+    <line x1="0" y1="150" x2="580" y2="150" stroke="#EEEEEE" stroke-width="1"/>
+    <line x1="0" y1="225" x2="580" y2="225" stroke="#EEEEEE" stroke-width="1"/>
+    
+    <!-- Bottom axis line -->
+    <line x1="0" y1="300" x2="580" y2="300" stroke="#888888" stroke-width="1.2"/>
+  </g>
+
+  <!-- Bars Data Group -->
+  <g transform="translate(65, 65)">
+    <!-- 1. Faithfulness (82%, 85%, 97%) -->
+    <rect x="15" y="54" width="32" height="246" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.8"/>
+    <rect x="52" y="45" width="32" height="255" fill="#9FE1CB" stroke="#1D9E75" stroke-width="0.8"/>
+    <rect x="89" y="9" width="32" height="291" fill="#534AB7" stroke="#26215C" stroke-width="0.8"/>
+    <text x="68" y="325" text-anchor="middle" font-size="12" fill="#333333">Faithfulness score</text>
+
+    <!-- 2. Hallucination (18%, 13.5%, 3%) -->
+    <rect x="165" y="246" width="32" height="54" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.8"/>
+    <rect x="202" y="259.5" width="32" height="40.5" fill="#9FE1CB" stroke="#1D9E75" stroke-width="0.8"/>
+    <rect x="239" y="291" width="32" height="9" fill="#534AB7" stroke="#26215C" stroke-width="0.8"/>
+    <text x="218" y="325" text-anchor="middle" font-size="12" fill="#333333">Hallucination rate</text>
+
+    <!-- 3. Answer Relevancy (88%, 90%, 94%) -->
+    <rect x="315" y="36" width="32" height="264" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.8"/>
+    <rect x="352" y="30" width="32" height="270" fill="#9FE1CB" stroke="#1D9E75" stroke-width="0.8"/>
+    <rect x="389" y="18" width="32" height="282" fill="#534AB7" stroke="#26215C" stroke-width="0.8"/>
+    <text x="368" y="325" text-anchor="middle" font-size="12" fill="#333333">Answer relevancy</text>
+
+    <!-- 4. Attack Blocking (0%, 0%, 100%) -->
+    <rect x="465" y="300" width="32" height="0" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.8"/>
+    <rect x="502" y="300" width="32" height="0" fill="#9FE1CB" stroke="#1D9E75" stroke-width="0.8"/>
+    <rect x="539" y="0" width="32" height="300" fill="#534AB7" stroke="#26215C" stroke-width="0.8"/>
+    <text x="518" y="325" text-anchor="middle" font-size="12" fill="#333333">Attack blocking</text>
+  </g>
+
+  <!-- Chart Title/Caption -->
+  <text x="340" y="405" text-anchor="middle" font-size="12" font-weight="bold" fill="#222222">
+    Figure 4.1 — System performance comparison across sovereignty metrics (%)
+  </text>
+</svg>

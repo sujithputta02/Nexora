@@ -1,0 +1,13 @@
+pypdf
+langchain
+langchain-community
+sentence-transformers
+faiss-cpu
+neo4j
+fastapi
+uvicorn
+python-multipart
+sqlalchemy
+python-dotenv
+langchain-ollama
+langchain-huggingface

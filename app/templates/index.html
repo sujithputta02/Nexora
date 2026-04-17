@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexora</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #000;
+            --text: #fff;
+            --muted: rgba(255, 255, 255, 0.5);
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        #webgl-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* --- Navbar & Footer --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 50px;
+            pointer-events: auto;
+            z-index: 100;
+        }
+
+        .nav-logo {
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+            color: #fff;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-right-btn {
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: none;
+            color: #fff;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-right-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 40px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            pointer-events: auto;
+            z-index: 100;
+            transition: opacity 0.4s;
+        }
+
+        /* --- Main Hero Layout --- */
+        .search-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-title {
+            font-size: 16vw;
+            font-weight: 700;
+            margin: 0;
+            line-height: 0.8;
+            background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.8) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.9;
+            user-select: none;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.8));
+            transition: all 0.5s ease;
+            transform: translateY(20px);
+        }
+
+        /* --- Chat Input Box --- */
+        .chat-input-wrapper {
+            width: 100%;
+            max-width: 700px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 24px 30px;
+            display: flex;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(-20px);
+            /* Overlap title slightly */
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+            pointer-events: auto;
+        }
+
+        .chat-input-wrapper:focus-within {
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(15, 15, 15, 0.95);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.08);
+        }
+
+        .chat-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            outline: none;
+        }
+
+        .chat-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .submit-btn {
+            background: rgba(255, 255, 255, 0.4);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.2s, background 0.2s;
+            margin-left: 15px;
+            color: #000;
+        }
+
+        .chat-input-wrapper:focus-within .submit-btn {
+            background: #fff;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.8;
+        }
+
+        .role-selector-compact,
+        .model-selector-compact {
+            font-size: 11px;
+            text-transform: uppercase;
+            transition: opacity 0.2s;
+            pointer-events: auto;
+        }
+
+        .role-selector-compact select,
+        .model-selector-compact select {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            outline: none;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .role-selector-compact select:hover,
+        .model-selector-compact select:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .role-selector-compact option,
+        .model-selector-compact option {
+            background: #111;
+            color: #fff;
+        }
+
+        /* --- Active Chat Mode --- */
+        /* When search becomes active chat */
+        body.chat-active .search-container {
+            justify-content: flex-end;
+            /* Push box down */
+            padding-bottom: 60px;
+            /* Dock higher up */
+            pointer-events: none;
+        }
+
+        body.chat-active .hero-title {
+            opacity: 0;
+            transform: translateY(-50px);
+            pointer-events: none;
+        }
+
+        body.chat-active footer {
+            display: none;
+        }
+
+        body.chat-active .chat-input-wrapper {
+            transform: translateY(0);
+            max-width: 800px;
+            /* Expand slightly */
+            padding: 18px 25px;
+            /* Shrink vertically */
+            background: rgba(10, 10, 10, 0.8);
+            border-radius: 20px;
+            pointer-events: auto;
+        }
+
+        /* --- Chat History Space --- */
+        .chat-history {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 800px;
+            height: calc(100vh - 180px);
+            overflow-y: auto;
+            padding: 20px;
+            box-sizing: border-box;
+            z-index: 40;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease 0.2s;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+        }
+
+        .chat-history::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .chat-history::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        body.chat-active .chat-history {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .source-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: #4da6ff;
+            background: rgba(77, 166, 255, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-family: 'Space Mono', monospace;
+            border-left: 2px solid #4da6ff;
+        }
+
+        .gap-warning {
+            color: #ffcc00 !important;
+            background: rgba(255, 204, 0, 0.1) !important;
+            border-left: 2px solid #ffcc00 !important;
+        }
+
+        .msg-block {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .msg-bubble {
+            padding: 14px 20px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            max-width: 85%;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .user .msg-bubble {
+            background: rgba(30, 30, 30, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-left: auto;
+            border-bottom-right-radius: 2px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .msg-actions {
+            display: flex;
+            gap: 8px;
+            opacity: 0;
+            transition: opacity 0.2s;
+            flex-shrink: 0;
+        }
+
+        .msg-block.user:hover .msg-actions {
+            opacity: 1;
+        }
+
+        .msg-action-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            padding: 0;
+            font-size: 12px;
+        }
+
+        .msg-action-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .stop-generation-btn {
+            background: rgba(255, 77, 77, 0.2);
+            border: 1px solid rgba(255, 77, 77, 0.5);
+            color: #ff4d4d;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+            margin-top: 10px;
+        }
+
+        .stop-generation-btn:hover {
+            background: rgba(255, 77, 77, 0.3);
+            border-color: rgba(255, 77, 77, 0.8);
+        }
+
+        .system .msg-bubble {
+            color: #fff;
+            padding-left: 0;
+            background: transparent;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.9), 0 1px 3px rgba(0, 0, 0, 0.8);
+            font-weight: 500;
+        }
+
+        .system .msg-bubble p {
+            margin: 0 0 15px 0;
+        }
+
+        .system .msg-bubble p:last-child {
+            margin-bottom: 0;
+        }
+
+        .system .msg-bubble strong {
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+
+        .system .msg-bubble ul,
+        .system .msg-bubble ol {
+            margin: 10px 0 15px 0;
+            padding-left: 20px;
+        }
+
+        .system .msg-bubble li {
+            margin-bottom: 5px;
+        }
+
+        .new-chat-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            display: none;
+            opacity: 0.6;
+            transition: opacity 0.2s, transform 0.2s;
+            padding: 5px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .new-chat-btn:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        body.chat-active .new-chat-btn {
+            display: flex;
+        }
+
+        /* Nebula Core 3D Loading Animation */
+        .nebula-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: 32px;
+            padding-left: 10px;
+        }
+
+        .nebula-core {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 0 10px #fff, 0 0 20px #8a2be2, 0 0 30px #4a90e2;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: core-pulse 2s ease-in-out infinite alternate;
+        }
+
+        .nebula-core::before,
+        .nebula-core::after,
+        .nebula-ring {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            border: 1.5px solid transparent;
+        }
+
+        .nebula-core::before {
+            border-top-color: rgba(74, 144, 226, 0.9);
+            border-right-color: rgba(74, 144, 226, 0.2);
+            animation: orbit-x 1.5s linear infinite;
+            filter: drop-shadow(0 0 5px #4a90e2);
+        }
+
+        .nebula-core::after {
+            border-bottom-color: rgba(138, 43, 226, 0.9);
+            border-left-color: rgba(138, 43, 226, 0.2);
+            animation: orbit-y 2s linear infinite;
+            filter: drop-shadow(0 0 5px #8a2be2);
+        }
+
+        .nebula-ring {
+            position: absolute;
+            top: -14px;
+            left: -14px;
+            right: -14px;
+            bottom: -14px;
+            border-radius: 50%;
+            border: 1px solid transparent;
+            border-top-color: rgba(255, 255, 255, 0.8);
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+            animation: orbit-z 2.5s linear infinite;
+            filter: drop-shadow(0 0 4px #fff);
+        }
+
+        @keyframes core-pulse {
+            0% {
+                transform: scale(0.9);
+                box-shadow: 0 0 5px #fff, 0 0 15px #8a2be2;
+            }
+
+            100% {
+                transform: scale(1.1);
+                box-shadow: 0 0 15px #fff, 0 0 30px #8a2be2, 0 0 45px #4a90e2;
+            }
+        }
+
+        @keyframes orbit-x {
+            0% {
+                transform: rotateX(70deg) rotateZ(0deg);
+            }
+
+            100% {
+                transform: rotateX(70deg) rotateZ(360deg);
+            }
+        }
+
+        @keyframes orbit-y {
+            0% {
+                transform: rotateY(70deg) rotateZ(0deg);
+            }
+
+            100% {
+                transform: rotateY(70deg) rotateZ(360deg);
+            }
+        }
+
+        @keyframes orbit-z {
+            0% {
+                transform: rotateX(45deg) rotateY(45deg) rotateZ(0deg);
+            }
+
+            100% {
+                transform: rotateX(45deg) rotateY(45deg) rotateZ(360deg);
+            }
+        }
+
+        /* --- Typing Animation --- */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: 32px;
+            padding-left: 10px;
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 100vh;
+            background: rgba(13, 13, 13, 0.98);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            z-index: 200;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 24px 16px;
+            box-sizing: border-box;
+        }
+
+        .sidebar.closed {
+            transform: translateX(-100%);
+        }
+
+        .sidebar-header {
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 30px 0 10px 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sidebar-toggle {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 210;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .sidebar-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .new-chat-sidebar-btn {
+            background: #fff;
+            color: #000;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 50px;
+            transition: transform 0.2s, background 0.2s;
+            border: none;
+            font-size: 14px;
+        }
+
+        .new-chat-sidebar-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-1px);
+        }
+
+        .sessions-list {
+            margin-top: 10px;
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+        }
+
+        .session-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 12px;
+            color: rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .session-item:hover,
+        .session-item.active {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+        }
+
+        .delete-session-btn {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.2s;
+        }
+
+        .session-item:hover .delete-session-btn {
+            opacity: 1;
+        }
+
+        .delete-session-btn:hover {
+            background: rgba(255, 77, 77, 0.1);
+            color: #ff4d4d;
+        }
+
+        /* --- Custom Nav position --- */
+        nav {
+            padding-left: 90px;
+            /* shift right so toggle fits */
+        }
+
+        .sidebar-open-shift nav {
+            padding-left: 300px;
+        }
+
+        .sidebar-open-shift .search-container,
+        .sidebar-open-shift .chat-history {
+            transform: translateX(130px);
+            width: calc(100% - 260px);
+        }
+
+        /* --- Login Modal --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: rgba(15, 15, 15, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 16px;
+            width: 320px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+        }
+
+        .modal-content h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .modal-content input {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .modal-content input:focus {
+            border-color: #4a90e2;
+        }
+
+        .modal-btns {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .modal-btns button {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-cancel {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .btn-submit {
+            background: #fff;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar closed" id="sidebar">
+        <button class="new-chat-sidebar-btn" onclick="createNewSession()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            New Chat
+        </button>
+        <div class="sidebar-header">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 20v-6M12 8V2M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M16 12h6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"></path>
+            </svg>
+            Recent Chats
+        </div>
+        <div class="sessions-list" id="sessions-list"></div>
+    </aside>
+
+    <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal-content">
+            <h3>Scientist Access</h3>
+            <p style="font-size:13px; color:#aaa; margin-bottom:5px;">Enter credentials to unlock classified documents.
+            </p>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <div class="modal-btns">
+                <button class="btn-cancel" onclick="cancelLogin()">Cancel</button>
+                <button class="btn-submit" onclick="submitLogin()">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="webgl-container"></div>
+
+    <nav>
+        <a href="#" class="nav-logo">NEXORA</a>
+        <div class="nav-right" style="display: flex; gap: 15px; align-items: center;">
+            <button class="new-chat-btn" onclick="createNewSession()" title="New Chat">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            </button>
+            <div class="model-selector-compact">
+                <select id="model-select">
+                    <option value="llama3:latest">llama3</option>
+                    <option value="mistral:latest">mistral</option>
+                    <option value="deepseek-r1:7b">deepseek-r1</option>
+                </select>
+            </div>
+            <div class="role-selector-compact">
+                <select id="role">
+                    <option value="Public">Public</option>
+                    <option value="Scientist">Scientist</option>
+                </select>
+            </div>
+            <button id="logout-btn" style="display: none; background: rgba(255, 77, 77, 0.2); border: 1px solid rgba(255, 77, 77, 0.5); color: #ff4d4d; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 11px; font-weight: 600; transition: all 0.2s; margin-left: 10px;" onclick="logout()">
+                Logout
+            </button>
+        </div>
+    </nav>
+
+
+
+    <div class="chat-history" id="chat-history"></div>
+
+    <div class="search-container">
+        <h1 class="hero-title">Nexora</h1>
+
+        <div style="position: relative; width: 100%; max-width: 700px; display: flex; justify-content: center;">
+            <div class="chat-input-wrapper">
+                <input type="text" class="chat-input" id="query-input" placeholder="What do you want to know?"
+                    onkeydown="handleEnter(event)">
+                <button class="submit-btn" onclick="sendQuery()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M12 19V5M5 12l7-7 7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Shader for Flowing Interactive Light -->
+    <script id="fragmentShader" type="x-shader/x-fragment">
+        uniform float u_time;
+        uniform vec2 u_mouse;
+        uniform vec2 u_resolution;
+
+        // Realistic hash
+        float hash(vec2 p) {
+            vec3 p3  = fract(vec3(p.xyx) * .1031);
+            p3 += dot(p3, p3.yzx + 33.33);
+            return fract((p3.x + p3.y) * p3.z);
+        }
+
+        // 2D Noise for Clouds/Debris
+        float noise(vec2 x) {
+            vec2 i = floor(x);
+            vec2 f = fract(x);
+            vec2 u = f * f * (3.0 - 2.0 * f);
+            return mix(mix(hash(i + vec2(0.0, 0.0)), hash(i + vec2(1.0, 0.0)), u.x),
+                       mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);
+        }
+
+        float fbm(vec2 x) {
+            float v = 0.0;
+            float a = 0.5;
+            for (int i = 0; i < 5; ++i) {
+                v += a * noise(x);
+                x = x * 2.0 + vec2(100.0);
+                a *= 0.5;
+            }
+            return v;
+        }
+
+        void main() {
+            vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+            vec2 p = uv * 2.0 - 1.0;
+            p.x *= u_resolution.x / u_resolution.y;
+            vec2 m = (u_mouse * 2.0 - 1.0) * 0.1; // Parallax
+
+            // 1. STARRY SPACE (Background layer)
+            vec3 color = vec3(0.0, 0.0, 0.005); // Deep space base
+            vec2 starP = p + m * 0.2;
+            vec2 g = floor(starP * 40.0);
+            vec2 f = fract(starP * 40.0) - 0.5;
+            float h = hash(g);
+            if(h > 0.85) {
+                float twinkle = sin(u_time * 2.0 + h * 10.0) * 0.5 + 0.5;
+                float d = length(f - (vec2(hash(g*1.1), hash(g*1.2)) - 0.5) * 0.8);
+                color += vec3(0.8, 0.9, 1.0) * smoothstep(0.03 * h, 0.0, d) * twinkle;
+            }
+
+            // 2. EARTH HORIZON (Bottom layer)
+            float earthCurve = -0.9 - 0.2 * pow(abs(p.x * 0.4), 2.0); 
+            float distToEarth = p.y - (earthCurve + m.y * 0.5);
+            
+            // Atmospheric Scattering (Strictly bounded haze)
+            float haze = smoothstep(0.3, 0.1, distToEarth) * smoothstep(-0.2, 0.0, distToEarth);
+            vec3 atmosphereColor = vec3(0.05, 0.3, 0.8) * haze * 1.5;
+            
+            // Earth Surface (Dark blue with cloud highlights)
+            if(distToEarth < 0.0) {
+                float clouds = fbm(p * 2.0 + vec2(u_time * 0.015, 0.0) + m * 0.8);
+                vec3 earthBase = mix(vec3(0.01, 0.02, 0.08), vec3(0.05, 0.1, 0.2), clouds);
+                color = mix(earthBase, atmosphereColor, smoothstep(-0.15, 0.0, distToEarth));
+            } else {
+                color = mix(color, atmosphereColor, haze);
+            }
+
+            // 3. FIERY DEBRIS ENTRY (Mid layer)
+            float entryTime = u_time * 0.8;
+            for(float i=0.0; i<2.0; i++) {
+                float id = i + 123.45;
+                float cycle = mod(entryTime + hash(vec2(id)) * 10.0, 8.0);
+                vec2 start = vec2(1.5 + hash(vec2(id, 1.0)), 1.5);
+                vec2 dir = normalize(vec2(-1.2, -1.0));
+                vec2 head = start + dir * cycle * 2.5;
+                
+                vec2 pa = p - head;
+                float tailL = 1.0; 
+                float h_tail = clamp(dot(pa, -dir)/tailL, 0.0, 1.0);
+                vec2 proj = -dir * h_tail * tailL;
+                float d_tail = length(pa - proj);
+                
+                float thickness = mix(0.01, 0.0, h_tail) * (0.8 + 0.4 * fbm(p * 8.0 - dir * u_time * 10.0));
+                float fire = smoothstep(thickness * 1.5, 0.0, d_tail) * exp(-h_tail * 2.0);
+                
+                if(cycle < 6.0) {
+                    vec3 fireCol = mix(vec3(1.0, 0.6, 0.1), vec3(0.8, 0.05, 0.02), h_tail);
+                    color = mix(color, fireCol, fire * 1.2 * smoothstep(6.0, 5.0, cycle));
+                }
+            }
+
+            // 4. SATELLITES (Detailed Geostationary Satellites)
+            for(float i=0.0; i<4.0; i++) {
+                float id = i + 55.5;
+                float satSpeed = 0.01 + hash(vec2(id)) * 0.015;
+                vec2 satP = vec2(mod(u_time * satSpeed + hash(vec2(id)) * 4.0, 4.0) - 2.0, 0.2 + hash(vec2(id, 2.0)) * 0.4);
+                vec2 dp = p - satP;
+                float body = smoothstep(0.008, 0.006, max(abs(dp.x), abs(dp.y)));
+                float wings = smoothstep(0.003, 0.001, abs(dp.y)) * smoothstep(0.025, 0.023, abs(dp.x));
+                vec3 satCol = mix(vec3(0.0), vec3(0.6, 0.8, 1.0), body);
+                satCol = mix(satCol, vec3(0.2, 0.3, 0.5), wings);
+                float pulse = sin(u_time * 4.0 + id * 10.0) * 0.5 + 0.5;
+                float beacon = smoothstep(0.004, 0.0, length(dp - vec2(0.0, 0.005))) * pulse;
+                float finalSatMask = clamp(body + wings, 0.0, 1.0);
+                if(finalSatMask > 0.0) {
+                    color = mix(color, satCol, finalSatMask);
+                    color += vec3(1.0, 0.2, 0.2) * beacon;
+                }
+            }
+
+            // 5. ROCKET SHUTTLE (Launch from Earth - Bounded SDF)
+            float launchTime = u_time * 0.3;
+            float launchCycle = mod(launchTime + 2.0, 12.0);
+            
+            vec2 rStart = vec2(-1.0, -0.6);
+            vec2 rDir = normalize(vec2(0.7, 1.0));
+            vec2 rHead = rStart + rDir * launchCycle * 0.3;
+            
+            vec2 ra = p - rHead;
+            float rL = 0.08; // Fixed rocket length for SDF
+            float h_r = clamp(dot(ra, -rDir)/rL, 0.0, 1.0);
+            vec2 proj_r = -rDir * h_r * rL;
+            float d_r = length(ra - proj_r);
+            
+            // Rocket Body shape
+            float rBody = smoothstep(0.01, 0.008, d_r);
+            
+            // Flame shape (Bounded Candle)
+            vec2 fHead = rHead - rDir * 0.05;
+            vec2 fa = p - fHead;
+            float fL = 0.04 + 0.02 * sin(u_time * 40.0);
+            float h_f = clamp(dot(fa, -rDir)/fL, 0.0, 1.0);
+            float d_f = length(fa + rDir * h_f * fL);
+            float fMask = smoothstep(0.015 * (1.0 - h_f), 0.0, d_f) * smoothstep(-0.01, 0.05, h_f);
+
+            if(launchCycle < 10.0) {
+                float fade = smoothstep(10.0, 9.0, launchCycle);
+                // Body
+                color = mix(color, vec3(0.9, 0.9, 1.0), rBody * fade);
+                // Flame
+                vec3 fireCol = mix(vec3(1.0, 0.5, 0.1), vec3(1.0, 0.1, 0.0), h_f);
+                color = mix(color, fireCol, fMask * fade * 1.5);
+            }
+
+            // Cinematic Vignette & contrast
+            float vignette = 1.0 - length(uv - 0.5) * 0.5;
+            color *= vignette;
+            
+            gl_FragColor = vec4(clamp(color, 0.0, 1.0), 1.0);
+        }
+    </script>
+
+    <script>
+        let scene, camera, renderer, material, earthGroup, earthMesh, atmosphereMesh, knowledgeGroup;
+        let mouse = new THREE.Vector2(0.5, 0.5);
+        let targetMouse = new THREE.Vector2(0.5, 0.5);
+
+        // Constants for 3D Knowledge Map
+        let activeFacts = [];
+
+        function initShader() {
+            scene = new THREE.Scene();
+            camera = new THREE.Camera(); camera.position.z = 1;
+            const geometry = new THREE.PlaneGeometry(2, 2);
+            material = new THREE.ShaderMaterial({
+                uniforms: {
+                    u_time: { value: 0.0 }, u_mouse: { value: new THREE.Vector2() }, u_resolution: { value: new THREE.Vector2() }
+                },
+                fragmentShader: document.getElementById('fragmentShader').textContent,
+                transparent: true
+            });
+            const mesh = new THREE.Mesh(geometry, material); scene.add(mesh);
+            
+            // Knowledge Graph Visualization Group
+            knowledgeGroup = new THREE.Group();
+            scene.add(knowledgeGroup);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('webgl-container').appendChild(renderer.domElement);
+
+            onWindowResize();
+            window.addEventListener('resize', onWindowResize);
+            document.addEventListener('mousemove', (e) => {
+                targetMouse.x = e.clientX / window.innerWidth;
+                targetMouse.y = 1.0 - (e.clientY / window.innerHeight);
+            });
+        }
+
+        // Visualize Logic (Journal Paper Feature)
+        function visualizeFacts(facts) {
+            // Clear old nodes
+            while(knowledgeGroup.children.length > 0) { 
+                knowledgeGroup.remove(knowledgeGroup.children[0]); 
+            }
+            
+            facts.forEach((fact, i) => {
+                const angle = (i / facts.length) * Math.PI * 2;
+                const radius = 0.5 + Math.random() * 0.3;
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+                
+                // Create Node (Glow Star)
+                const nodeGeom = new THREE.SphereGeometry(0.015, 8, 8);
+                const nodeMat = new THREE.MeshBasicMaterial({ color: 0x4da6ff });
+                const node = new THREE.Mesh(nodeGeom, nodeMat);
+                node.position.set(x, y, 0);
+                
+                // Add a glow/halo to the node
+                const glowGeom = new THREE.CircleGeometry(0.04, 16);
+                const glowMat = new THREE.MeshBasicMaterial({ color: 0x4da6ff, transparent: true, opacity: 0.3 });
+                const glow = new THREE.Mesh(glowGeom, glowMat);
+                glow.position.set(x, y, -0.01);
+                
+                knowledgeGroup.add(node);
+                knowledgeGroup.add(glow);
+            });
+        }
+
+        function onWindowResize() {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            material.uniforms.u_resolution.value.set(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            material.uniforms.u_time.value += 0.01;
+            mouse.lerp(targetMouse, 0.05);
+            material.uniforms.u_mouse.value.copy(mouse);
+            renderer.render(scene, camera);
+        }
+
+        initShader(); animate();
+
+        // --- Chat UI Logic ---
+        const historyBox = document.getElementById('chat-history');
+        const inputContainer = document.querySelector('.search-container');
+        let currentSessionId = null;
+
+        function handleEnter(e) { if (e.key === 'Enter') sendQuery(); }
+
+        // --- Sidebar & Sessions ---
+        async function loadSessions() {
+            try {
+                const role = document.getElementById('role').value;
+                const res = await fetch(`/sessions?role=${encodeURIComponent(role)}`);
+                const sessions = await res.json();
+                const list = document.getElementById('sessions-list');
+                list.innerHTML = '';
+                sessions.forEach(s => {
+                    const div = document.createElement('div');
+                    div.className = 'session-item' + (s.id === currentSessionId ? ' active' : '');
+                    
+                    const title = document.createElement('span');
+                    title.textContent = s.title || 'New Chat';
+                    title.style.overflow = 'hidden';
+                    title.style.textOverflow = 'ellipsis';
+                    title.style.whiteSpace = 'nowrap';
+                    title.style.flex = '1';
+                    
+                    const delBtn = document.createElement('button');
+                    delBtn.className = 'delete-session-btn';
+                    delBtn.innerHTML = `
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+                        </svg>
+                    `;
+                    delBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        deleteSession(s.id);
+                    };
+                    
+                    div.onclick = () => selectSession(s.id);
+                    div.appendChild(title);
+                    div.appendChild(delBtn);
+                    list.appendChild(div);
+                });
+            } catch (e) { }
+        }
+
+        async function deleteSession(id) {
+            try {
+                const res = await fetch(`/sessions/${id}`, { method: 'DELETE' });
+                if (res.ok) {
+                    if (id === currentSessionId) {
+                        createNewSession();
+                    } else {
+                        loadSessions();
+                    }
+                }
+            } catch (e) { }
+        }
+
+        async function createNewSession() {
+            document.body.classList.remove('chat-active');
+            historyBox.innerHTML = '';
+            currentSessionId = null;
+            document.getElementById('query-input').value = '';
+            loadSessions();
+            if (window.innerWidth <= 768 && !document.getElementById('sidebar').classList.contains('closed')) toggleSidebar();
+        }
+
+        async function selectSession(id) {
+            try {
+                const res = await fetch(`/sessions/${id}`);
+                const session = await res.json();
+                currentSessionId = session.id;
+
+                document.body.classList.add('chat-active');
+                historyBox.innerHTML = '';
+
+                session.messages.forEach(msg => {
+                    const block = document.createElement('div');
+                    block.className = `msg-block ${msg.role}`;
+                    const bubble = document.createElement('div');
+                    bubble.className = 'msg-bubble';
+                    if (msg.role === 'user') {
+                        bubble.textContent = msg.content;
+                    } else {
+                        bubble.innerHTML = marked.parse(msg.content);
+                    }
+                    block.appendChild(bubble);
+                    historyBox.appendChild(block);
+                });
+                historyBox.scrollTop = historyBox.scrollHeight;
+                loadSessions(); // update active state in sidebar
+                if (window.innerWidth <= 768) toggleSidebar();
+            } catch (e) { }
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('closed');
+            if (sidebar.classList.contains('closed')) {
+                document.body.classList.remove('sidebar-open-shift');
+            } else {
+                document.body.classList.add('sidebar-open-shift');
+            }
+        }
+
+        // --- Authentication ---
+        const roleSelect = document.getElementById('role');
+        const logoutBtn = document.getElementById('logout-btn');
+        let lastValidRole = "Public";
+        let isScientistAuthenticated = false;
+
+        roleSelect.addEventListener('change', (e) => {
+            if (e.target.value === "Scientist") {
+                if (!isScientistAuthenticated) {
+                    document.getElementById('login-modal').classList.add('active');
+                    roleSelect.value = lastValidRole; // Reset to previous role
+                } else {
+                    lastValidRole = "Scientist";
+                    logoutBtn.style.display = 'inline-block'; // Show logout button
+                    createNewSession(); // Clear chat and reload sessions for scientist
+                    loadSessions(); // Load scientist's sessions
+                }
+            } else {
+                // Switching to Public
+                if (isScientistAuthenticated) {
+                    // If currently logged in as scientist, require confirmation
+                    if (confirm('You will be logged out. Continue?')) {
+                        logout();
+                    } else {
+                        roleSelect.value = lastValidRole; // Keep current role
+                    }
+                } else {
+                    lastValidRole = e.target.value;
+                    logoutBtn.style.display = 'none'; // Hide logout button
+                    createNewSession(); // Clear chat and reload sessions for public
+                    loadSessions(); // Load public's sessions
+                }
+            }
+        });
+
+        function logout() {
+            isScientistAuthenticated = false;
+            lastValidRole = "Public";
+            roleSelect.value = "Public";
+            logoutBtn.style.display = 'none'; // Hide logout button
+            createNewSession(); // Clear chat
+            loadSessions(); // Load public's sessions
+            alert('Logged out successfully');
+        }
+
+        function cancelLogin() {
+            document.getElementById('login-modal').classList.remove('active');
+            roleSelect.value = lastValidRole;
+        }
+
+        async function submitLogin() {
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+            try {
+                const res = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: u, password: p })
+                });
+                if (res.ok) {
+                    isScientistAuthenticated = true;
+                    lastValidRole = "Scientist";
+                    document.getElementById('login-modal').classList.remove('active');
+                    document.getElementById('username').value = '';
+                    document.getElementById('password').value = '';
+                    roleSelect.value = "Scientist"; // Update the dropdown to show Scientist
+                    logoutBtn.style.display = 'inline-block'; // Show logout button
+                    createNewSession(); // Clear chat
+                    loadSessions(); // Load scientist's sessions
+                } else {
+                    alert('Invalid credentials!');
+                }
+            } catch (e) { alert('Login error'); }
+        }
+
+        async function loadModels() {
+            try {
+                const res = await fetch('/models');
+                const models = await res.json();
+                const select = document.getElementById('model-select');
+                const currentVal = select.value;
+                select.innerHTML = '';
+                models.forEach(m => {
+                    const opt = document.createElement('option');
+                    opt.value = m;
+                    opt.textContent = m;
+                    select.appendChild(opt);
+                });
+                if (models.includes(currentVal)) select.value = currentVal;
+            } catch (e) { }
+        }
+
+        // Initialize on load
+        loadSessions();
+        loadModels();
+
+        function appendMessage(role, text) {
+            const block = document.createElement('div');
+            block.className = `msg-block ${role}`;
+            const bubble = document.createElement('div');
+            bubble.className = 'msg-bubble';
+            if (text) {
+                bubble.textContent = text;
+            } else {
+                bubble.innerHTML = ''; // Empty - will be filled with streaming response
+            }
+            
+            // Add action buttons for user messages
+            if (role === 'user') {
+                const contentSpan = document.createElement('span');
+                contentSpan.textContent = text || '';
+                contentSpan.style.flex = '1';
+                
+                const actionsDiv = document.createElement('div');
+                actionsDiv.className = 'msg-actions';
+                
+                const editBtn = document.createElement('button');
+                editBtn.className = 'msg-action-btn';
+                editBtn.title = 'Edit and rerun';
+                editBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>`;
+                editBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    editMessage(text);
+                };
+                
+                actionsDiv.appendChild(editBtn);
+                bubble.appendChild(contentSpan);
+                bubble.appendChild(actionsDiv);
+            }
+            
+            block.appendChild(bubble);
+            historyBox.appendChild(block);
+            historyBox.scrollTop = historyBox.scrollHeight;
+            return bubble;
+        }
+
+        function editMessage(text) {
+            const input = document.getElementById('query-input');
+            input.value = text;
+            input.focus();
+            // Scroll to input
+            document.querySelector('.chat-input-wrapper').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        let currentAbortController = null;
+
+        async function sendQuery() {
+            const input = document.getElementById('query-input');
+            const query = input.value.trim();
+            if (!query) return;
+
+            // Ensure session exists
+            if (!currentSessionId) {
+                try {
+                    const role = document.getElementById('role').value;
+                    const s_res = await fetch(`/sessions/new?role=${encodeURIComponent(role)}`, { method: 'POST' });
+                    const s_data = await s_res.json();
+                    currentSessionId = s_data.session_id;
+                } catch (e) { }
+            }
+
+            // Trigger Transition
+            document.body.classList.add('chat-active');
+            input.value = '';
+
+            // We must wait a slight moment for the history box to appear/become active before appending
+            setTimeout(async () => {
+                // Don't append user message here - backend will add it to session
+                // Just show it in the UI for immediate feedback
+                const userBubble = document.createElement('div');
+                userBubble.className = 'msg-block user';
+                const bubble = document.createElement('div');
+                bubble.className = 'msg-bubble';
+                
+                const contentSpan = document.createElement('span');
+                contentSpan.textContent = query;
+                contentSpan.style.flex = '1';
+                
+                const actionsDiv = document.createElement('div');
+                actionsDiv.className = 'msg-actions';
+                
+                const editBtn = document.createElement('button');
+                editBtn.className = 'msg-action-btn';
+                editBtn.title = 'Edit and rerun';
+                editBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>`;
+                editBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    editMessage(query);
+                };
+                
+                actionsDiv.appendChild(editBtn);
+                bubble.appendChild(contentSpan);
+                bubble.appendChild(actionsDiv);
+                userBubble.appendChild(bubble);
+                historyBox.appendChild(userBubble);
+                
+                const sysBubble = appendMessage('system', null);
+
+                // Show nebula loading animation
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'typing-indicator';
+                typingDiv.innerHTML = `
+                    <div class="nebula-container">
+                        <div class="nebula-core">
+                            <div class="nebula-ring"></div>
+                        </div>
+                    </div>
+                `;
+                sysBubble.appendChild(typingDiv);
+                
+                // Add stop generation button
+                const stopBtn = document.createElement('button');
+                stopBtn.className = 'stop-generation-btn';
+                stopBtn.textContent = '⏹ Stop Generation';
+                sysBubble.appendChild(stopBtn);
+                
+                historyBox.scrollTop = historyBox.scrollHeight;
+
+                // Create abort controller for this request
+                currentAbortController = new AbortController();
+                
+                stopBtn.onclick = () => {
+                    currentAbortController.abort();
+                    stopBtn.style.display = 'none';
+                };
+
+                try {
+                    const response = await fetch('/query', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            query: query,
+                            role: document.getElementById('role').value,
+                            session_id: currentSessionId,
+                            model_name: document.getElementById('model-select').value
+                        }),
+                        signal: currentAbortController.signal
+                    });
+
+                    const reader = response.body.getReader();
+                    const decoder = new TextDecoder();
+                    let isFirstChunk = true;
+                    let fullText = ""; // FRESH for each query
+                    let metadataProcessed = false;
+                    let buffer = ""; // Buffer to handle metadata split across TCP packets
+                    let charQueue = []; // Queue of characters to type
+                    let isTyping = false;
+
+                    // Function to type characters from queue
+                    const typeNextChar = () => {
+                        if (charQueue.length > 0) {
+                            fullText += charQueue.shift();
+                            sysBubble.innerHTML = marked.parse(fullText);
+                            
+                            // Re-add stop button if still visible
+                            if (stopBtn.style.display !== 'none') {
+                                sysBubble.appendChild(stopBtn);
+                            }
+                            
+                            historyBox.scrollTop = historyBox.scrollHeight;
+                            isTyping = true;
+                            setTimeout(typeNextChar, 10); // 10ms delay between chars
+                        } else {
+                            isTyping = false;
+                            stopBtn.style.display = 'none'; // Hide stop button when done
+                        }
+                    };
+
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        if (done) break;
+
+                        let raw = decoder.decode(value, { stream: true });
+                        buffer += raw;
+
+                        // Process metadata ONCE — it's always the very first line
+                        if (!metadataProcessed) {
+                            const newlineIndex = buffer.indexOf("\n");
+                            if (newlineIndex !== -1) {
+                                const firstLine = buffer.substring(0, newlineIndex);
+                                const rest = buffer.substring(newlineIndex + 1);
+
+                                if (firstLine.startsWith("__METADATA__:")) {
+                                    try {
+                                        const jsonStr = firstLine.replace("__METADATA__:", "");
+                                        const metadata = JSON.parse(jsonStr);
+                                        if (metadata.facts) visualizeFacts(metadata.facts);
+
+                                        if (metadata.sources && metadata.sources.length > 0) {
+                                            const sourceEl = document.createElement('div');
+                                            sourceEl.className = 'source-badge';
+                                            const names = metadata.sources.map(s => s.split('/').pop()).join(', ');
+                                            sourceEl.innerHTML = `<i class="fa fa-shield-alt"></i> Verified by: ${names}`;
+                                            sysBubble.parentNode.insertBefore(sourceEl, sysBubble);
+                                        }
+                                    } catch(e) { console.error("Metadata parse error", e); }
+                                    metadataProcessed = true;
+                                    buffer = rest; // Only keep text after metadata
+                                } else {
+                                    // No metadata line found — process buffer as plain text
+                                    metadataProcessed = true;
+                                }
+                            } else {
+                                // Still buffering — waiting for the full first line
+                                continue;
+                            }
+                        }
+
+                        // At this point, buffer contains only clean AI text
+                        let chunk = buffer;
+                        buffer = ""; // Flush buffer
+
+                        // Safety: strip any accidental metadata leakage (handles both __METADATA__ and METADATA)
+                        chunk = chunk.split("\n")
+                            .filter(l => !l.includes("METADATA:"))
+                            .join("\n");
+
+                        if (chunk.trim() !== "") {
+                            if (isFirstChunk) {
+                                sysBubble.innerHTML = '';
+                                fullText = ""; // CLEAR fullText for fresh response
+                                isFirstChunk = false;
+                            }
+                            
+                            // Add chunk characters to queue
+                            for (let i = 0; i < chunk.length; i++) {
+                                charQueue.push(chunk[i]);
+                            }
+                            
+                            // Start typing if not already typing
+                            if (!isTyping) {
+                                typeNextChar();
+                            }
+                        }
+                    }
+
+                    // Flush any remaining buffer content
+                    if (buffer.trim() !== "") {
+                        if (isFirstChunk) { 
+                            sysBubble.innerHTML = ''; 
+                            fullText = ""; // CLEAR fullText for fresh response
+                            isFirstChunk = false; 
+                        }
+                        for (let i = 0; i < buffer.length; i++) {
+                            charQueue.push(buffer[i]);
+                        }
+                        if (!isTyping) {
+                            typeNextChar();
+                        }
+                    }
+
+                    if (isFirstChunk) sysBubble.innerHTML = ''; // Fallback if empty response
+                    stopBtn.style.display = 'none'; // Hide stop button when done
+                    loadSessions(); // Update titles in sidebar immediately
+                } catch (e) { 
+                    if (e.name === 'AbortError') {
+                        sysBubble.innerHTML = '<em>Generation stopped by user</em>';
+                    } else {
+                        sysBubble.textContent = "Connection error.";
+                    }
+                    stopBtn.style.display = 'none';
+                }
+            }, 300); // Wait for transition
+        }
+    </script>
+</body>
+
+</html>
