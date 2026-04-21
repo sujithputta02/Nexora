@@ -367,7 +367,8 @@
             flex-shrink: 0;
         }
 
-        .msg-block.user:hover .msg-actions {
+        .msg-block.user:hover .msg-actions,
+        .msg-block.system:hover .msg-actions {
             opacity: 1;
         }
 
@@ -574,38 +575,170 @@
             padding-left: 10px;
         }
 
+        /* --- Progress Indicator --- */
+        .progress-indicator {
+            background: rgba(74, 144, 226, 0.1);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.3s ease;
+        }
+
+        .progress-indicator.complete {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .progress-stage {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .progress-time {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: monospace;
+        }
+
+        /* --- Quality Badges --- */
+        .fact-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: badgeEntrance 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+        }
+
+        @keyframes badgeEntrance {
+            from { opacity: 0; transform: scale(0.9) translateY(5px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .fact-high {
+            color: #00ff88;
+            border-color: rgba(0, 255, 136, 0.3);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.1);
+        }
+
+        .fact-mid {
+            color: #ffcc00;
+            border-color: rgba(255, 204, 0, 0.3);
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.1);
+        }
+
+        .fact-low {
+            color: #ff4d4d;
+            border-color: rgba(255, 77, 77, 0.3);
+            box-shadow: 0 0 15px rgba(255, 77, 77, 0.1);
+        }
+
+        .fact-badge svg {
+            filter: drop-shadow(0 0 5px currentColor);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* --- Sidebar --- */
         .sidebar {
             position: fixed;
             top: 0;
             left: 0;
-            width: 260px;
+            width: 280px;
             height: 100vh;
-            background: rgba(13, 13, 13, 0.98);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, 0.75);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
             z-index: 200;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
-            padding: 24px 16px;
+            padding: 24px;
             box-sizing: border-box;
+            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
         }
 
         .sidebar.closed {
             transform: translateX(-100%);
         }
 
+        .sidebar-search-container {
+            margin: 20px 0 12px 0;
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .sidebar-search {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 10px 14px 10px 36px;
+            color: #fff;
+            font-size: 13.5px;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .sidebar-search:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.03);
+        }
+
+        .search-icon-sidebar {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.4);
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar-search:focus + .search-icon-sidebar {
+            color: #fff;
+        }
+
         .sidebar-header {
             font-size: 11px;
-            font-weight: 700;
+            font-weight: 800;
             color: rgba(255, 255, 255, 0.4);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 30px 0 10px 5px;
+            letter-spacing: 1.5px;
+            margin: 32px 0 12px 4px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .sidebar-toggle {
@@ -631,54 +764,101 @@
         }
 
         .new-chat-sidebar-btn {
-            background: #fff;
-            color: #000;
-            padding: 12px;
-            border-radius: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 14px;
+            border-radius: 12px;
             cursor: pointer;
             font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             margin-top: 50px;
-            transition: transform 0.2s, background 0.2s;
-            border: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .new-chat-sidebar-btn:hover {
-            background: rgba(255, 255, 255, 0.9);
-            transform: translateY(-1px);
+            background: #fff;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
         }
 
         .sessions-list {
-            margin-top: 10px;
+            margin-top: 8px;
             flex: 1;
-            overflow-y: auto;
+            overflow-y: overlay;
             display: flex;
             flex-direction: column;
-            gap: 4px;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+            gap: 6px;
+            padding-right: 4px;
+        }
+
+        .sessions-list::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .sessions-list::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sessions-list::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+        }
+
+        .sessions-list:hover::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .session-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 12px;
-            color: rgba(255, 255, 255, 0.6);
-            border-radius: 8px;
+            padding: 12px 14px;
+            color: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 13px;
-            transition: background 0.2s, color 0.2s;
+            font-size: 13.5px;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+            animation: sessionEntrance 0.5s ease-out backwards;
+        }
+
+        .session-item:nth-child(1) { animation-delay: 0.1s; }
+        .session-item:nth-child(2) { animation-delay: 0.2s; }
+        .session-item:nth-child(3) { animation-delay: 0.3s; }
+        .session-item:nth-child(n+4) { animation-delay: 0.4s; }
+
+        @keyframes sessionEntrance {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .session-item:hover,
         .session-item.active {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.06);
             color: #fff;
+            border-color: rgba(255, 255, 255, 0.05);
+            transform: translateX(4px);
+        }
+
+        .session-item.active {
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .delete-session-btn {
@@ -809,12 +989,29 @@
             New Chat
         </button>
         <div class="sidebar-header">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 20v-6M12 8V2M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M16 12h6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"></path>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
             Recent Chats
         </div>
+        <div class="sidebar-search-container">
+            <svg class="search-icon-sidebar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" class="sidebar-search" id="sidebar-search" placeholder="Search chats..." oninput="loadSessions()">
+        </div>
         <div class="sessions-list" id="sessions-list"></div>
+        
+        <div class="sidebar-footer" style="padding: 16px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; gap: 10px; margin: 0 -8px; box-sizing: border-box;">
+            <div class="export-label" style="font-size: 10px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px; font-weight: 700;">Export Session</div>
+            <div style="display: flex; gap: 6px;">
+                <button class="nav-right-btn" style="flex: 1; padding: 10px; font-size: 10px; border-color: rgba(255,255,255,0.15);" onclick="exportSession('md')">MD</button>
+                <button class="nav-right-btn" style="flex: 1; padding: 10px; font-size: 10px; border-color: rgba(255,255,255,0.15);" onclick="exportSession('txt')">TXT</button>
+                <button class="nav-right-btn" style="flex: 1; padding: 10px; font-size: 10px; border-color: rgba(255,255,255,0.15);" onclick="exportSession('json')">JSON</button>
+            </div>
+        </div>
     </aside>
 
     <button class="sidebar-toggle" onclick="toggleSidebar()">
@@ -1133,23 +1330,77 @@
         function handleEnter(e) { if (e.key === 'Enter') sendQuery(); }
 
         // --- Sidebar & Sessions ---
+        function formatRelativeTime(dateStr) {
+            if (!dateStr) return '';
+            const date = new Date(dateStr);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffSec = Math.floor(diffMs / 1000);
+            const diffMin = Math.floor(diffSec / 60);
+            const diffHour = Math.floor(diffMin / 60);
+            const diffDay = Math.floor(diffHour / 24);
+
+            if (diffSec < 60) return 'Just now';
+            if (diffMin < 60) return `${diffMin}m ago`;
+            if (diffHour < 24) return `${diffHour}h ago`;
+            if (diffDay < 7) return `${diffDay}d ago`;
+            return date.toLocaleDateString();
+        }
+
         async function loadSessions() {
             try {
                 const role = document.getElementById('role').value;
-                const res = await fetch(`/sessions?role=${encodeURIComponent(role)}`);
+                const query = document.getElementById('sidebar-search').value;
+                const url = `/sessions?role=${encodeURIComponent(role)}` + (query ? `&q=${encodeURIComponent(query)}` : '');
+                const res = await fetch(url);
                 const sessions = await res.json();
                 const list = document.getElementById('sessions-list');
                 list.innerHTML = '';
+                
+                if (sessions.length === 0) {
+                    const empty = document.createElement('div');
+                    empty.style.padding = '20px';
+                    empty.style.textAlign = 'center';
+                    empty.style.color = 'rgba(255,255,255,0.3)';
+                    empty.style.fontSize = '12px';
+                    empty.textContent = query ? 'No matches found' : 'No recent chats';
+                    list.appendChild(empty);
+                    return;
+                }
+
                 sessions.forEach(s => {
                     const div = document.createElement('div');
                     div.className = 'session-item' + (s.id === currentSessionId ? ' active' : '');
+                    
+                    const iconWrapper = document.createElement('div');
+                    iconWrapper.style.marginRight = '12px';
+                    iconWrapper.style.color = 'inherit';
+                    iconWrapper.style.opacity = '0.7';
+                    iconWrapper.innerHTML = `
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    `;
+                    
+                    const contentWrapper = document.createElement('div');
+                    contentWrapper.style.display = 'flex';
+                    contentWrapper.style.flexDirection = 'column';
+                    contentWrapper.style.overflow = 'hidden';
+                    contentWrapper.style.flex = '1';
                     
                     const title = document.createElement('span');
                     title.textContent = s.title || 'New Chat';
                     title.style.overflow = 'hidden';
                     title.style.textOverflow = 'ellipsis';
                     title.style.whiteSpace = 'nowrap';
-                    title.style.flex = '1';
+                    
+                    const timeLabel = document.createElement('span');
+                    timeLabel.style.fontSize = '10px';
+                    timeLabel.style.color = 'rgba(255,255,255,0.3)';
+                    timeLabel.textContent = formatRelativeTime(s.updated_at);
+                    
+                    contentWrapper.appendChild(title);
+                    contentWrapper.appendChild(timeLabel);
                     
                     const delBtn = document.createElement('button');
                     delBtn.className = 'delete-session-btn';
@@ -1164,7 +1415,8 @@
                     };
                     
                     div.onclick = () => selectSession(s.id);
-                    div.appendChild(title);
+                    div.appendChild(iconWrapper);
+                    div.appendChild(contentWrapper);
                     div.appendChild(delBtn);
                     list.appendChild(div);
                 });
@@ -1359,12 +1611,53 @@
                 actionsDiv.appendChild(editBtn);
                 bubble.appendChild(contentSpan);
                 bubble.appendChild(actionsDiv);
+            } else if (role === 'system') {
+                // For system messages, add a copy button
+                const actionsDiv = document.createElement('div');
+                actionsDiv.className = 'msg-actions';
+                actionsDiv.style.position = 'absolute';
+                actionsDiv.style.right = '0';
+                actionsDiv.style.top = '-30px';
+                
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'msg-action-btn';
+                copyBtn.title = 'Copy answer';
+                copyBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+                copyBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    copyToClipboard(bubble.innerText);
+                    copyBtn.innerHTML = '✅';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+                    }, 2000);
+                };
+                
+                actionsDiv.appendChild(copyBtn);
+                bubble.style.position = 'relative';
+                bubble.appendChild(actionsDiv);
             }
             
             block.appendChild(bubble);
             historyBox.appendChild(block);
             historyBox.scrollTop = historyBox.scrollHeight;
             return bubble;
+        }
+
+        function copyToClipboard(text) {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+        }
+
+        async function exportSession(format) {
+            if (!currentSessionId) {
+                alert("No active session to export.");
+                return;
+            }
+            window.location.href = `/sessions/${currentSessionId}/export/${format}`;
         }
 
         function editMessage(text) {
@@ -1441,6 +1734,11 @@
                 `;
                 sysBubble.appendChild(typingDiv);
                 
+                // Add progress indicator container
+                const progressContainer = document.createElement('div');
+                progressContainer.className = 'progress-container';
+                sysBubble.appendChild(progressContainer);
+                
                 // Add stop generation button
                 const stopBtn = document.createElement('button');
                 stopBtn.className = 'stop-generation-btn';
@@ -1478,6 +1776,42 @@
                     let buffer = ""; // Buffer to handle metadata split across TCP packets
                     let charQueue = []; // Queue of characters to type
                     let isTyping = false;
+                    let progressProcessed = new Set(); // Track which progress stages we've seen
+
+                    // Function to handle progress updates
+                    const handleProgress = (progressData) => {
+                        let existing = progressContainer.querySelector(`[data-stage="${progressData.stage}"]`);
+                        if (existing) {
+                            existing.innerHTML = `
+                                <div class="progress-stage">
+                                    <span>${progressData.message}</span>
+                                </div>
+                                <div class="progress-time">${progressData.time.toFixed(1)}s</div>
+                            `;
+                            return;
+                        }
+
+                        const progressDiv = document.createElement('div');
+                        progressDiv.className = 'progress-indicator';
+                        progressDiv.setAttribute('data-stage', progressData.stage);
+                        if (progressData.stage === 'complete') {
+                            progressDiv.classList.add('complete');
+                        }
+                        progressDiv.innerHTML = `
+                            <div class="progress-stage">
+                                <span>${progressData.message}</span>
+                            </div>
+                            <div class="progress-time">${progressData.time.toFixed(1)}s</div>
+                        `;
+                        progressContainer.appendChild(progressDiv);
+                        
+                        // Remove typing indicator only after some real work starts
+                        if (progressData.stage === 'retrieval' && typingDiv.parentNode) {
+                            typingDiv.remove();
+                        }
+                        
+                        historyBox.scrollTop = historyBox.scrollHeight;
+                    };
 
                     // Function to type characters from queue
                     const typeNextChar = () => {
@@ -1485,7 +1819,10 @@
                             fullText += charQueue.shift();
                             sysBubble.innerHTML = marked.parse(fullText);
                             
-                            // Re-add stop button if still visible
+                            // Re-add progress container and stop button
+                            if (progressContainer.parentNode !== sysBubble) {
+                                sysBubble.appendChild(progressContainer);
+                            }
                             if (stopBtn.style.display !== 'none') {
                                 sysBubble.appendChild(stopBtn);
                             }
@@ -1506,73 +1843,98 @@
                         let raw = decoder.decode(value, { stream: true });
                         buffer += raw;
 
-                        // Process metadata ONCE — it's always the very first line
-                        if (!metadataProcessed) {
-                            const newlineIndex = buffer.indexOf("\n");
-                            if (newlineIndex !== -1) {
-                                const firstLine = buffer.substring(0, newlineIndex);
-                                const rest = buffer.substring(newlineIndex + 1);
+                        // Process all lines in buffer
+                        let lines = buffer.split('\n');
+                        buffer = lines.pop(); // Keep incomplete line in buffer
 
-                                if (firstLine.startsWith("__METADATA__:")) {
+                        for (let line of lines) {
+                            // Handle progress updates
+                            if (line.startsWith("__PROGRESS__:")) {
+                                try {
+                                    const jsonStr = line.replace("__PROGRESS__:", "");
+                                    const progressData = JSON.parse(jsonStr);
+                                    if (!progressProcessed.has(progressData.stage)) {
+                                        handleProgress(progressData);
+                                        progressProcessed.add(progressData.stage);
+                                    }
+                                } catch(e) { console.error("Progress parse error", e); }
+                                continue;
+                            }
+
+                            // Handle metadata
+                            if (line.startsWith("__METADATA__:")) {
+                                if (!metadataProcessed) {
                                     try {
-                                        const jsonStr = firstLine.replace("__METADATA__:", "");
+                                        const jsonStr = line.replace("__METADATA__:", "");
                                         const metadata = JSON.parse(jsonStr);
                                         if (metadata.facts) visualizeFacts(metadata.facts);
+
+                                        // Add Fact Checked Badge
+                                        if (metadata.confidence !== undefined) {
+                                            const badge = document.createElement('div');
+                                            let level = "LOW";
+                                            let cls = "fact-low";
+                                            let icon = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`;
+                                            
+                                            if (metadata.confidence >= 85) {
+                                                level = "HIGH";
+                                                cls = "fact-high";
+                                                icon = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+                                            } else if (metadata.confidence >= 50) {
+                                                level = "MID";
+                                                cls = "fact-mid";
+                                                icon = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`;
+                                            }
+                                            
+                                            badge.className = `fact-badge ${cls}`;
+                                            badge.innerHTML = `${icon} Fact Checked: ${level} (${metadata.confidence}%)`;
+                                            sysBubble.parentNode.insertBefore(badge, sysBubble);
+                                        }
 
                                         if (metadata.sources && metadata.sources.length > 0) {
                                             const sourceEl = document.createElement('div');
                                             sourceEl.className = 'source-badge';
                                             const names = metadata.sources.map(s => s.split('/').pop()).join(', ');
-                                            sourceEl.innerHTML = `<i class="fa fa-shield-alt"></i> Verified by: ${names}`;
+                                            sourceEl.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right:6px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Verified by: ${names}`;
                                             sysBubble.parentNode.insertBefore(sourceEl, sysBubble);
                                         }
                                     } catch(e) { console.error("Metadata parse error", e); }
                                     metadataProcessed = true;
-                                    buffer = rest; // Only keep text after metadata
-                                } else {
-                                    // No metadata line found — process buffer as plain text
-                                    metadataProcessed = true;
                                 }
-                            } else {
-                                // Still buffering — waiting for the full first line
                                 continue;
                             }
-                        }
 
-                        // At this point, buffer contains only clean AI text
-                        let chunk = buffer;
-                        buffer = ""; // Flush buffer
-
-                        // Safety: strip any accidental metadata leakage (handles both __METADATA__ and METADATA)
-                        chunk = chunk.split("\n")
-                            .filter(l => !l.includes("METADATA:"))
-                            .join("\n");
-
-                        if (chunk.trim() !== "") {
-                            if (isFirstChunk) {
-                                sysBubble.innerHTML = '';
-                                fullText = ""; // CLEAR fullText for fresh response
-                                isFirstChunk = false;
-                            }
-                            
-                            // Add chunk characters to queue
-                            for (let i = 0; i < chunk.length; i++) {
-                                charQueue.push(chunk[i]);
-                            }
-                            
-                            // Start typing if not already typing
-                            if (!isTyping) {
-                                typeNextChar();
+                            // Regular content line
+                            if (line.trim() !== "") {
+                                if (isFirstChunk) {
+                                    sysBubble.innerHTML = '';
+                                    fullText = "";
+                                    isFirstChunk = false;
+                                    // Remove typing indicator
+                                    if (typingDiv.parentNode) typingDiv.remove();
+                                }
+                                
+                                // Add line characters to queue
+                                for (let i = 0; i < line.length; i++) {
+                                    charQueue.push(line[i]);
+                                }
+                                charQueue.push('\n'); // Add newline back
+                                
+                                // Start typing if not already typing
+                                if (!isTyping) {
+                                    typeNextChar();
+                                }
                             }
                         }
                     }
 
-                    // Flush any remaining buffer content
+                    // Process any remaining buffer
                     if (buffer.trim() !== "") {
                         if (isFirstChunk) { 
                             sysBubble.innerHTML = ''; 
-                            fullText = ""; // CLEAR fullText for fresh response
-                            isFirstChunk = false; 
+                            fullText = "";
+                            isFirstChunk = false;
+                            if (typingDiv.parentNode) typingDiv.remove();
                         }
                         for (let i = 0; i < buffer.length; i++) {
                             charQueue.push(buffer[i]);
@@ -1583,7 +1945,11 @@
                     }
 
                     if (isFirstChunk) sysBubble.innerHTML = ''; // Fallback if empty response
-                    stopBtn.style.display = 'none'; // Hide stop button when done
+                    stopBtn.style.display = 'none';
+                    // Remove progress container after completion
+                    setTimeout(() => {
+                        if (progressContainer.parentNode) progressContainer.remove();
+                    }, 3000);
                     loadSessions(); // Update titles in sidebar immediately
                 } catch (e) { 
                     if (e.name === 'AbortError') {

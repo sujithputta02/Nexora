@@ -5,7 +5,11 @@ from backend.llm_engine import generate_response
 from backend.logger import log_query
 from backend.aerospace_helper import aerospace_helper
 from backend.session_manager import session_manager
+from backend.query_cache import query_cache
+from backend.analytics import analytics_engine
 import re
+import time
+import json
 
 class RAGSystem:
     def __init__(self):
@@ -51,17 +55,30 @@ class RAGSystem:
         Executes the full Sovereign Hybrid RAG pipeline with continuous learning.
         
         Logic Flow:
-        1. Session Management: Create/retrieve session and add to history
-        2. RBAC Check: Enforces identity-based access gates.
-        3. Context Enrichment: Add learned patterns from past interactions
-        4. Retrieval: Executes parallel Vector and Knowledge Graph search.
-        5. Context Filtering: Applies document-level security to retrieved assets.
-        6. Generation: Synthesizes response using the local LLM.
-        7. Verification: Post-generation Graph-NLI audit for factual integrity.
-        8. Learning: Extract patterns and learn from interaction
-        9. Attribution: Heuristic source mapping for auditability.
+        1. Check Query Cache
+        2. Session Management: Create/retrieve session and add to history
+        3. RBAC Check: Enforces identity-based access gates.
+        4. Context Enrichment: Add learned patterns from past interactions
+        5. Retrieval: Executes parallel Vector and Knowledge Graph search.
+        6. Context Filtering: Applies document-level security to retrieved assets.
+        7. Generation: Synthesizes response using the local LLM.
+        8. Verification: Post-generation Graph-NLI audit for factual integrity.
+        9. Learning: Extract patterns and learn from interaction
+        10. Attribution: Heuristic source mapping for auditability.
+        11. Cache Response & Log Analytics
         """
-        # 0. Session Management
+        start_time = time.time()
+        
+        # 0. Check Cache First
+        cached_response = query_cache.get(query, user_role, model_name or "llama3")
+        if cached_response:
+            analytics_engine.log_query(
+                user_id, user_role, query, cached_response,
+                [], "Success (Cached)", time.time() - start_time, cached=True
+            )
+            return cached_response
+        
+        # 1. Session Management
         if not session_id:
             session_id = self.session_manager.create_session(user_id, user_role)
         
@@ -76,7 +93,6 @@ class RAGSystem:
              return "Access Denied: Insufficient permissions."
 
         # 2. Retrieve Hybrid Context
-        import time
         t_start = time.time()
         context_data = retrieve_context(query, bypass_graph=bypass_graph)
         t_retrieved = time.time()
@@ -159,6 +175,14 @@ class RAGSystem:
         
         # 9. Audit Log
         log_query(user_id, user_role, query, attributed_response, [c.metadata for c in allowed_chunks], "Success")
+        
+        # 10. Cache Response & Log Analytics
+        query_cache.set(query, user_role, model_name or "llama3", attributed_response)
+        analytics_engine.log_query(
+            user_id, user_role, query, attributed_response,
+            [c.metadata.get('source', 'Unknown') for c in allowed_chunks],
+            "Success", time.time() - start_time, cached=False
+        )
 
         return attributed_response
 
@@ -226,19 +250,63 @@ class RAGSystem:
         # If no technical claims found, don't add false attribution
         return response
 
+    def _calculate_confidence(self, is_valid, is_conversational, has_sources, has_facts):
+        """
+        Calculates a confidence score (0-100) based on pipeline outcomes.
+        """
+        if not is_valid:
+            return 20
+        
+        if is_conversational:
+            return 55 # General knowledge, not strictly "fact checked" from docs
+            
+        if has_facts and has_sources:
+            return 98 # Golden path: Graph confirmed + Source found
+            
+        if has_facts:
+            return 90 # High: Graph confirmed claim
+            
+        if has_sources:
+            return 75 # Mid: Document found but graph had no explicit fact node
+            
+        return 40 # Low: No direct evidence found, generating from general knowledge
+
     async def process_query_stream(self, user_id, user_role, query, session_id=None, model_name=None):
         """
-        Streaming pipeline: Retrieve -> RBAC Filter -> Validate -> Generate Stream
+        Streaming pipeline with progress updates: Retrieve -> RBAC Filter -> Validate -> Generate Stream
         """
+        start_time = time.time()
+        
+        # Check cache first
+        cached_response = query_cache.get(query, user_role, model_name or "llama3")
+        if cached_response:
+            # Yield cached response with progress
+            yield f"__PROGRESS__:{json.dumps({'stage': 'cache_hit', 'message': '⚡ Retrieved from cache', 'time': 0.001})}\n"
+            yield f"__METADATA__:{json.dumps({'facts': [], 'sources': [], 'confidence': 100})}\n"
+            yield cached_response
+            analytics_engine.log_query(
+                user_id, user_role, query, cached_response,
+                [], "Success (Cached)", time.time() - start_time, cached=True
+            )
+            return
+        
+        # Progress: Starting
+        yield f"__PROGRESS__:{json.dumps({'stage': 'start', 'message': '🔍 Searching documents...', 'time': 0})}\n"
+        
         # 1. RBAC Check (basic role check)
         if not RBAC.check_access(user_role, "public"):
              yield "Access Denied: Insufficient permissions."
              return
 
         # 2. Retrieve Hybrid Context
+        retrieval_start = time.time()
         context_data = retrieve_context(query)
         raw_chunks = context_data.get("chunks", [])
         facts = context_data.get("facts", [])
+        retrieval_time = time.time() - retrieval_start
+        
+        # Progress: Retrieval complete
+        yield f"__PROGRESS__:{json.dumps({'stage': 'retrieval', 'message': f'✅ Found {len(raw_chunks)} sources in {retrieval_time:.1f}s', 'time': retrieval_time})}\n"
 
         # 3. Apply RBAC document-level filtering based on user role
         allowed_chunks = RBAC.filter_documents(user_role, raw_chunks)
@@ -254,6 +322,9 @@ class RAGSystem:
                 yield "No documentation found in the local archive for this technical query. I am strictly forbidden from hallucinating mission details."
                 return
             # Else proceed to LLM for greeting response
+        
+        # Progress: Generating
+        yield f"__PROGRESS__:{json.dumps({'stage': 'generating', 'message': '🤖 Generating response...', 'time': time.time() - start_time})}\n"
 
         # 4. Preliminary Safety Check: Fast subject-match verification
         # (Heuristic skip to ensure the panel gets the first token in <2 seconds)
@@ -280,42 +351,83 @@ class RAGSystem:
         # 6. Build fact strings for prompt
         fact_strings = [f"{f['target_name']} {f['relationship']} {f['target_label']}" for f in facts]
 
-        # 7. Generate Response Stream (collect full response first)
+        # 7. Generate and Stream Response
         from backend.llm_engine import generate_response_stream
         full_generated_text = ""
+        
+        # Progress: Actively synthesizing
+        yield f"__PROGRESS__:{json.dumps({'stage': 'synthesizing', 'message': '🧠 Synthesizing facts and generating answer...', 'time': time.time() - start_time})}\n"
+        
         async for chunk in generate_response_stream(query, allowed_chunks, history, model_name, facts=fact_strings, is_conversational=self._is_conversational(query)):
             full_generated_text += chunk
+            yield chunk
 
-        # 8. Validate BEFORE yielding (Critical: Block hallucinations before showing)
+        # 8. Post-Generation Validation (Security Audit)
         if not self._is_conversational(query):
-             is_valid, audit_msg = self.validator.validate_answer(query, full_generated_text)
-             
-             if not is_valid:
-                 # Block the hallucinated response and show audit alert instead
-                 audit_response = f"[!CAUTION] SECURITY AUDIT ALERT: {audit_msg}\n\nThe system detected potential inaccuracies in the generated response. Please verify with primary sources or reformulate your query."
-                 log_query(user_id, user_role, query, audit_response, [c.metadata for c in allowed_chunks], "Validation Failed")
-                 yield audit_response
-                 return
-             else:
-                 # Remove any "Verified by:" claims that the LLM might have added (prevent false attribution)
-                 full_generated_text = re.sub(r'Verified by:.*?(?=\n\n|\n[A-Z]|$)', '', full_generated_text, flags=re.IGNORECASE | re.DOTALL)
-                 full_generated_text = full_generated_text.strip()
-                 # Apply strict source attribution
-                 full_generated_text = self._attribute_sources_strict(full_generated_text, allowed_chunks)
-                 # Audit Log: Record the transaction in the research log file
-                 log_query(user_id, user_role, query, full_generated_text, [c.metadata for c in allowed_chunks], "Success")
+            # Progress: Security Audit
+            yield f"\n__PROGRESS__:{json.dumps({'stage': 'validating', 'message': '🛡️ Performing safety & factual audit...', 'time': time.time() - start_time})}\n"
+            
+            is_valid, audit_msg = self.validator.validate_answer(query, full_generated_text)
+            
+            if not is_valid:
+                # The user has already seen the text, so we add a clear warning at the end
+                audit_warning = f"\n\n[!CAUTION] SECURITY AUDIT ALERT: {audit_msg}\n\nThe system detected potential inaccuracies in the generated response above. Please verify with primary sources."
+                log_query(user_id, user_role, query, full_generated_text + audit_warning, [c.metadata for c in allowed_chunks], "Validation Failed")
+                
+                # Log to analytics
+                analytics_engine.log_query(
+                    user_id, user_role, query, full_generated_text + audit_warning,
+                    [c.metadata.get('source', 'Unknown') for c in allowed_chunks],
+                    "Validation Failed", time.time() - start_time, cached=False
+                )
+                
+                yield audit_warning
+            else:
+                # Apply strict source attribution (appended at the end)
+                attributed_text_full = self._attribute_sources_strict(full_generated_text, allowed_chunks)
+                new_content = attributed_text_full[len(full_generated_text):]
+                if new_content:
+                    yield new_content
+                
+                # Audit Log
+                log_query(user_id, user_role, query, attributed_text_full, [c.metadata for c in allowed_chunks], "Success")
+                
+                # Cache the response
+                query_cache.set(query, user_role, model_name or "llama3", attributed_text_full)
+                
+                # Log to analytics
+                analytics_engine.log_query(
+                    user_id, user_role, query, attributed_text_full,
+                    [c.metadata.get('source', 'Unknown') for c in allowed_chunks],
+                    "Success", time.time() - start_time, cached=False
+                )
         else:
-             # Fast log for conversational greetings
-             log_query(user_id, user_role, query, full_generated_text, [], "Info")
+            # Fast log for conversational greetings
+            log_query(user_id, user_role, query, full_generated_text, [], "Info")
+            analytics_engine.log_query(user_id, user_role, query, full_generated_text, [], "Success", time.time() - start_time, cached=False)
 
-        # 9. Yield Metadata for UI Visualization (sent first as its own clearly-delimited line)
-        import json
+        # 9. Yield Metadata for UI Visualization
         sources = list(set([c.metadata.get('source', 'Unknown') for c in allowed_chunks]))
-        print(f"[Audit] Sources Verified: {', '.join(sources) if sources else 'None'}")
-        yield f"__METADATA__:{json.dumps({'facts': facts, 'sources': sources})}\n"
-
-        # 10. Yield validated response
-        yield full_generated_text
+        is_technical = not self._is_conversational(query)
+        is_valid = True # Default for conversational
+        
+        # We need to re-verify or capture the state from above
+        # For simplicity, we'll re-check if it was a technical query that failed validation
+        # In a real system we'd pass this state down more cleanly
+        if is_technical:
+            is_valid, _ = self.validator.validate_answer(query, full_generated_text)
+            
+        confidence = self._calculate_confidence(
+            is_valid=is_valid,
+            is_conversational=not is_technical,
+            has_sources=len(allowed_chunks) > 0,
+            has_facts=len(facts) > 0
+        )
+        
+        # Progress: Complete
+        total_time = time.time() - start_time
+        yield f"__PROGRESS__:{json.dumps({'stage': 'complete', 'message': f'✅ Validated in {total_time:.1f}s', 'time': total_time})}\n"
+        yield f"__METADATA__:{json.dumps({'facts': facts, 'sources': sources, 'confidence': confidence})}\n"
 
     def provide_feedback(self, session_id: str, feedback: str):
         """Allow user to provide feedback on responses for learning"""

@@ -35,10 +35,51 @@ class Validator:
         """
         Graph-NLI Verification: Validates response claims against Neo4j knowledge graph.
         """
+        from backend.analytics import analytics_engine
+        
         if not self.graph_store:
             return True, "Graph Validation Skipped (Network Offline)"
 
         response_text = str(actual_response)
+        
+        # 0. CHECK FOR OFF-TOPIC QUERIES
+        # If the query is clearly not about ISRO/space and the response provides detailed info, it's likely hallucinated
+        isro_keywords = [
+            "isro", "pslv", "gslv", "chandrayaan", "gaganyaan", "satellite", "rocket", "launch",
+            "mission", "space", "orbit", "payload", "engine", "propulsion", "gsat", "eos",
+            "mangalyaan", "aditya", "navic", "irnss", "cartosat", "risat", "astrosat",
+            "india", "indian space"
+        ]
+        
+        query_lower = query.lower()
+        has_isro_keyword = any(keyword in query_lower for keyword in isro_keywords)
+        
+        # Only flag if query has NO ISRO keywords AND response is detailed AND not a refusal
+        if not has_isro_keyword and len(response_text) > 100:
+            # Check if response is a proper refusal
+            refusal_phrases = [
+                "outside my scope",
+                "no documentation found",
+                "cannot answer",
+                "not about isro",
+                "only answer questions about isro"
+            ]
+            is_refusal = any(phrase in response_text.lower() for phrase in refusal_phrases)
+            
+            # Also check if it's about a clearly non-ISRO topic
+            non_isro_topics = [
+                "university", "college", "mit", "stanford", "harvard",
+                "company", "corporation", "business"
+            ]
+            is_non_isro = any(topic in query_lower for topic in non_isro_topics)
+            
+            if not is_refusal and is_non_isro:
+                analytics_engine.log_hallucination(
+                    query, response_text,
+                    "Query appears to be off-topic (not about ISRO), but system provided detailed response - likely hallucination",
+                    "unknown", blocked=True
+                )
+                return False, "Query appears to be off-topic (not about ISRO), but system provided detailed response - likely hallucination"
         
         # 1. CHECK FOR FALSE VERIFICATION CLAIMS
         # Flag ONLY when LLM adds specific document citations that look like false verification
@@ -54,6 +95,10 @@ class Validator:
                     match = re.search(pattern, response_text, re.IGNORECASE)
                     if match:
                         false_claim = match.group(0)
+                        analytics_engine.log_hallucination(
+                            query, response_text, f"False Source Attribution: {false_claim}",
+                            "unknown", blocked=True
+                        )
                         return False, f"False Source Attribution: {false_claim}"
         
         # 2. CHECK FOR OBVIOUS CONTRADICTIONS
