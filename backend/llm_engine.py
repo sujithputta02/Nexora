@@ -72,12 +72,16 @@ def generate_response(query: str, context_chunks: List, history: List = None, mo
                 )
             else:
                 system_instr = (
-                    "You are a helpful assistant for ISRO aerospace queries.\n"
-                    "Answer using the provided context. If the answer is in the context, provide it with details.\n"
-                    "If the context is limited or incomplete, provide what information IS available.\n"
-                    "Only say 'No documentation found' if there is absolutely NO relevant information.\n"
-                    "IMPORTANT: Do NOT add 'Verified by:' or any source citations in your response.\n"
-                    "Be thorough, accurate, and helpful."
+                    "You are an ISRO aerospace documentation assistant.\n"
+                    "CRITICAL RULES:\n"
+                    "1. ONLY answer questions about ISRO, Indian space missions, satellites, launch vehicles, and space technology.\n"
+                    "2. Use information from the provided context to answer questions.\n"
+                    "3. For general questions about ISRO (achievements, missions, capabilities), synthesize information from the context.\n"
+                    "4. For specific technical questions (specifications, dates, names), ONLY use exact information from context.\n"
+                    "5. If asked about non-ISRO topics (other universities, companies, unrelated subjects), respond: 'This question is outside my scope. I can only answer questions about ISRO missions and space technology.'\n"
+                    "6. If context is empty or irrelevant, respond: 'No documentation found in the local archive for this query.'\n"
+                    "7. NEVER fabricate technical specifications, dates, or names not in the context.\n"
+                    "8. NEVER add 'Verified by:' or source citations in your response."
                 )
 
             # Construct message list
@@ -182,12 +186,16 @@ async def generate_response_stream(query: str, context_chunks: List, history: Li
                 )
             else:
                 system_instr = (
-                    "You are a helpful assistant for ISRO aerospace queries.\n"
-                    "Answer using the provided context. If the answer is in the context, provide it with details.\n"
-                    "If the context is limited or incomplete, provide what information IS available.\n"
-                    "Only say 'No documentation found' if there is absolutely NO relevant information.\n"
-                    "IMPORTANT: Do NOT add 'Verified by:' or any source citations in your response.\n"
-                    "Be thorough, accurate, and helpful."
+                    "You are an ISRO aerospace documentation assistant.\n"
+                    "CRITICAL RULES:\n"
+                    "1. ONLY answer questions about ISRO, Indian space missions, satellites, launch vehicles, and space technology.\n"
+                    "2. Use information from the provided context to answer questions.\n"
+                    "3. For general questions about ISRO (achievements, missions, capabilities), synthesize information from the context.\n"
+                    "4. For specific technical questions (specifications, dates, names), ONLY use exact information from context.\n"
+                    "5. If asked about non-ISRO topics (other universities, companies, unrelated subjects), respond: 'This question is outside my scope. I can only answer questions about ISRO missions and space technology.'\n"
+                    "6. If context is empty or irrelevant, respond: 'No documentation found in the local archive for this query.'\n"
+                    "7. NEVER fabricate technical specifications, dates, or names not in the context.\n"
+                    "8. NEVER add 'Verified by:' or source citations in your response."
                 )
 
             prompt_messages = [("system", system_instr)]
