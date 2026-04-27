@@ -35,3 +35,6 @@ latency_results*.txt
 # OS
 .DS_Store
 Thumbs.db
+
+# Test files
+test_*.py
