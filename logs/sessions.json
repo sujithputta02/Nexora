@@ -1417,13 +1417,6 @@
         "messages": [],
         "role": "Public"
     },
-    "7bfa2e5b-0884-45f4-aa6c-cca9909a9d4e": {
-        "id": "7bfa2e5b-0884-45f4-aa6c-cca9909a9d4e",
-        "title": "New Chat",
-        "updated_at": "2026-04-12T20:31:29.127553",
-        "messages": [],
-        "role": "Public"
-    },
     "4675f5e4-56c0-4110-9933-744b3dca5e6a": {
         "id": "4675f5e4-56c0-4110-9933-744b3dca5e6a",
         "title": "What engines power GSLV and wh...",
@@ -2324,6 +2317,566 @@
                 "role": "system",
                 "content": "Chandrayaan-3 is a successful lunar mission that achieved several milestones. Some key points about Chandrayaan-3 are:\n\n* The mission aimed to demonstrate India's capability in safe landing and roving on the lunar surface.\n* It consisted of two parts: the propulsion module and the Lander-Rover module, both developed indigenously.\n* The mission was successful in terms of mission accomplishments as well as scientific observations.\n* The Pragyan rover brought out some insight about the lunar regolith being uniform in elemental composition, making it an excellent ground truth for future remote sensing missions.\n* The Vikram lander recorded over 250 distinct events of lunar ground vibrations at the Shiv Shakti point, with about 200 records correlated to physical movements by the rover or instruments for science experiments.\n* Chandrayaan-3 has received several prestigious awards, including the Rashtriya Vigyan (Team) Puraskar, International Astronautical Federation (IAF) Award for Excellence in Space Exploration, John L. 'Jack' Swigert Jr. Award for Space Exploration, and Aviation Week Laureates Award.\n* The mission yielded a few scientifically significant results, including the first-ever measurements of near-surface lunar plasma environment, probing of a few cm of lunar regolith, capture of vibration signatures on the lunar surface, detection of constituent elements of the lunar regolith, and APXS spectra showing the presence of all major and minor elements around the landing site.\n* The scientific data acquired by Chandrayaan-3 was released to the scientific community through the ISSDC/PRADAN portal on August 23, 2024.\n\nVerified Sources: Annual_Report_2023_24_English.pdf, Annual_Report_2024_25_Eng.pdf, Mann_ki_baat_August_2023_English.pdf, Space_Research_July_2020_2021_040625.pdf, publication(6).pdf",
                 "timestamp": "2026-04-13T14:54:43.016986"
+            }
+        ]
+    },
+    "92e902fb-8d1c-4f92-bb37-413a170f4ae6": {
+        "id": "92e902fb-8d1c-4f92-bb37-413a170f4ae6",
+        "title": "What is ISRO?",
+        "role": "Public",
+        "updated_at": "2026-04-27T09:22:39.836405",
+        "messages": [
+            {
+                "role": "user",
+                "content": "What is ISRO?",
+                "timestamp": "2026-04-27T09:22:39.834792"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.1s\", \"time\": 0.09474015235900879}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.09496092796325684}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.09543418884277344}\nBased on retrieved context (Fallback): \nqualification, acceptance, certification, audits, etc., along with compliance to quality/\nsafety manuals, plans and procedures, checklists, guidelines etc. continue to be the core \nresponsibilities of the Quality and Safety teams. Rigorous reviews continue to be a strong \npillar of ISRO\u2019s quality an...\n__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 0.11791396141052246}\n__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 0.1s\", \"time\": 0.1198420524597168}",
+                "timestamp": "2026-04-27T09:22:39.836403"
+            }
+        ]
+    },
+    "2326db7e-6c0b-4acc-9426-6669d69af02d": {
+        "id": "2326db7e-6c0b-4acc-9426-6669d69af02d",
+        "title": "Tell me about GSAT satellites",
+        "role": "Public",
+        "updated_at": "2026-04-27T10:48:23.488302",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Tell me about GSAT satellites",
+                "timestamp": "2026-04-27T10:48:23.486453"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.01757216453552246}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.017764806747436523}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.018159866333007812}\nBased on retrieved context (Fallback): \nSun Synchronous Orbit (SSO) on September 26, 2016, from SDSC SHAR Sriharikota. \nCo-passenger satellites are ALSAT-1B, ALSAT-2B, ALSAT-1N from Algeria, NLS-19 from  \nCanada, and Pathfinder-1 from USA, as well as two satellites PRATHAM from IIT Bombay \nand PISAT from PES University, Bengaluru\n\u2022 India\u2019...\n__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 0.04323697090148926}\n__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 0.0s\", \"time\": 0.04468369483947754}",
+                "timestamp": "2026-04-27T10:48:23.488299"
+            }
+        ]
+    },
+    "97cb3dc4-d46e-4f85-a47d-8d16fa4a138c": {
+        "id": "97cb3dc4-d46e-4f85-a47d-8d16fa4a138c",
+        "title": "What are the achievements of ISRO in spa...",
+        "role": "Public",
+        "updated_at": "2026-04-27T10:49:45.059503",
+        "messages": [
+            {
+                "role": "user",
+                "content": "What are the achievements of ISRO in space exploration?",
+                "timestamp": "2026-04-27T10:49:45.057882"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.015917062759399414}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.016103267669677734}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.016524076461791992}\nBased on retrieved context (Fallback): \nattempted and in t he process\naccomplishment of the tasks such as\ndemanding performanc e that could\ndeliver the sought-after results, building\nof values and their reaff irmation and\nbuilding effective teams and developing\nthem for tomorrow ha ve become a\ncakewalk.\n\u2022 And interestingly, all the  Chair...\n__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 0.03643608093261719}\n__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 0.0s\", \"time\": 0.03746938705444336}",
+                "timestamp": "2026-04-27T10:49:45.059501"
+            }
+        ]
+    },
+    "0b8b0b58-cfe0-4f61-93c1-d54ee1f15ddc": {
+        "id": "0b8b0b58-cfe0-4f61-93c1-d54ee1f15ddc",
+        "title": "What is ISRO's role in space exploration...",
+        "role": "Public",
+        "updated_at": "2026-04-27T10:50:13.385895",
+        "messages": [
+            {
+                "role": "user",
+                "content": "What is ISRO's role in space exploration?",
+                "timestamp": "2026-04-27T10:50:13.384221"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.017155170440673828}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.017405033111572266}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.018013954162597656}\nBased on retrieved context (Fallback): \nconnection, as well as exploration of space.\nThe event of MoU signing between ISRO and IIG, in ISRO HQ, Bengaluru, on September 4, 2024\n6. International Collaboration and Meets on Space \nScience Exploration\nDepartment of Space is engaged in International Cooperation activities in space \nscience and ...\n__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 0.038598060607910156}\n__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 0.0s\", \"time\": 0.0395817756652832}",
+                "timestamp": "2026-04-27T10:50:13.385894"
+            }
+        ]
+    },
+    "148a6eae-1df8-4691-821c-6eb679e8341b": {
+        "id": "148a6eae-1df8-4691-821c-6eb679e8341b",
+        "title": "Hello",
+        "role": "Public",
+        "updated_at": "2026-04-27T10:50:40.291863",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Hello",
+                "timestamp": "2026-04-27T10:50:40.289505"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.025725841522216797}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.026115894317626953}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.027313947677612305}\nHello! I'm here to help with ISRO aerospace questions.__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 0.1s\", \"time\": 0.06286787986755371}",
+                "timestamp": "2026-04-27T10:50:40.291861"
+            }
+        ]
+    },
+    "d6d5e592-91f3-4726-9a20-62d6185ccc4d": {
+        "id": "d6d5e592-91f3-4726-9a20-62d6185ccc4d",
+        "title": "Hello",
+        "role": "Public",
+        "updated_at": "2026-04-27T10:54:42.159152",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Hello",
+                "timestamp": "2026-04-27T10:54:42.157460"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.015034198760986328}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.015182971954345703}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.015651941299438477}\nHello! I'm here to help with ISRO aerospace questions.__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 0.0s\", \"time\": 0.0377039909362793}",
+                "timestamp": "2026-04-27T10:54:42.159150"
+            }
+        ]
+    },
+    "fb3b3a52-5ace-4030-97ca-b529dda83ec1": {
+        "id": "fb3b3a52-5ace-4030-97ca-b529dda83ec1",
+        "title": "What is ISRO?",
+        "role": "Public",
+        "updated_at": "2026-04-27T10:55:31.072601",
+        "messages": [
+            {
+                "role": "user",
+                "content": "What is ISRO?",
+                "timestamp": "2026-04-27T10:55:31.070918"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.011195898056030273}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.011324167251586914}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.012056112289428711}\nBased on retrieved context (Fallback): \nqualification, acceptance, certification, audits, etc., along with compliance to quality/\nsafety manuals, plans and procedures, checklists, guidelines etc. continue to be the core \nresponsibilities of the Quality and Safety teams. Rigorous reviews continue to be a strong \npillar of ISRO\u2019s quality an...\n__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 0.03337502479553223}\n__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 0.0s\", \"time\": 0.03459978103637695}",
+                "timestamp": "2026-04-27T10:55:31.072599"
+            }
+        ]
+    },
+    "b50e8211-38cc-49c9-abc2-4282b0f548c4": {
+        "id": "b50e8211-38cc-49c9-abc2-4282b0f548c4",
+        "title": "What is ISRO?",
+        "role": "Public",
+        "updated_at": "2026-04-27T10:56:11.480976",
+        "messages": [
+            {
+                "role": "user",
+                "content": "What is ISRO?",
+                "timestamp": "2026-04-27T10:56:11.478837"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"cache_hit\", \"message\": \"\\u26a1 Retrieved from cache\", \"time\": 0.001}\nBased on retrieved context (Fallback): \nqualification, acceptance, certification, audits, etc., along with compliance to quality/\nsafety manuals, plans and procedures, checklists, guidelines etc. continue to be the core \nresponsibilities of the Quality and Safety teams. Rigorous reviews continue to be a strong \npillar of ISRO\u2019s quality an...",
+                "timestamp": "2026-04-27T10:56:11.480973"
+            }
+        ]
+    },
+    "b54d45c5-0d94-4ece-8356-58aebf78991a": {
+        "id": "b54d45c5-0d94-4ece-8356-58aebf78991a",
+        "title": "Tell me about Chandrayaan-1",
+        "role": "Public",
+        "updated_at": "2026-04-27T10:56:11.519709",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Tell me about Chandrayaan-1",
+                "timestamp": "2026-04-27T10:56:11.517851"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.008566856384277344}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.008717060089111328}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.009380102157592773}\nBased on retrieved context (Fallback): \nown roadmap for exploring the moon and other bodies in the solar system.\nChandrayaan-1 is the first instrumented Indian mission to the Moon and\nalso, the first ISRO venture to leave Earth\u2019s gravity. The mission is aimed\nat high-resolution remote sensing of lunar surface in visible, near infrared \n(N...\n__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 0.029777050018310547}\n\n\nVerified Sources: Annual_Report_2023_24_English.pdf, Annual_Report_2024_25_Eng.pdf, Chandrayaan-1.pdf, Mann_ki_baat_August_2023_English.pdf, Space_Research_July_2020_2021_040625.pdf, publication(6).pdf__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 0.0s\", \"time\": 0.030905961990356445}",
+                "timestamp": "2026-04-27T10:56:11.519708"
+            }
+        ]
+    },
+    "07969e66-58a7-4b55-bc15-f6e1ee10b134": {
+        "id": "07969e66-58a7-4b55-bc15-f6e1ee10b134",
+        "title": "What are ISRO satellites?",
+        "role": "Public",
+        "updated_at": "2026-04-27T10:56:11.558355",
+        "messages": [
+            {
+                "role": "user",
+                "content": "What are ISRO satellites?",
+                "timestamp": "2026-04-27T10:56:11.556513"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.009176015853881836}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.00931406021118164}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.009781837463378906}\nBased on retrieved context (Fallback): \ncommunication, navigation, remote sensing, scientifi  c and small satellite missions. The \nspecialized teams of scientists, engineers, and technicians of URSC have built complex \n& advanced satellites for various applications in areas of telecommunications, television \nbroadcasting, VSAT services, t...\n__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 0.02989983558654785}\n__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 0.0s\", \"time\": 0.03098583221435547}",
+                "timestamp": "2026-04-27T10:56:11.558353"
+            }
+        ]
+    },
+    "69cfbab6-553a-4ab1-a5e6-07f67ab29c68": {
+        "id": "69cfbab6-553a-4ab1-a5e6-07f67ab29c68",
+        "title": "Hello",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:12:01.858089",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Hello",
+                "timestamp": "2026-04-27T10:59:03.998309"
+            },
+            {
+                "role": "system",
+                "content": "Namaste! It's great to connect with you! I'm thrilled to be your go-to assistant for all things related to the Indian Space Research Organisation (ISRO) and aerospace in general. What brings you here today? Are you looking for information on a specific ISRO mission, or perhaps seeking insights on India's space program? Let me know, and I'll do my best to help!",
+                "timestamp": "2026-04-27T10:59:04.002535"
+            },
+            {
+                "role": "user",
+                "content": "can you explain about the Moon missions in detail ?",
+                "timestamp": "2026-04-27T11:00:16.421114"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.1s\", \"time\": 0.12578296661376953}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.12784314155578613}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.1284329891204834}\nI'd be happy to provide information on ISRO's Moon missions!\n\nAs per the provided context, it seems that there are several mentions of Moon-related topics and missions. Let me summarize some key points:\n\n1. The context starts by mentioning the exploration of the Moon, which has been a topic of interest for humans since ancient times. It highlights the importance of lunar exploration in understanding the origin of our planet Earth and the solar system.\n2. There is a mention of the Apollo missions (11-17, except 13) that sent astronauts to the Moon's surface, leaving behind instruments that provided new information on Moonquakes, heat flow, meteorite impacts, etc.\n3. The context also mentions Phase-1 (1959-1970), which saw the Soviet Union's Luna series of spacecrafts retrieve lunar samples, and the United States' Ranger and Surveyor missions culminating in the Apollo Moon landing missions.\n4. There is a mention of Chandrayaan-1, India's first mission to the Moon, which was launched in 2008. The context does not provide detailed information on this mission, but it seems that it was a significant milestone for ISRO.\n\nAs per my understanding, there are no specific details provided about other Moon missions beyond Chandrayaan-1. However, I can try to summarize some general points:\n\n* There have been several lunar missions in the past, including Soviet Union's Luna series and United States' Apollo missions.\n* The context mentions that ISRO has planned future Astronomy missions, but it does not provide specific details on these missions.\n* There is a mention of Chandrayaan-5/LuPEX mission, which is a collaborative venture between ISRO and JAXA (Japanese Space Agency), but the context does not provide detailed information on this mission.\n\nPlease note that I am an ISRO aerospace documentation assistant, and my primary responsibility is to provide accurate information based on the provided context. If you have any specific questions or would like me to elaborate on certain points, please feel free to ask!\n__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 35.82696986198425}\n\n\nVerified Sources: Annual_Report_2023_24_English.pdf, Annual_Report_2024_25_Eng.pdf, Chandrayaan-1.pdf, Research_Areas_Space_Doc2025.pdf__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 35.8s\", \"time\": 35.83309483528137}",
+                "timestamp": "2026-04-27T11:00:16.426490"
+            },
+            {
+                "role": "user",
+                "content": "tell me about chandrayaan-3 mission in detail?",
+                "timestamp": "2026-04-27T11:12:01.852196"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.041555166244506836}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.04210782051086426}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.04368162155151367}\nI'd be happy to provide information on ISRO's Moon missions!\n\nAs per the provided context, it seems that there are several mentions of Moon-related topics and missions. Let me summarize some key points:\n\n1. The context starts by mentioning the exploration of the Moon, which has been a topic of interest for humans since ancient times. It highlights the importance of lunar exploration in understanding the origin of our planet Earth and the solar system.\n2. There is a mention of the Apollo missions (11-17, except 13) that sent astronauts to the Moon's surface, leaving behind instruments that provided new information on Moonquakes, heat flow, meteorite impacts, etc.\n3. The context also mentions Phase-1 (1959-1970), which saw the Soviet Union's Luna series of spacecrafts retrieve lunar samples, and the United States' Ranger and Surveyor missions culminating in the Apollo Moon landing missions.\n4. There is a mention of Chandrayaan-1, India's first mission to the Moon, which was launched in 2008. The context does not provide detailed information on this mission, but it seems that it was a significant milestone for ISRO.\n\nAs per my understanding, there are no specific details provided about other Moon missions beyond Chandrayaan-1. However, I can try to summarize some general points:\n\n* There have been several lunar missions in the past, including Soviet Union's Luna series and United States' Apollo missions.\n* The context mentions that ISRO has planned future Astronomy missions, but it does not provide specific details on these missions.\n* There is a mention of Chandrayaan-5/LuPEX mission, which is a collaborative venture between ISRO and JAXA (Japanese Space Agency), but the context does not provide detailed information on this mission.\n\nRegarding Chandrayaan-3 specifically, I found some relevant information in the provided context. According to the text, Chandrayaan-3 was a successful soft-landing of the Ch-3 lander-rover module on August 23, 2023, at 69.3 deg S and 32.3 deg E. The mission involved deploying and operating science payloads as per the science plan document released by ISRO HQ.\n\nThe context also mentions that Chandrayaan-3 was a significant milestone for ISRO, demonstrating the country's capability and expertise in accomplishing highly complex space missions. The success of Chandrayaan-1 had paved the way for undertaking missions to the Moon and beyond.\n\nPlease note that I__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 57.99808382987976}\n\n\nVerified Sources: Annual_Report_2023_24_English.pdf, Annual_Report_2024_25_Eng.pdf, Chandrayaan-1.pdf, Mann_ki_baat_August_2023_English.pdf, Space_Research_July_2020_2021_040625.pdf, publication(6).pdf__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 58.0s\", \"time\": 58.0038378238678}",
+                "timestamp": "2026-04-27T11:12:01.858080"
+            }
+        ]
+    },
+    "90f5227f-7bbf-4968-a83c-ec29170deae0": {
+        "id": "90f5227f-7bbf-4968-a83c-ec29170deae0",
+        "title": "Tell me about ISRO Moon missions",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:03:38.456637",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Tell me about ISRO Moon missions",
+                "timestamp": "2026-04-27T11:03:38.451695"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.01493978500366211}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.015192270278930664}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.01568007469177246}\nBased on the provided context, here's what I can tell you about ISRO's moon missions:\n\n1. Chandrayaan-1: This is India's first mission to the Moon, which was launched in October 2008. The mission aimed to study the lunar regolith and geologic context for interpreting analyzed samples.\n2. Chandrayaan-3/LuPEX: This is a collaborative venture between ISRO and JAXA (Japanese Space Agency). It has received approval from the Space Commission and is due for final approval. The mission aims to capture a spacecraft in an orbit around another solar system object, maintain observation, acquisition, and transfer of data from lunar orbit to ground station.\n3. National Lunar Mission Task Force: This was constituted by ISRO with leading scientists and technologists from across the country to consider and assess the feasibility of taking up an Indian mission to the Moon.\n\nSome notable payloads on Chandrayaan-1 include:\n\n* Terrain Mapping Camera (TMC)\n* Hyper Spectral Imager (HySI)\n* Lunar Laser Ranging Instrument (LLRI)\n* High Energy X-ray Spectrometer (HEX)\n* Moon Impact probe (MIP)\n* Chandrayaan-1 X-ray Spectrometer (C1XS), Solar X-ray Monitor (XSM)\n* Sub keV Atom Reflecting Analyser (SARA)\n* Near Infrared Spectrometer (SIR-2)\n* Radiation Dose Monitor (RADOM)\n* Miniature Synthetic Aperture Radar (Mini-SAR)\n* Moon Mineralogy Mapper (M3)\n\nThe mission's operational lifetime was planned to be two years.\n__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 25.019474029541016}\n\n\nVerified Sources: Annual_Report_2023_24_English.pdf, Annual_Report_2024_25_Eng.pdf, Chandrayaan-1.pdf__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 25.0s\", \"time\": 25.024792194366455}",
+                "timestamp": "2026-04-27T11:03:38.456629"
+            }
+        ]
+    },
+    "7c116408-fa9e-4f19-bd7a-e1409254ef3e": {
+        "id": "7c116408-fa9e-4f19-bd7a-e1409254ef3e",
+        "title": "Tell me about ISRO Moon missions",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:08:02.621883",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Tell me about ISRO Moon missions",
+                "timestamp": "2026-04-27T11:08:02.618011"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.2s\", \"time\": 0.1937110424041748}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.19398808479309082}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.19483375549316406}\nA great topic!\n\nThe Indian Space Research Organisation (ISRO) has been actively involved in lunar exploration through various moon missions. Here are some of the notable ones:\n\n1. **Chandrayaan-1** (2008): India's first mission to the Moon, which included a lunar orbiter and an impactor. The mission was designed to study the Moon's surface composition, search for water ice, and understand the geological processes that shape the Moon.\n2. **Chandrayaan-3** (2023): A follow-up mission to Chandrayaan-1, which includes a lunar lander and rover to explore the Moon's surface in greater detail. The mission aims to study the Moon's geology, search for water ice, and understand the lunar regolith.\n3. **Chandrayaan-5** (LuPEX) (2024): A collaborative mission with Japan's JAXA to send a lunar orbiter and lander to the Moon's south pole. The mission aims to study the lunar regolith, search for water ice, and understand the geological processes that shape the Moon.\n4. **Lunar Polar Exploration** (LuPEX) (2025): A future mission planned by ISRO in collaboration with JAXA to explore the Moon's south polar region.\n\nThese missions have contributed significantly to our understanding of the Moon and its composition. They have also helped India establish itself as a major player in lunar exploration, paving the way for future collaborations and missions.\n\nWould you like me to elaborate on any specific mission or aspect of ISRO's moon program?__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 41.19335699081421}\n\n\nVerified Sources: Annual_Report_2023_24_English.pdf, Annual_Report_2024_25_Eng.pdf, Chandrayaan-1.pdf__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 41.2s\", \"time\": 41.198686838150024}",
+                "timestamp": "2026-04-27T11:08:02.621869"
+            }
+        ]
+    },
+    "c594f442-1b11-4dd0-a345-00c20bad8a99": {
+        "id": "c594f442-1b11-4dd0-a345-00c20bad8a99",
+        "title": "Tell me about ISRO Moon missions",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:08:30.501768",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Tell me about ISRO Moon missions",
+                "timestamp": "2026-04-27T11:08:30.499798"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"cache_hit\", \"message\": \"\\u26a1 Retrieved from cache\", \"time\": 0.001}\nA great topic!\n\nThe Indian Space Research Organisation (ISRO) has been actively involved in lunar exploration through various moon missions. Here are some of the notable ones:\n\n1. **Chandrayaan-1** (2008): India's first mission to the Moon, which included a lunar orbiter and an impactor. The mission was designed to study the Moon's surface composition, search for water ice, and understand the geological processes that shape the Moon.\n2. **Chandrayaan-3** (2023): A follow-up mission to Chandrayaan-1, which includes a lunar lander and rover to explore the Moon's surface in greater detail. The mission aims to study the Moon's geology, search for water ice, and understand the lunar regolith.\n3. **Chandrayaan-5** (LuPEX) (2024): A collaborative mission with Japan's JAXA to send a lunar orbiter and lander to the Moon's south pole. The mission aims to study the lunar regolith, search for water ice, and understand the geological processes that shape the Moon.\n4. **Lunar Polar Exploration** (LuPEX) (2025): A future mission planned by ISRO in collaboration with JAXA to explore the Moon's south polar region.\n\nThese missions have contributed significantly to our understanding of the Moon and its composition. They have also helped India establish itself as a major player in lunar exploration, paving the way for future collaborations and missions.\n\nWould you like me to elaborate on any specific mission or aspect of ISRO's moon program?\n\nVerified Sources: Annual_Report_2023_24_English.pdf, Annual_Report_2024_25_Eng.pdf, Chandrayaan-1.pdf",
+                "timestamp": "2026-04-27T11:08:30.501766"
+            }
+        ]
+    },
+    "4051703e-cb32-4029-9925-0e469573113a": {
+        "id": "4051703e-cb32-4029-9925-0e469573113a",
+        "title": "What is ISRO?",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:08:58.587688",
+        "messages": [
+            {
+                "role": "user",
+                "content": "What is ISRO?",
+                "timestamp": "2026-04-27T11:08:58.583035"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.04813790321350098}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.0483858585357666}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.04915571212768555}\nBased on the provided documentation, ISRO stands for Indian Space Research Organisation. It appears to be a government agency responsible for the nation's space program and related research and development.__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 28.066324949264526}\n__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 28.1s\", \"time\": 28.07013487815857}",
+                "timestamp": "2026-04-27T11:08:58.587684"
+            }
+        ]
+    },
+    "2238ece7-c94c-4271-87b5-68a3ba226264": {
+        "id": "2238ece7-c94c-4271-87b5-68a3ba226264",
+        "title": "Tell me about Chandrayaan-1",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:09:27.196497",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Tell me about Chandrayaan-1",
+                "timestamp": "2026-04-27T11:09:27.190762"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.1s\", \"time\": 0.07434701919555664}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.07456779479980469}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.07528877258300781}\nChandrayaan-1 is the first instrumented Indian mission to the Moon and the first ISRO venture to leave Earth's gravity. The mission aimed at high-resolution remote sensing of the lunar surface in visible, near-infrared (NIR), low and high energy X-ray regions, to prepare a three-dimensional atlas of both the near and far side of the moon and conduct chemical and mineralogical mapping of the entire lunar surface using eleven state-of-the-art instruments. The mission also included releasing a Moon Impact Probe that would explore the moon from close quarters as it descended till impact.\n\nThe spacecraft's orbit was raised on October 23, 2008, when the first orbit-raising maneuver was performed at 09:00 hrs Indian Standard Time (IST) using the 440 Newton Liquid Engine. This engine firing raised Chandrayaan-1's apogee to 37,900 km and its perigee a little.\n\nThe Ground Segment of Chandrayaan-1 consists of the Indian Deep Space Network (IDSN), Spacecraft Control Centre (SCC), and Indian Space Science Data Centre (ISSDC). IDSN receives data sent by the Chandrayaan-1 spacecraft and sends commands to the spacecraft at a power level of up to 20 kilowatts.\n\nThe mission included several Earth Bound Maneuvers (EBMs) between October 22, 2008, and November 8, 2008.__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 28.54937171936035}\n\n\nVerified Sources: Annual_Report_2023_24_English.pdf, Annual_Report_2024_25_Eng.pdf, Chandrayaan-1.pdf, Mann_ki_baat_August_2023_English.pdf, Space_Research_July_2020_2021_040625.pdf, publication(6).pdf__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 28.6s\", \"time\": 28.55406379699707}",
+                "timestamp": "2026-04-27T11:09:27.196485"
+            }
+        ]
+    },
+    "9a47b217-7fef-42c6-85dd-ca484185cbe6": {
+        "id": "9a47b217-7fef-42c6-85dd-ca484185cbe6",
+        "title": "What are ISRO satellites?",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:10:18.278036",
+        "messages": [
+            {
+                "role": "user",
+                "content": "What are ISRO satellites?",
+                "timestamp": "2026-04-27T11:10:18.272402"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.1s\", \"time\": 0.0585629940032959}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.059062957763671875}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.06019115447998047}\nAccording to the provided information, ISRO (Indian Space Research Organisation) satellites refer to a wide range of satellites designed and developed by ISRO for various applications such as telecommunications, television broadcasting, VSAT services, telemedicine, tele-education, navigation, weather forecasting, disaster warning, search and rescue operations, earth observations, natural resource management, scientific and space science etc.\n\nThese satellites include:\n\n1. Communication satellites: Such as INSAT and GSAT series of satellites used for providing various communication services like VSAT, DTH, Internet, broadcasting, telephony services, etc.\n2. Navigation satellites: Like the Indian Regional Navigation Satellite System (IRNSS) which provides navigation services to users in India and surrounding regions.\n3. Remote sensing satellites: Such as Bhaskara, IRS, and Cartosat series of satellites used for earth observations, natural resource management, and scientific research.\n4. Scientific satellites: Like Mangalyaan, which was a Mars orbiter mission that successfully entered orbit around the Red Planet.\n5. Small satellites: ISRO has also developed small satellites like PSLV-C43, which is an earth observation satellite configured around ISRO's Mini Satellite-2 (IMS-2) bus.\n\nThese satellites are designed and developed by various centers of ISRO, including the U R Rao Satellite Centre (URSC), Bengaluru, and the Laboratory for Electro-Optics Systems (LEOS), Bengaluru.__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 51.051777839660645}\n\n\nVerified Sources: Annual_Report_2023_24_English.pdf__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 51.1s\", \"time\": 51.055883169174194}",
+                "timestamp": "2026-04-27T11:10:18.278019"
+            }
+        ]
+    },
+    "b5ca8cc3-b21f-4099-972a-f69fb99dce4d": {
+        "id": "b5ca8cc3-b21f-4099-972a-f69fb99dce4d",
+        "title": "Tell me about Chandrayaan-1 Moon mission",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:15:11.201047",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Tell me about Chandrayaan-1 Moon mission",
+                "timestamp": "2026-04-27T11:15:11.197990"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.1s\", \"time\": 0.11310601234436035}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.11331701278686523}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.11391997337341309}\nChandrayaan-1 was India's first lunar exploration mission. It was launched on October 22, 2008, and it reached the moon on November 14, 2008. The mission aimed to high-resolution remote sensing of the Moon in visible, near-infrared, low-energy X-ray, and high-energy X-ray regions.\n\nThe objectives of Chandrayaan-1 were:\n\n* To prepare a three-dimensional atlas (with a high spatial and altitude resolution of 5-10 meters) of both the near and far sides of the Moon.\n* To conduct chemical and mineralogical mapping of the entire lunar surface for distribution of mineral and chemical elements such as Magnesium, Aluminum, Silicon, Calcium, Iron, and Titanium, as well as high atomic number elements like Radon, Uranium, and Thorium with high spatial resolution.\n\nThe mission was successful in demonstrating India's capability and expertise in accomplishing highly complex space missions. The success of Chandrayaan-1 paved the way for undertaking missions to the Moon and beyond.\n\nChandrayaan-1 carried a range of scientific instruments, including:\n\n* Terrain Mapping Camera (TMC)\n* Hyper-Spectral Imager (HySI)\n* Lunar Laser Ranging Instrument (LLRI)\n* High Energy X-ray Spectrometer (HEX)\n* Moon Impact Probe (MIP)\n\nThe mission was controlled from the Mission Operations Complex (MOX) and Indian Space Science Data Centre (ISSDC). The Ground Segment for Chandrayaan-1 comprised three major elements: the Ground Station Network, including the Indian Deep Space Network (IDSN), MOX, and ISSDC.\n\nChandrayaan-1 orbited the Moon at an altitude of 100 km to 200 km, with a peri-selene (nearest point) of 200 km and an apo-selene (farthest point) of 7,502 km. The mission lasted for two years, during which it obtained specific data on the lunar surface using its onboard instruments.\n\nThe success of Chandrayaan-1 was celebrated as a grand achievement in India's space program, with the Prime Minister stating that it had become a symbol of the spirit of New India, which wants to ensure victory and knows how to win in any situation.__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 38.23192620277405}\n\n\nVerified Sources: Annual_Report_2023_24_English.pdf, Chandrayaan-1.pdf, Mann_ki_baat_August_2023_English.pdf, Space_Research_July_2020_2021_040625.pdf, publication(6).pdf__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 38.2s\", \"time\": 38.249191999435425}",
+                "timestamp": "2026-04-27T11:15:11.201041"
+            }
+        ]
+    },
+    "0d3e8f61-9f1c-46b9-8ff7-49e5b6511496": {
+        "id": "0d3e8f61-9f1c-46b9-8ff7-49e5b6511496",
+        "title": "Tell me about Chandrayaan-1",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:15:48.187866",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Tell me about Chandrayaan-1",
+                "timestamp": "2026-04-27T11:15:48.181393"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.04530477523803711}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.04548501968383789}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.046079158782958984}\nChandrayaan-1 is the first instrumented Indian mission to the Moon and the first ISRO venture to leave Earth's gravity. The mission aimed at high-resolution remote sensing of the lunar surface in visible, near-infrared (NIR), low and high energy X-ray regions, to prepare a three-dimensional atlas of both the near and far side of the moon and conduct chemical and mineralogical mapping of the entire lunar surface using eleven state-of-the-art instruments. Additionally, Chandrayaan-1 released a Moon Impact Probe that explored the moon from close quarters as it descended until impact.\n\nThe spacecraft's orbit was raised on October 23, 2008, when the first orbit-raising maneuver was performed at 09:00 hours Indian Standard Time (IST). The mission has been successful in terms of mission accomplishments and scientific observations.__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 23.416356086730957}\n\n\nVerified Sources: Annual_Report_2023_24_English.pdf, Annual_Report_2024_25_Eng.pdf, Chandrayaan-1.pdf, Mann_ki_baat_August_2023_English.pdf, Space_Research_July_2020_2021_040625.pdf, publication(6).pdf__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 23.4s\", \"time\": 23.421833992004395}",
+                "timestamp": "2026-04-27T11:15:48.187852"
+            }
+        ]
+    },
+    "8db081b3-71fc-4183-9d67-f56de175279a": {
+        "id": "8db081b3-71fc-4183-9d67-f56de175279a",
+        "title": "Tell me about Chandrayaan-1",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:16:02.138669",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Tell me about Chandrayaan-1",
+                "timestamp": "2026-04-27T11:16:02.136584"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"cache_hit\", \"message\": \"\\u26a1 Retrieved from cache\", \"time\": 0.001}\nChandrayaan-1 is the first instrumented Indian mission to the Moon and the first ISRO venture to leave Earth's gravity. The mission aimed at high-resolution remote sensing of the lunar surface in visible, near-infrared (NIR), low and high energy X-ray regions, to prepare a three-dimensional atlas of both the near and far side of the moon and conduct chemical and mineralogical mapping of the entire lunar surface using eleven state-of-the-art instruments. Additionally, Chandrayaan-1 released a Moon Impact Probe that explored the moon from close quarters as it descended until impact.\n\nThe spacecraft's orbit was raised on October 23, 2008, when the first orbit-raising maneuver was performed at 09:00 hours Indian Standard Time (IST). The mission has been successful in terms of mission accomplishments and scientific observations.\n\nVerified Sources: Annual_Report_2023_24_English.pdf, Annual_Report_2024_25_Eng.pdf, Chandrayaan-1.pdf, Mann_ki_baat_August_2023_English.pdf, Space_Research_July_2020_2021_040625.pdf, publication(6).pdf",
+                "timestamp": "2026-04-27T11:16:02.138668"
+            }
+        ]
+    },
+    "9ef0ca01-3fe6-42a1-b9b3-68c427b65f17": {
+        "id": "9ef0ca01-3fe6-42a1-b9b3-68c427b65f17",
+        "title": "Tell me about ISRO space missions and ac...",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:17:17.989620",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Tell me about ISRO space missions and achievements 1777268776",
+                "timestamp": "2026-04-27T11:17:17.985953"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.049340248107910156}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.0495600700378418}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.05037379264831543}\nISRO (Indian Space Research Organisation) has a rich history of successful space missions and achievements. Here are some notable ones:\n\n**Early Years**\n\n* 1965: Establishment of the Space Science and Technology Centre (SSTC) in Thumba, Kerala.\n* 1967: Experimental Satellite Communication Earth Station (ESCES) set up at Ahmedabad.\n* 1968: TERLS dedicated to the United Nations (February 2, 1968).\n* 1969: ISRO formed (August 15, 1969).\n\n**Satellite Missions**\n\n* Aryabhata (1975): India's first satellite, launched on April 19, 1975.\n* Bhaskara-1 (1979): Experimental satellite for earth observations, launched on June 7, 1979.\n* INSAT-1A (1980): First Indian communication satellite, launched on March 20, 1980.\n* Rohini (1980s): A series of experimental satellites for testing various technologies.\n\n**Chandrayaan Missions**\n\n* Chandrayaan-1 (2008): India's first lunar mission, launched on October 22, 2008. Successfully imaged the Moon's surface and discovered water ice.\n* Chandrayaan-2 (2019): A follow-up mission to Chandrayaan-1, which included a lander and rover to study the Moon's south pole.\n\n**Other Missions**\n\n* Mangalyaan (Mars Orbiter Mission) (2013): India's first interplanetary mission, launched on November 5, 2013. Successfully entered Mars' orbit.\n* GSAT-14 (2013): A communication satellite launched on January 5, 2013.\n* PSLV-C25 (2014): A launch vehicle that successfully placed the IRNSS-1A navigation satellite into orbit.\n\n**Recent Achievements**\n\n* Gaganyaan Mission: India's first crewed space mission, planned for 2022.\n* Chandrayaan-3: A lunar mission scheduled for 2023, which includes a lander and rover to study the Moon's south pole.\n* Aditya-L1: A solar mission scheduled for 2023, which will study the Sun's corona.\n\n**International Cooperation**\n\n* ISRO has collaborated with NASA, Roscosmos (Russia), and other space agencies on various projects.\n* The organization is also involved in international forums like COSPAR (Committee on Space Research) and__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 61.70948100090027}\n\n\n[!CAUTION] SECURITY AUDIT ALERT: Chandrayaan-1 was an orbiter, not a lander\n\nThe system detected potential inaccuracies in the generated response above. Please verify with primary sources.__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 61.7s\", \"time\": 61.71284103393555}",
+                "timestamp": "2026-04-27T11:17:17.989617"
+            }
+        ]
+    },
+    "60081e04-3275-4eb8-80e2-f32d7ced4949": {
+        "id": "60081e04-3275-4eb8-80e2-f32d7ced4949",
+        "title": "Tell me about ISRO space missions 177726...",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:18:43.107262",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Tell me about ISRO space missions 1777268881",
+                "timestamp": "2026-04-27T11:18:43.101893"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.1s\", \"time\": 0.0579838752746582}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.05826711654663086}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.0597231388092041}\nI'm happy to help! As an ISRO aerospace documentation assistant, I can provide you with information on various ISRO space missions. Here are a few notable ones:\n\n1. **Chandrayaan-3**: A lunar mission that aims to soft-land a rover on the Moon's surface and conduct experiments.\n2. **Aditya-L1**: A solar mission that will study the Sun's corona, magnetic field, and solar wind.\n3. **TV D1/CES/CM Missions**: These are a series of missions focused on space science research, including studying the Earth's magnetosphere, ionosphere, and thermosphere.\n\nThese missions demonstrate ISRO's commitment to advancing our understanding of space and its applications for humanity.\n\nWould you like me to elaborate on any specific mission or provide more information?__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 41.16625714302063}\n\n\nVerified Sources: Annual_Report_2022_23_Eng.pdf, Annual_Report_2023_24_English.pdf__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 41.2s\", \"time\": 41.17261219024658}",
+                "timestamp": "2026-04-27T11:18:43.107256"
+            }
+        ]
+    },
+    "488c713b-b7bc-46b7-8f93-d186f129461c": {
+        "id": "488c713b-b7bc-46b7-8f93-d186f129461c",
+        "title": "Tell me about ISRO 1777268932",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:19:50.437157",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Tell me about ISRO 1777268932",
+                "timestamp": "2026-04-27T11:19:50.432783"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.04486894607543945}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.045060157775878906}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.045890092849731445}\nI'm happy to help!\n\nISRO stands for Indian Space Research Organisation. It is a government agency responsible for the nation's space program and activities. Here are some key points about ISRO:\n\n1. **History**: ISRO was established in 1969, with the goal of developing space technology and its applications.\n2. **Organization**: ISRO has a hierarchical structure, with the Chairman being the highest authority. It is divided into various centers, units, and facilities across India.\n3. **Mission**: The primary mission of ISRO is to develop and utilize space technology for national development, while also contributing to international cooperation in space exploration.\n4. **Satellite Programs**: ISRO has developed several satellite programs, including the Polar Satellite Launch Vehicle (PSLV), Geosynchronous Satellite Launch Vehicle (GSLV), and Chandrayaan-1 (India's first lunar mission).\n5. **Launch Vehicles**: ISRO has developed two launch vehicles: PSLV and GSLV. The PSLV is a workhorse for launching small to medium-sized satellites, while the GSLV is used for launching heavier payloads.\n6. **Satellite Applications**: ISRO uses its satellites for various applications, including:\n\t* Telecommunications (TV broadcasting, mobile communication)\n\t* Earth observation (weather forecasting, crop monitoring)\n\t* Navigation (GPS services)\n\t* Space exploration (studying the Moon and other celestial bodies)\n7. **International Cooperation**: ISRO collaborates with international space agencies, such as NASA, ESA, and Roscosmos, on various projects and missions.\n8. **Quality and Safety**: ISRO has a robust quality and safety management system in place to ensure the reliability and effectiveness of its products and services.\n\nThese are just some of the key points about ISRO. If you have any specific questions or would like more information, feel free to ask!__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 57.49170994758606}\n__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 57.5s\", \"time\": 57.497434854507446}",
+                "timestamp": "2026-04-27T11:19:50.437153"
+            }
+        ]
+    },
+    "130e6f57-dcf7-406e-918f-d97a7823f9ae": {
+        "id": "130e6f57-dcf7-406e-918f-d97a7823f9ae",
+        "title": "Tell me about ISRO 1777269006",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:20:06.016207",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Tell me about ISRO 1777269006",
+                "timestamp": "2026-04-27T11:20:06.014052"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"cache_hit\", \"message\": \"\\u26a1 Retrieved from cache\", \"time\": 0.001}\nI'm happy to help!\n\nISRO stands for Indian Space Research Organisation. It is a government agency responsible for the nation's space program and activities. Here are some key points about ISRO:\n\n1. **History**: ISRO was established in 1969, with the goal of developing space technology and its applications.\n2. **Organization**: ISRO has a hierarchical structure, with the Chairman being the highest authority. It is divided into various centers, units, and facilities across India.\n3. **Mission**: The primary mission of ISRO is to develop and utilize space technology for national development, while also contributing to international cooperation in space exploration.\n4. **Satellite Programs**: ISRO has developed several satellite programs, including the Polar Satellite Launch Vehicle (PSLV), Geosynchronous Satellite Launch Vehicle (GSLV), and Chandrayaan-1 (India's first lunar mission).\n5. **Launch Vehicles**: ISRO has developed two launch vehicles: PSLV and GSLV. The PSLV is a workhorse for launching small to medium-sized satellites, while the GSLV is used for launching heavier payloads.\n6. **Satellite Applications**: ISRO uses its satellites for various applications, including:\n\t* Telecommunications (TV broadcasting, mobile communication)\n\t* Earth observation (weather forecasting, crop monitoring)\n\t* Navigation (GPS services)\n\t* Space exploration (studying the Moon and other celestial bodies)\n7. **International Cooperation**: ISRO collaborates with international space agencies, such as NASA, ESA, and Roscosmos, on various projects and missions.\n8. **Quality and Safety**: ISRO has a robust quality and safety management system in place to ensure the reliability and effectiveness of its products and services.\n\nThese are just some of the key points about ISRO. If you have any specific questions or would like more information, feel free to ask!",
+                "timestamp": "2026-04-27T11:20:06.016205"
+            }
+        ]
+    },
+    "0a0d0170-a374-497e-b901-9c7d34299f86": {
+        "id": "0a0d0170-a374-497e-b901-9c7d34299f86",
+        "title": "Tell me about ISRO 1777269016",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:20:16.041311",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Tell me about ISRO 1777269016",
+                "timestamp": "2026-04-27T11:20:16.039168"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"cache_hit\", \"message\": \"\\u26a1 Retrieved from cache\", \"time\": 0.001}\nI'm happy to help!\n\nISRO stands for Indian Space Research Organisation. It is a government agency responsible for the nation's space program and activities. Here are some key points about ISRO:\n\n1. **History**: ISRO was established in 1969, with the goal of developing space technology and its applications.\n2. **Organization**: ISRO has a hierarchical structure, with the Chairman being the highest authority. It is divided into various centers, units, and facilities across India.\n3. **Mission**: The primary mission of ISRO is to develop and utilize space technology for national development, while also contributing to international cooperation in space exploration.\n4. **Satellite Programs**: ISRO has developed several satellite programs, including the Polar Satellite Launch Vehicle (PSLV), Geosynchronous Satellite Launch Vehicle (GSLV), and Chandrayaan-1 (India's first lunar mission).\n5. **Launch Vehicles**: ISRO has developed two launch vehicles: PSLV and GSLV. The PSLV is a workhorse for launching small to medium-sized satellites, while the GSLV is used for launching heavier payloads.\n6. **Satellite Applications**: ISRO uses its satellites for various applications, including:\n\t* Telecommunications (TV broadcasting, mobile communication)\n\t* Earth observation (weather forecasting, crop monitoring)\n\t* Navigation (GPS services)\n\t* Space exploration (studying the Moon and other celestial bodies)\n7. **International Cooperation**: ISRO collaborates with international space agencies, such as NASA, ESA, and Roscosmos, on various projects and missions.\n8. **Quality and Safety**: ISRO has a robust quality and safety management system in place to ensure the reliability and effectiveness of its products and services.\n\nThese are just some of the key points about ISRO. If you have any specific questions or would like more information, feel free to ask!",
+                "timestamp": "2026-04-27T11:20:16.041310"
+            }
+        ]
+    },
+    "33a207fb-64e6-4dad-84af-96c51b74297f": {
+        "id": "33a207fb-64e6-4dad-84af-96c51b74297f",
+        "title": "Tell me about Chandrayaan-1 Moon mission...",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:23:13.127813",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Tell me about Chandrayaan-1 Moon mission 1777269161",
+                "timestamp": "2026-04-27T11:23:13.123409"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.1s\", \"time\": 0.10604286193847656}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.10646700859069824}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.10715389251708984}\nThe Chandrayaan-1 mission was India's first lunar exploration mission, which was launched in October 2008 and operated until August 2009. The mission aimed to high-resolution remote sensing of the Moon in visible, near-infrared, low-energy X-ray, and high-energy X-ray regions.\n\nThe objectives of the Chandrayaan-1 mission were:\n\n* To prepare a three-dimensional atlas (with a spatial resolution of about 5 meters) of both the near and far sides of the Moon.\n* To conduct chemical and mineralogical mapping of the entire lunar surface for the distribution of mineral and chemical elements such as Magnesium, Aluminum, Silicon, Calcium, Iron, and Titanium.\n\nThe mission was equipped with eight payloads, including the Terrain Mapping Camera (TMC), Hyper-Spectral Imager (HySI), Lunar Laser Ranging Instrument (LLRI), High Energy X-ray Spectrometer (HEX), and Moon Impact Probe (MIP). The mission also included six international payloads from abroad.\n\nChandrayaan-1 was placed in an elliptical orbit around the Moon, with a perilune of 200 km and an apolune of 7,502 km. The spacecraft took about ten and a half hours to circle the Moon once.\n\nThe mission achieved several milestones, including:\n\n* Successfully entering into lunar orbit on November 14, 2008.\n* Conducting Lunar Bound Maneuvers (LBN) to reduce its altitude from 504 km to 200 km.\n* Deploying the Moon Impact Probe (MIP) to study the lunar surface.\n\nChandrayaan-1 was a significant achievement for India's space program, demonstrating the country's capability and expertise in accomplishing complex space missions. The mission paved the way for future lunar and deep space missions.__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 31.19192600250244}\n\n\nVerified Sources: Annual_Report_2023_24_English.pdf, Annual_Report_2024_25_Eng.pdf, Chandrayaan-1.pdf, Mann_ki_baat_August_2023_English.pdf, publication(6).pdf\n__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 31.2s\", \"time\": 31.200629949569702}",
+                "timestamp": "2026-04-27T11:23:13.127811"
+            }
+        ]
+    },
+    "5d884779-f3c5-473a-a60d-8149392fe41d": {
+        "id": "5d884779-f3c5-473a-a60d-8149392fe41d",
+        "title": "Tell me about Chandrayaan-1 Moon mission...",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:24:32.990661",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Tell me about Chandrayaan-1 Moon mission 1777269248",
+                "timestamp": "2026-04-27T11:24:32.985369"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.1s\", \"time\": 0.11431288719177246}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.11451077461242676}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.11511588096618652}\nThe Chandrayaan-1 mission was a historic moment for ISRO, as it marked India's first lunar mission. The mission was approved by the Government of India in November 2003 and was launched on October 22, 2008.\n\nChandrayaan-1 aimed to conduct high-resolution remote sensing of the Moon in visible, near-infrared, low-energy X-ray, and high-energy X-ray regions. The objectives included preparing a three-dimensional atlas of both the near and far sides of the Moon with a spatial resolution of 5-10 meters, as well as conducting chemical and mineralogical mapping of the entire lunar surface.\n\nThe mission carried several Indian payloads, including the Terrain Mapping Camera (TMC), Hyper-Spectral Imager (HySI), Lunar Laser Ranging Instrument (LLRI), High Energy X-ray Spectrometer (HEX), and Moon Impact Probe (MIP). Additionally, six foreign payloads were also onboard.\n\nChandrayaan-1 successfully entered into lunar orbit on November 14, 2008. The mission's highlight was the successful soft landing of the Moon Impact Probe (MIP) on the south pole of the Moon on November 24, 2008, making India the fourth country to achieve this feat.\n\nThe mission provided valuable scientific data and insights about the lunar surface, including information about the composition, mineralogy, and geological features of the Moon. The success of Chandrayaan-1 paved the way for future Indian space missions, including those to the Moon and beyond.\n\nVerified Sources: Annual_Report_2023_24_English.pdf, Annual_Report_2024_25_Eng.pdf, Chandrayaan-1.pdf, Mann_ki_baat_August_2023_English.pdf, publication(6).pdf\n__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 24.975477933883667}\n\n__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 25.0s\", \"time\": 24.975571870803833}",
+                "timestamp": "2026-04-27T11:24:32.990653"
+            }
+        ]
+    },
+    "cdae644c-f6d0-4b37-a205-789974192f3e": {
+        "id": "cdae644c-f6d0-4b37-a205-789974192f3e",
+        "title": "Tell me about Chandrayaan-1 Moon mission...",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:24:58.178695",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Tell me about Chandrayaan-1 Moon mission 1777269298",
+                "timestamp": "2026-04-27T11:24:58.176488"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"cache_hit\", \"message\": \"\\u26a1 Retrieved from cache\", \"time\": 0.001}\nThe Chandrayaan-1 mission was a historic moment for ISRO, as it marked India's first lunar mission. The mission was approved by the Government of India in November 2003 and was launched on October 22, 2008.\n\nChandrayaan-1 aimed to conduct high-resolution remote sensing of the Moon in visible, near-infrared, low-energy X-ray, and high-energy X-ray regions. The objectives included preparing a three-dimensional atlas of both the near and far sides of the Moon with a spatial resolution of 5-10 meters, as well as conducting chemical and mineralogical mapping of the entire lunar surface.\n\nThe mission carried several Indian payloads, including the Terrain Mapping Camera (TMC), Hyper-Spectral Imager (HySI), Lunar Laser Ranging Instrument (LLRI), High Energy X-ray Spectrometer (HEX), and Moon Impact Probe (MIP). Additionally, six foreign payloads were also onboard.\n\nChandrayaan-1 successfully entered into lunar orbit on November 14, 2008. The mission's highlight was the successful soft landing of the Moon Impact Probe (MIP) on the south pole of the Moon on November 24, 2008, making India the fourth country to achieve this feat.\n\nThe mission provided valuable scientific data and insights about the lunar surface, including information about the composition, mineralogy, and geological features of the Moon. The success of Chandrayaan-1 paved the way for future Indian space missions, including those to the Moon and beyond.\n\nVerified Sources: Annual_Report_2023_24_English.pdf, Annual_Report_2024_25_Eng.pdf, Chandrayaan-1.pdf, Mann_ki_baat_August_2023_English.pdf, publication(6).pdf",
+                "timestamp": "2026-04-27T11:24:58.178693"
+            }
+        ]
+    },
+    "1e5bf720-dcd2-4352-9888-d54d03db451d": {
+        "id": "1e5bf720-dcd2-4352-9888-d54d03db451d",
+        "title": "What are the achievements of ISRO in spa...",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:26:09.077488",
+        "messages": [
+            {
+                "role": "user",
+                "content": "What are the achievements of ISRO in space exploration 1777269318",
+                "timestamp": "2026-04-27T11:26:09.072059"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.04609513282775879}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.04629111289978027}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.04714226722717285}\nI'm happy to help!\n\nAs an ISRO aerospace documentation assistant, I can provide you with some of the notable achievements of the Indian Space Research Organisation (ISRO) in space exploration:\n\n1. **Aryabhata**: Launched on April 19, 1975, Aryabhata was India's first satellite, which marked the country's entry into space exploration.\n2. **Bhaskara-1**: Launched on June 7, 1979, Bhaskara-1 was an experimental satellite for earth observations, which demonstrated India's capability in building and launching satellites.\n3. **Rohini**: Launched in 1980, Rohini was a series of three experimental satellites that tested various technologies, including launch vehicle integration and satellite design.\n4. **INSAT**: Launched in 1981, INSAT (Indian National Satellite System) is a constellation of communication satellites that provides television broadcasting, telecommunications, and other services to India.\n5. **Polar Satellite Launch Vehicle (PSLV)**: Developed by ISRO, PSLV has successfully launched numerous satellites into orbit, including the Chandrayaan-1 mission to the Moon in 2008.\n6. **Chandrayaan-1**: Launched on October 22, 2008, Chandrayaan-1 was India's first lunar mission, which included a lunar orbiter and an impactor that confirmed the presence of water ice on the Moon's surface.\n7. **Mangalyaan**: Launched on November 5, 2013, Mangalyaan (Mars Orbiter Mission) successfully entered Mars' orbit in September 2014, making India the fourth country to achieve this feat.\n8. **GSAT-14**: Launched on January 5, 2013, GSAT-14 is a communication satellite that provides services for television broadcasting, telecommunications, and other applications.\n9. **IRNSS (NavIC)**: Developed by ISRO, IRNSS (Indian Regional Navigation Satellite System) is an independent navigation system that provides accurate location information to users in India and surrounding regions.\n10. **Chandrayaan-2**: Launched on July 22, 2019, Chandrayaan-2 was a lunar mission that included a lander and a rover to study the Moon's surface and subsurface.\n\nThese are just a few of the many achievements of ISRO in space exploration. The organisation continues to push the boundaries of space technology, with ongoing missions like Aditya\n__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 50.11470699310303}\n\n__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 50.1s\", \"time\": 50.11484694480896}",
+                "timestamp": "2026-04-27T11:26:09.077483"
+            }
+        ]
+    },
+    "db8a1377-694e-4440-a691-14a6b20b6714": {
+        "id": "db8a1377-694e-4440-a691-14a6b20b6714",
+        "title": "what is ISRO ?",
+        "role": "Public",
+        "updated_at": "2026-04-27T11:27:11.517231",
+        "messages": [
+            {
+                "role": "user",
+                "content": "what is ISRO ?",
+                "timestamp": "2026-04-27T11:27:11.511624"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.1s\", \"time\": 0.0828561782836914}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.08315277099609375}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.0843358039855957}\nBased on the provided text, ISRO stands for Indian Space Research Organisation. It appears to be a government agency responsible for space research and development in India.\n__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 37.24189114570618}\n\n__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 37.2s\", \"time\": 37.24212694168091}",
+                "timestamp": "2026-04-27T11:27:11.517222"
             }
         ]
     }
