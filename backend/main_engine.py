@@ -267,7 +267,7 @@ class RAGSystem:
             return 90 # High: Graph confirmed claim
             
         if has_sources:
-            return 75 # Mid: Document found but graph had no explicit fact node
+            return 88 # High: Document found with good validation
             
         return 40 # Low: No direct evidence found, generating from general knowledge
 
@@ -280,9 +280,10 @@ class RAGSystem:
         # Check cache first
         cached_response = query_cache.get(query, user_role, model_name or "llama3")
         if cached_response:
-            # Yield cached response with progress
-            yield f"__PROGRESS__:{json.dumps({'stage': 'cache_hit', 'message': '⚡ Retrieved from cache', 'time': 0.001})}\n"
-            yield f"__METADATA__:{json.dumps({'facts': [], 'sources': [], 'confidence': 100})}\n"
+            # Yield cached response with progress (only for technical queries)
+            if not self._is_conversational(query):
+                yield f"__PROGRESS__:{json.dumps({'stage': 'cache_hit', 'message': '⚡ Retrieved from cache', 'time': 0.001})}\n"
+                yield f"__METADATA__:{json.dumps({'facts': [], 'sources': [], 'confidence': 100})}\n"
             yield cached_response
             analytics_engine.log_query(
                 user_id, user_role, query, cached_response,
@@ -290,8 +291,9 @@ class RAGSystem:
             )
             return
         
-        # Progress: Starting
-        yield f"__PROGRESS__:{json.dumps({'stage': 'start', 'message': '🔍 Searching documents...', 'time': 0})}\n"
+        # Progress: Starting (only for technical queries)
+        if not self._is_conversational(query):
+            yield f"__PROGRESS__:{json.dumps({'stage': 'start', 'message': '🔍 Searching documents...', 'time': 0})}\n"
         
         # 1. RBAC Check (basic role check)
         if not RBAC.check_access(user_role, "public"):
@@ -305,8 +307,9 @@ class RAGSystem:
         facts = context_data.get("facts", [])
         retrieval_time = time.time() - retrieval_start
         
-        # Progress: Retrieval complete
-        yield f"__PROGRESS__:{json.dumps({'stage': 'retrieval', 'message': f'✅ Found {len(raw_chunks)} sources in {retrieval_time:.1f}s', 'time': retrieval_time})}\n"
+        # Progress: Retrieval complete (only for technical queries)
+        if not self._is_conversational(query):
+            yield f"__PROGRESS__:{json.dumps({'stage': 'retrieval', 'message': f'✅ Found {len(raw_chunks)} sources in {retrieval_time:.1f}s', 'time': retrieval_time})}\n"
 
         # 3. Apply RBAC document-level filtering based on user role
         allowed_chunks = RBAC.filter_documents(user_role, raw_chunks)
@@ -323,8 +326,9 @@ class RAGSystem:
                 return
             # Else proceed to LLM for greeting response
         
-        # Progress: Generating
-        yield f"__PROGRESS__:{json.dumps({'stage': 'generating', 'message': '🤖 Generating response...', 'time': time.time() - start_time})}\n"
+        # Progress: Generating (only for technical queries)
+        if not self._is_conversational(query):
+            yield f"__PROGRESS__:{json.dumps({'stage': 'generating', 'message': '🤖 Generating response...', 'time': time.time() - start_time})}\n"
 
         # 4. Preliminary Safety Check: Fast subject-match verification
         # (Heuristic skip to ensure the panel gets the first token in <2 seconds)
@@ -355,8 +359,9 @@ class RAGSystem:
         from backend.llm_engine import generate_response_stream
         full_generated_text = ""
         
-        # Progress: Actively synthesizing
-        yield f"__PROGRESS__:{json.dumps({'stage': 'synthesizing', 'message': '🧠 Synthesizing facts and generating answer...', 'time': time.time() - start_time})}\n"
+        # Progress: Actively synthesizing (only for technical queries)
+        if not self._is_conversational(query):
+            yield f"__PROGRESS__:{json.dumps({'stage': 'synthesizing', 'message': '🧠 Synthesizing facts and generating answer...', 'time': time.time() - start_time})}\n"
         
         async for chunk in generate_response_stream(query, allowed_chunks, history, model_name, facts=fact_strings, is_conversational=self._is_conversational(query)):
             full_generated_text += chunk
@@ -364,9 +369,6 @@ class RAGSystem:
 
         # 8. Post-Generation Validation (Security Audit)
         if not self._is_conversational(query):
-            # Progress: Security Audit
-            yield f"\n__PROGRESS__:{json.dumps({'stage': 'validating', 'message': '🛡️ Performing safety & factual audit...', 'time': time.time() - start_time})}\n"
-            
             is_valid, audit_msg = self.validator.validate_answer(query, full_generated_text)
             
             if not is_valid:
@@ -401,33 +403,41 @@ class RAGSystem:
                     [c.metadata.get('source', 'Unknown') for c in allowed_chunks],
                     "Success", time.time() - start_time, cached=False
                 )
+            
+            # Progress: Security Audit (after all response content is sent)
+            yield f"\n__PROGRESS__:{json.dumps({'stage': 'validating', 'message': '🛡️ Performing safety & factual audit...', 'time': time.time() - start_time})}\n"
+            
+            # Yield progress complete AFTER all response content is sent
+            total_time = time.time() - start_time
+            yield f"\n__PROGRESS__:{json.dumps({'stage': 'complete', 'message': f'✅ Validated in {total_time:.1f}s', 'time': total_time})}\n"
         else:
             # Fast log for conversational greetings
             log_query(user_id, user_role, query, full_generated_text, [], "Info")
             analytics_engine.log_query(user_id, user_role, query, full_generated_text, [], "Success", time.time() - start_time, cached=False)
 
-        # 9. Yield Metadata for UI Visualization
-        sources = list(set([c.metadata.get('source', 'Unknown') for c in allowed_chunks]))
-        is_technical = not self._is_conversational(query)
-        is_valid = True # Default for conversational
-        
-        # We need to re-verify or capture the state from above
-        # For simplicity, we'll re-check if it was a technical query that failed validation
-        # In a real system we'd pass this state down more cleanly
-        if is_technical:
-            is_valid, _ = self.validator.validate_answer(query, full_generated_text)
+        # 9. Yield Metadata for UI Visualization (only for technical queries)
+        if not self._is_conversational(query):
+            sources = list(set([c.metadata.get('source', 'Unknown') for c in allowed_chunks]))
+            is_technical = True
+            is_valid = True # Default for conversational
             
-        confidence = self._calculate_confidence(
-            is_valid=is_valid,
-            is_conversational=not is_technical,
-            has_sources=len(allowed_chunks) > 0,
-            has_facts=len(facts) > 0
-        )
-        
-        # Progress: Complete
-        total_time = time.time() - start_time
-        yield f"__PROGRESS__:{json.dumps({'stage': 'complete', 'message': f'✅ Validated in {total_time:.1f}s', 'time': total_time})}\n"
-        yield f"__METADATA__:{json.dumps({'facts': facts, 'sources': sources, 'confidence': confidence})}\n"
+            # We need to re-verify or capture the state from above
+            # For simplicity, we'll re-check if it was a technical query that failed validation
+            # In a real system we'd pass this state down more cleanly
+            is_valid, _ = self.validator.validate_answer(query, full_generated_text)
+                
+            confidence = self._calculate_confidence(
+                is_valid=is_valid,
+                is_conversational=False,
+                has_sources=len(allowed_chunks) > 0,
+                has_facts=len(facts) > 0
+            )
+            
+            # Yield metadata for UI visualization
+            yield f"\n__METADATA__:{json.dumps({'facts': facts, 'sources': sources, 'confidence': confidence})}\n"
+        else:
+            # For conversational queries, don't send metadata or progress indicators
+            pass
 
     def provide_feedback(self, session_id: str, feedback: str):
         """Allow user to provide feedback on responses for learning"""
