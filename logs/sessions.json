@@ -2879,5 +2879,123 @@
                 "timestamp": "2026-04-27T11:27:11.517222"
             }
         ]
+    },
+    "5945848d-b60f-4e5c-8923-a4c6561bc49c": {
+        "id": "5945848d-b60f-4e5c-8923-a4c6561bc49c",
+        "title": "Tell me about ISRO Moon missions",
+        "role": "Public",
+        "updated_at": "2026-05-07T11:41:32.525812",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Tell me about ISRO Moon missions",
+                "timestamp": "2026-05-07T11:41:32.523436"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.1s\", \"time\": 0.09484314918518066}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.09500312805175781}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.09558820724487305}\nBased on retrieved context (Fallback): \nexcellent opportunity to orient ISRO\u2019s technological resources towards\nrealizing a viable long-term programme of Planetary exploration. Realization\nof this mission will lead to several developments of satellite technology,\ndesign, development and fabrication of a variety of experiment / payloads,\nse...\n__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 0.12013912200927734}\n\n__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 0.1s\", \"time\": 0.12015223503112793}",
+                "timestamp": "2026-05-07T11:41:32.525809"
+            }
+        ]
+    },
+    "2b3ff0c7-6ee9-4548-a647-76ce50155713": {
+        "id": "2b3ff0c7-6ee9-4548-a647-76ce50155713",
+        "title": "What is ISRO?",
+        "role": "Public",
+        "updated_at": "2026-05-07T11:41:32.561763",
+        "messages": [
+            {
+                "role": "user",
+                "content": "What is ISRO?",
+                "timestamp": "2026-05-07T11:41:32.559514"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.005155086517333984}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.005295753479003906}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.005818843841552734}\nBased on retrieved context (Fallback): \nqualification, acceptance, certification, audits, etc., along with compliance to quality/\nsafety manuals, plans and procedures, checklists, guidelines etc. continue to be the core \nresponsibilities of the Quality and Safety teams. Rigorous reviews continue to be a strong \npillar of ISRO\u2019s quality an...\n__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 0.027171611785888672}\n\n__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 0.0s\", \"time\": 0.027182817459106445}",
+                "timestamp": "2026-05-07T11:41:32.561762"
+            }
+        ]
+    },
+    "e6e414f1-730c-4e6f-ad5c-1a791ce110f6": {
+        "id": "e6e414f1-730c-4e6f-ad5c-1a791ce110f6",
+        "title": "Tell me about Chandrayaan-1",
+        "role": "Public",
+        "updated_at": "2026-05-07T11:41:32.597951",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Tell me about Chandrayaan-1",
+                "timestamp": "2026-05-07T11:41:32.595740"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.006200075149536133}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.0063130855560302734}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.00684809684753418}\nBased on retrieved context (Fallback): \nown roadmap for exploring the moon and other bodies in the solar system.\nChandrayaan-1 is the first instrumented Indian mission to the Moon and\nalso, the first ISRO venture to leave Earth\u2019s gravity. The mission is aimed\nat high-resolution remote sensing of lunar surface in visible, near infrared \n(N...\n\nVerified Sources: Annual_Report_2023_24_English.pdf, Annual_Report_2024_25_Eng.pdf, Chandrayaan-1.pdf, Mann_ki_baat_August_2023_English.pdf, Space_Research_July_2020_2021_040625.pdf, publication(6).pdf\n__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 0.027657032012939453}\n\n__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 0.0s\", \"time\": 0.027667999267578125}",
+                "timestamp": "2026-05-07T11:41:32.597948"
+            }
+        ]
+    },
+    "2035f3a8-4274-490d-8b96-31b4ea56827f": {
+        "id": "2035f3a8-4274-490d-8b96-31b4ea56827f",
+        "title": "What are ISRO satellites?",
+        "role": "Public",
+        "updated_at": "2026-05-07T11:41:32.633057",
+        "messages": [
+            {
+                "role": "user",
+                "content": "What are ISRO satellites?",
+                "timestamp": "2026-05-07T11:41:32.630614"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.00499725341796875}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.0051898956298828125}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.005721092224121094}\nBased on retrieved context (Fallback): \ncommunication, navigation, remote sensing, scientifi  c and small satellite missions. The \nspecialized teams of scientists, engineers, and technicians of URSC have built complex \n& advanced satellites for various applications in areas of telecommunications, television \nbroadcasting, VSAT services, t...\n__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 0.026363849639892578}\n\n__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 0.0s\", \"time\": 0.026378870010375977}",
+                "timestamp": "2026-05-07T11:41:32.633055"
+            }
+        ]
+    },
+    "f7244e93-3ed3-4157-b210-59b343aa5814": {
+        "id": "f7244e93-3ed3-4157-b210-59b343aa5814",
+        "title": "tell me about the ISRO ?",
+        "role": "Public",
+        "updated_at": "2026-05-07T11:44:11.849227",
+        "messages": [
+            {
+                "role": "user",
+                "content": "tell me about the ISRO ?",
+                "timestamp": "2026-05-07T11:43:46.703558"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.010359048843383789}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.01049494743347168}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.01153111457824707}\nBased on retrieved context (Fallback): \nin ushering in societal welfare, our early policy\nplanners gave tremendous importance to setting\nup a number of research and teaching institutions\nacross the country. ISRO  is one among such\nestablishments\u2014exclusively meant for harnessing\nthe space technology fo r the socioeconomic\ndevelopment of th...\n__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 0.045561790466308594}\n\n__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 0.0s\", \"time\": 0.045584917068481445}",
+                "timestamp": "2026-05-07T11:43:46.706221"
+            },
+            {
+                "role": "user",
+                "content": "tell me about the ISRO ?",
+                "timestamp": "2026-05-07T11:44:11.837084"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"cache_hit\", \"message\": \"\\u26a1 Retrieved from cache\", \"time\": 0.001}\nBased on retrieved context (Fallback): \nin ushering in societal welfare, our early policy\nplanners gave tremendous importance to setting\nup a number of research and teaching institutions\nacross the country. ISRO  is one among such\nestablishments\u2014exclusively meant for harnessing\nthe space technology fo r the socioeconomic\ndevelopment of th...",
+                "timestamp": "2026-05-07T11:44:11.849202"
+            }
+        ]
+    },
+    "4674ad99-6309-48fa-9e59-ef272e32dd36": {
+        "id": "4674ad99-6309-48fa-9e59-ef272e32dd36",
+        "title": "tell me about the Chandrayaan -3 ?",
+        "role": "Public",
+        "updated_at": "2026-05-07T11:45:40.524824",
+        "messages": [
+            {
+                "role": "user",
+                "content": "tell me about the Chandrayaan -3 ?",
+                "timestamp": "2026-05-07T11:45:40.520064"
+            },
+            {
+                "role": "system",
+                "content": "__PROGRESS__:{\"stage\": \"start\", \"message\": \"\\ud83d\\udd0d Searching documents...\", \"time\": 0}\n__PROGRESS__:{\"stage\": \"retrieval\", \"message\": \"\\u2705 Found 10 sources in 0.0s\", \"time\": 0.02422308921813965}\n__PROGRESS__:{\"stage\": \"generating\", \"message\": \"\\ud83e\\udd16 Generating response...\", \"time\": 0.024749040603637695}\n__PROGRESS__:{\"stage\": \"synthesizing\", \"message\": \"\\ud83e\\udde0 Synthesizing facts and generating answer...\", \"time\": 0.026198863983154297}\nBased on the provided context, here's what I can tell you about Chandrayaan-3:\n\n* Chandrayaan-3 has been successful in terms of mission accomplishments as well as scientific observations.\n* The mission aimed to demonstrate end-to-end capability in safe landing and roving on the lunar surface.\n* The Pragyan rover has yielded a few scientifically significant results, including the finding that the lunar regolith is uniform in elemental composition, making it an excellent ground truth for future remote sensing missions.\n* The Vikram lander has brought out some insight about the lunar ground vibrations at the Shiv Shakti point, with the ILSA payload onboard recording over 250 distinct events.\n* Chandrayaan-3 has received several prestigious awards, including the Rashtriya Vigyan (Team) Puraskar, International Astronautical Federation (IAF) Award for Excellence in Space Exploration, John L. \u2018Jack\u2019 Swigert Jr. Award for Space Exploration, and Aviation Week Laureates Award.\n* Preliminary science results from Chandrayaan-3 include first-ever measurements of near-surface lunar plasma environment, probing of a few cm of lunar regolith, capture of vibration signatures on the lunar surface, detection of constituent elements of the lunar regolith, and APXS spectra showing the presence of all major elements and several minor elements around the landing site.\n\nI hope this information helps!\n\nVerified Sources: Annual_Report_2023_24_English.pdf, Annual_Report_2024_25_Eng.pdf, Mann_ki_baat_August_2023_English.pdf, Space_Research_July_2020_2021_040625.pdf, publication(6).pdf\n__PROGRESS__:{\"stage\": \"validating\", \"message\": \"\\ud83d\\udee1\\ufe0f Performing safety & factual audit...\", \"time\": 33.26457095146179}\n\n__PROGRESS__:{\"stage\": \"complete\", \"message\": \"\\u2705 Validated in 33.3s\", \"time\": 33.264667987823486}",
+                "timestamp": "2026-05-07T11:45:40.524811"
+            }
+        ]
     }
 }
