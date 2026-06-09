@@ -200,8 +200,10 @@ def load_vector_store():
         if _USE_CUDA and hasattr(_CACHED_VECTOR_STORE, 'index'):
             try:
                 print("🚀 Moving FAISS index to GPU for faster search...")
-                res = faiss.StandardGpuResources()
-                gpu_index = faiss.index_cpu_to_gpu(res, 0, _CACHED_VECTOR_STORE.index)
+                global _FAISS_GPU_RES
+                if '_FAISS_GPU_RES' not in globals() or _FAISS_GPU_RES is None:
+                    _FAISS_GPU_RES = faiss.StandardGpuResources()
+                gpu_index = faiss.index_cpu_to_gpu(_FAISS_GPU_RES, 0, _CACHED_VECTOR_STORE.index)
                 _CACHED_VECTOR_STORE.index = gpu_index
                 print("✅ Index successfully moved to GPU")
             except Exception as e:
