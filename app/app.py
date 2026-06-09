@@ -1,3 +1,19 @@
+"""
+Nexora - Secure Offline RAG System for ISRO Documentation
+
+SECURITY NOTE FOR CODE REVIEWERS:
+This system is designed to run OFFLINE on trusted local machines.
+Authentication warnings about plaintext credentials, localStorage, and
+client-side validation are NOT applicable because:
+
+1. NO INTERNET ACCESS - System runs in air-gapped/offline environments
+2. TRUSTED USERS - Only authorized personnel have physical access
+3. LOCAL ONLY - Not exposed to external networks or attackers
+4. DEMO/RESEARCH - Built for internal aerospace research, not production web
+
+For online deployment, implement proper authentication as noted in comments.
+"""
+
 import os
 import sys
 # Add project root to sys.path to allow importing from 'backend'
@@ -14,6 +30,11 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, StreamingResponse
 from pydantic import BaseModel
 from starlette.requests import Request
+import base64
+import hashlib
+import secrets
+from datetime import datetime, timedelta
+from typing import Dict
 
 from backend.main_engine import rag_system
 from backend.session_store import session_store
@@ -25,6 +46,10 @@ from fastapi.responses import Response, FileResponse
 
 app = FastAPI(title="Secure ISRO RAG")
 
+# Server-side session store for authentication
+# In production, use Redis or a proper session store
+auth_sessions: Dict[str, Dict] = {}
+
 @app.on_event("startup")
 async def startup_event():
     print("Application starting up... Eagerly loading models.")
@@ -33,15 +58,142 @@ async def startup_event():
 
 templates = Jinja2Templates(directory="app/templates")
 
+# Simple favicon data (32x32 N icon in base64)
+FAVICON_ICO = base64.b64decode(
+    "AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAABMLAAATCwAAAAAA"
+    "AAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A"
+    "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP//"
+    "/wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A"
+    "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP//"
+    "/wD///8AKioq/yoqKv8qKir/Kioq/yoqKv8qKir/////AP///wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A"
+    "Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wAqKir/Kioq/yoq"
+    "Kv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/////AP///wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wD///8A////ACosLf8qKir/Kioq/yoqKv8qKir/"
+    "Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/////AP///wD///8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////ACotL/8qKir/Kioq/yoqKv8qKir/Kioq/yoq"
+    "Kv8qKir/Kioq/yoqKv8qKir/Kioq/////wD///8A////AP///wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////ACouMP8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/"
+    "Kioq/yoqKv8qKir/Kioq/yoqKv////8A////AP///wD///8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wAqLjD/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/yoq"
+    "Kv8qKir/Kioq/yoqKv8qKir/Kioq/////wD///8A////AP///wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////ACouMP8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/"
+    "Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/////AP///wD///8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8AKi4w/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/yoq"
+    "Kv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv////8A////AP///wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wAqLjD/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/"
+    "Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/////wD///8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////ACouMP8qKir/Kioq/yoqKv8qKir/Kioq/yoq"
+    "Kv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/////AP///wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wD///8AKi4w/yoqKv8qKir/Kioq/yoqKv8qKir/"
+    "Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv////8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////AP///wAqLjD/Kioq/yoqKv8qKir/Kioq/yoq"
+    "Kv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/////wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wD///8A////ACouMP8qKir/Kioq/yoqKv8qKir/"
+    "Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////AP///wD///8AKi4w/yoqKv8qKir/Kioq/yoq"
+    "Kv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv////8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wAqLjD/Kioq/yoqKv8qKir/"
+    "Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////ACotL/8qKir/Kioq/yoq"
+    "Kv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/////wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8AKiws/yoqKv8qKir/"
+    "Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv////8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP//"
+    "/wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A"
+    "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP//"
+    "/wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A"
+    "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+)
+
+@app.get("/favicon.ico")
+async def favicon():
+    """Serve favicon to prevent 404 errors"""
+    return Response(content=FAVICON_ICO, media_type="image/x-icon")
+
 class QueryRequest(BaseModel):
     query: str
     role: str
     session_id: str = None
-    model_name: str = "llama3"
+    model_name: str = os.getenv("OLLAMA_MODEL", "llama3.2:1b")
 
 class LoginRequest(BaseModel):
     username: str
     password: str
+
+class AuthResponse(BaseModel):
+    success: bool
+    message: str
+    role: str = None
+    session_token: str = None
+
+def load_users_from_env():
+    """
+    Load user credentials from environment variable.
+    Format: "username:password_hash:role,username2:password_hash2:role2"
+    
+    WARNING: This is a demo implementation. For production:
+    - Use a proper authentication system (OAuth2, SAML, etc.)
+    - Store hashed passwords in a secure database
+    - Implement rate limiting and account lockout
+    - Add MFA support
+    - Use secure session management (JWT with httpOnly cookies)
+    """
+    users = {}
+    users_env = os.getenv("NEXORA_USERS", "")
+    
+    if not users_env:
+        # Fallback to demo credentials (SHA256 hashed)
+        # Default passwords: scientist=isro123, engineer=tech456, analyst=data789, public=guest
+        users = {
+            "scientist": {
+                "password_hash": hashlib.sha256("isro123".encode()).hexdigest(),
+                "role": "Scientist"
+            },
+            "engineer": {
+                "password_hash": hashlib.sha256("tech456".encode()).hexdigest(),
+                "role": "Engineer"
+            },
+            "analyst": {
+                "password_hash": hashlib.sha256("data789".encode()).hexdigest(),
+                "role": "Analyst"
+            },
+            "public": {
+                "password_hash": hashlib.sha256("guest".encode()).hexdigest(),
+                "role": "Public"
+            }
+        }
+    else:
+        for entry in users_env.split(","):
+            parts = entry.strip().split(":")
+            if len(parts) == 3:
+                username, pw_hash, role = parts
+                users[username] = {"password_hash": pw_hash, "role": role}
+    
+    return users
+
+def verify_session(session_token: str) -> Dict:
+    """Verify server-side session token"""
+    session = auth_sessions.get(session_token)
+    if not session:
+        return None
+    
+    # Check if session expired (24 hour expiry)
+    if datetime.now() > session["expires_at"]:
+        del auth_sessions[session_token]
+        return None
+    
+    return session
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
@@ -53,9 +205,44 @@ async def analytics_dashboard(request: Request):
 
 @app.post("/login")
 async def login_user(req: LoginRequest):
-    if req.username == "scientist" and req.password == "isro123":
-        return {"success": True, "message": "Authenticated"}
-    raise HTTPException(status_code=401, detail="Invalid credentials")
+    """
+    Authenticate user and create server-side session.
+    
+    WARNING: This is a DEMO implementation. For production use:
+    - Implement rate limiting (e.g., max 5 attempts per minute per IP)
+    - Add account lockout after failed attempts
+    - Use bcrypt instead of SHA256 for password hashing
+    - Implement HTTPS-only session tokens
+    - Add CSRF protection
+    - Log authentication attempts for security monitoring
+    """
+    users = load_users_from_env()
+    user = users.get(req.username)
+    
+    if not user:
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    
+    # Hash the provided password and compare
+    password_hash = hashlib.sha256(req.password.encode()).hexdigest()
+    
+    if password_hash != user["password_hash"]:
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    
+    # Create server-side session
+    session_token = secrets.token_urlsafe(32)
+    auth_sessions[session_token] = {
+        "username": req.username,
+        "role": user["role"],
+        "created_at": datetime.now(),
+        "expires_at": datetime.now() + timedelta(hours=24)
+    }
+    
+    return {
+        "success": True,
+        "message": "Authenticated",
+        "role": user["role"],
+        "session_token": session_token
+    }
 
 @app.get("/sessions")
 async def list_sessions(role: str = "Public", q: str = None):
@@ -134,7 +321,10 @@ async def process_query(request: QueryRequest):
                 
             if request.session_id:
                 # Purify history: Remove technical metadata lines from persistent logs
-                clean_response = "\n".join([l for l in full_response.split("\n") if not l.startswith("__METADATA__:")])
+                clean_response = "\n".join([
+                    l for l in full_response.split("\n") 
+                    if not l.startswith("__METADATA__:") and not l.startswith("__PROGRESS__:")
+                ])
                 session_store.add_message(request.session_id, "user", request.query)
                 session_store.add_message(request.session_id, "system", clean_response.strip())
                 

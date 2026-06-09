@@ -937,6 +937,13 @@
             font-size: 18px;
         }
 
+        .modal-content form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
         .modal-content input {
             background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -1025,15 +1032,17 @@
     <!-- Login Modal -->
     <div class="modal-overlay" id="login-modal">
         <div class="modal-content">
-            <h3>Scientist Access</h3>
-            <p style="font-size:13px; color:#aaa; margin-bottom:5px;">Enter credentials to unlock classified documents.
+            <h3>Secure Access</h3>
+            <p style="font-size:13px; color:#aaa; margin-bottom:5px;">Enter credentials to access role-specific documents.
             </p>
-            <input type="text" id="username" placeholder="Username">
-            <input type="password" id="password" placeholder="Password">
-            <div class="modal-btns">
-                <button class="btn-cancel" onclick="cancelLogin()">Cancel</button>
-                <button class="btn-submit" onclick="submitLogin()">Login</button>
-            </div>
+            <form id="login-form" onsubmit="submitLogin(event)">
+                <input type="text" id="username" placeholder="Username" autocomplete="username">
+                <input type="password" id="password" placeholder="Password" autocomplete="current-password">
+                <div class="modal-btns">
+                    <button type="button" class="btn-cancel" onclick="cancelLogin()">Cancel</button>
+                    <button type="submit" class="btn-submit">Login</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -1058,6 +1067,8 @@
             <div class="role-selector-compact">
                 <select id="role">
                     <option value="Public">Public</option>
+                    <option value="Analyst">Analyst</option>
+                    <option value="Engineer">Engineer</option>
                     <option value="Scientist">Scientist</option>
                 </select>
             </div>
@@ -1487,45 +1498,96 @@
         const roleSelect = document.getElementById('role');
         const logoutBtn = document.getElementById('logout-btn');
         let lastValidRole = "Public";
-        let isScientistAuthenticated = false;
+        let authenticatedRoles = new Set(); // Track which roles are authenticated
+        
+        // Restore authentication state from localStorage on page load
+        function restoreAuthState() {
+            const savedAuth = localStorage.getItem('nexora_auth');
+            if (savedAuth) {
+                try {
+                    const authData = JSON.parse(savedAuth);
+                    authenticatedRoles = new Set(authData.roles || []);
+                    lastValidRole = authData.lastRole || "Public";
+                    roleSelect.value = lastValidRole;
+                    
+                    // Show logout button if authenticated as non-public role
+                    if (lastValidRole !== "Public") {
+                        logoutBtn.style.display = 'inline-block';
+                    }
+                } catch (e) {
+                    console.error('Failed to restore auth state:', e);
+                }
+            }
+        }
+        
+        // Save authentication state to localStorage
+        function saveAuthState() {
+            const authData = {
+                roles: Array.from(authenticatedRoles),
+                lastRole: lastValidRole
+            };
+            localStorage.setItem('nexora_auth', JSON.stringify(authData));
+        }
+        
+        // Check if a role requires authentication
+        function requiresAuth(role) {
+            return role !== "Public";
+        }
+        
+        // Check if user is authenticated for a specific role
+        function isAuthenticated(role) {
+            return authenticatedRoles.has(role);
+        }
 
         roleSelect.addEventListener('change', (e) => {
-            if (e.target.value === "Scientist") {
-                if (!isScientistAuthenticated) {
+            const selectedRole = e.target.value;
+            
+            if (requiresAuth(selectedRole)) {
+                if (!isAuthenticated(selectedRole)) {
+                    // Need to authenticate
                     document.getElementById('login-modal').classList.add('active');
                     roleSelect.value = lastValidRole; // Reset to previous role
                 } else {
-                    lastValidRole = "Scientist";
-                    logoutBtn.style.display = 'inline-block'; // Show logout button
-                    createNewSession(); // Clear chat and reload sessions for scientist
-                    loadSessions(); // Load scientist's sessions
+                    // Already authenticated for this role
+                    lastValidRole = selectedRole;
+                    logoutBtn.style.display = 'inline-block';
+                    saveAuthState();
+                    createNewSession();
+                    loadSessions();
                 }
             } else {
                 // Switching to Public
-                if (isScientistAuthenticated) {
-                    // If currently logged in as scientist, require confirmation
-                    if (confirm('You will be logged out. Continue?')) {
-                        logout();
+                if (lastValidRole !== "Public") {
+                    // If currently logged in as authenticated role, require confirmation
+                    if (confirm('Switch to Public mode? (You will remain logged in for other roles)')) {
+                        lastValidRole = "Public";
+                        logoutBtn.style.display = 'none';
+                        saveAuthState();
+                        createNewSession();
+                        loadSessions();
                     } else {
                         roleSelect.value = lastValidRole; // Keep current role
                     }
                 } else {
-                    lastValidRole = e.target.value;
-                    logoutBtn.style.display = 'none'; // Hide logout button
-                    createNewSession(); // Clear chat and reload sessions for public
-                    loadSessions(); // Load public's sessions
+                    lastValidRole = "Public";
+                    logoutBtn.style.display = 'none';
+                    saveAuthState();
+                    createNewSession();
+                    loadSessions();
                 }
             }
         });
 
         function logout() {
-            isScientistAuthenticated = false;
+            // Clear all authenticated roles
+            authenticatedRoles.clear();
             lastValidRole = "Public";
             roleSelect.value = "Public";
-            logoutBtn.style.display = 'none'; // Hide logout button
-            createNewSession(); // Clear chat
-            loadSessions(); // Load public's sessions
-            alert('Logged out successfully');
+            logoutBtn.style.display = 'none';
+            localStorage.removeItem('nexora_auth');
+            createNewSession();
+            loadSessions();
+            alert('Logged out successfully from all roles');
         }
 
         function cancelLogin() {
@@ -1533,7 +1595,10 @@
             roleSelect.value = lastValidRole;
         }
 
-        async function submitLogin() {
+        async function submitLogin(event) {
+            if (event) {
+                event.preventDefault(); // Prevent form submission
+            }
             const u = document.getElementById('username').value;
             const p = document.getElementById('password').value;
             try {
@@ -1543,15 +1608,25 @@
                     body: JSON.stringify({ username: u, password: p })
                 });
                 if (res.ok) {
-                    isScientistAuthenticated = true;
-                    lastValidRole = "Scientist";
+                    const data = await res.json();
+                    const authenticatedRole = data.role;
+                    
+                    // Mark this role as authenticated
+                    authenticatedRoles.add(authenticatedRole);
+                    lastValidRole = authenticatedRole;
+                    
+                    // Save to localStorage
+                    saveAuthState();
+                    
+                    // Update UI
                     document.getElementById('login-modal').classList.remove('active');
                     document.getElementById('username').value = '';
                     document.getElementById('password').value = '';
-                    roleSelect.value = "Scientist"; // Update the dropdown to show Scientist
-                    logoutBtn.style.display = 'inline-block'; // Show logout button
-                    createNewSession(); // Clear chat
-                    loadSessions(); // Load scientist's sessions
+                    roleSelect.value = authenticatedRole;
+                    logoutBtn.style.display = 'inline-block';
+                    
+                    createNewSession();
+                    loadSessions();
                 } else {
                     alert('Invalid credentials!');
                 }
@@ -1576,6 +1651,7 @@
         }
 
         // Initialize on load
+        restoreAuthState(); // Restore authentication state from localStorage
         loadSessions();
         loadModels();
 

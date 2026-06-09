@@ -1,12 +1,38 @@
 import os
 import logging
 from typing import List
+from collections import OrderedDict
+import threading
 
 # Configure logging
 logger = logging.getLogger(__name__)
 
-# Global Cache for frequent queries
-QUERY_CACHE = {}
+# Thread-safe bounded cache to prevent memory exhaustion
+class BoundedCache:
+    """LRU Cache with size limit (max 1000 entries)"""
+    def __init__(self, maxsize=1000):
+        self.cache = OrderedDict()
+        self.maxsize = maxsize
+        self.lock = threading.Lock()
+    
+    def __contains__(self, key):
+        with self.lock:
+            return key in self.cache
+    
+    def __getitem__(self, key):
+        with self.lock:
+            self.cache.move_to_end(key)
+            return self.cache[key]
+    
+    def __setitem__(self, key, value):
+        with self.lock:
+            if key in self.cache:
+                self.cache.move_to_end(key)
+            self.cache[key] = value
+            if len(self.cache) > self.maxsize:
+                self.cache.popitem(last=False)
+
+QUERY_CACHE = BoundedCache(maxsize=1000)
 
 try:
     from langchain_ollama import ChatOllama
@@ -78,10 +104,11 @@ def generate_response(query: str, context_chunks: List, history: List = None, mo
                     "2. Use information from the provided context to answer questions.\n"
                     "3. For general questions about ISRO (achievements, missions, capabilities), synthesize information from the context.\n"
                     "4. For specific technical questions (specifications, dates, names), ONLY use exact information from context.\n"
-                    "5. If asked about non-ISRO topics (other universities, companies, unrelated subjects), respond: 'This question is outside my scope. I can only answer questions about ISRO missions and space technology.'\n"
-                    "6. If context is empty or irrelevant, respond: 'No documentation found in the local archive for this query.'\n"
-                    "7. NEVER fabricate technical specifications, dates, or names not in the context.\n"
-                    "8. NEVER add 'Verified by:' or source citations in your response."
+                    "5. For hypothetical/future mission planning questions (e.g., 'improvements for Chandrayaan-4', 'what would make mission X better'), use context from existing missions to provide informed suggestions based on documented lessons learned and technical capabilities. These questions ARE about ISRO and should be answered.\n"
+                    "6. If asked about non-ISRO topics (other universities, companies, unrelated subjects), respond: 'This question is outside my scope. I can only answer questions about ISRO missions and space technology.'\n"
+                    "7. If context is empty or irrelevant, respond: 'No documentation found in the local archive for this query.'\n"
+                    "8. NEVER fabricate technical specifications, dates, or names not in the context.\n"
+                    "9. NEVER add 'Verified by:' or source citations in your response."
                 )
 
             # Construct message list
@@ -192,10 +219,11 @@ async def generate_response_stream(query: str, context_chunks: List, history: Li
                     "2. Use information from the provided context to answer questions.\n"
                     "3. For general questions about ISRO (achievements, missions, capabilities), synthesize information from the context.\n"
                     "4. For specific technical questions (specifications, dates, names), ONLY use exact information from context.\n"
-                    "5. If asked about non-ISRO topics (other universities, companies, unrelated subjects), respond: 'This question is outside my scope. I can only answer questions about ISRO missions and space technology.'\n"
-                    "6. If context is empty or irrelevant, respond: 'No documentation found in the local archive for this query.'\n"
-                    "7. NEVER fabricate technical specifications, dates, or names not in the context.\n"
-                    "8. NEVER add 'Verified by:' or source citations in your response."
+                    "5. For hypothetical/future mission planning questions (e.g., 'improvements for Chandrayaan-4', 'what would make mission X better'), use context from existing missions to provide informed suggestions based on documented lessons learned and technical capabilities. These questions ARE about ISRO and should be answered.\n"
+                    "6. If asked about non-ISRO topics (other universities, companies, unrelated subjects), respond: 'This question is outside my scope. I can only answer questions about ISRO missions and space technology.'\n"
+                    "7. If context is empty or irrelevant, respond: 'No documentation found in the local archive for this query.'\n"
+                    "8. NEVER fabricate technical specifications, dates, or names not in the context.\n"
+                    "9. NEVER add 'Verified by:' or source citations in your response."
                 )
 
             prompt_messages = [("system", system_instr)]
