@@ -78,10 +78,11 @@ def generate_response(query: str, context_chunks: List, history: List = None, mo
                     "2. Use information from the provided context to answer questions.\n"
                     "3. For general questions about ISRO (achievements, missions, capabilities), synthesize information from the context.\n"
                     "4. For specific technical questions (specifications, dates, names), ONLY use exact information from context.\n"
-                    "5. If asked about non-ISRO topics (other universities, companies, unrelated subjects), respond: 'This question is outside my scope. I can only answer questions about ISRO missions and space technology.'\n"
-                    "6. If context is empty or irrelevant, respond: 'No documentation found in the local archive for this query.'\n"
-                    "7. NEVER fabricate technical specifications, dates, or names not in the context.\n"
-                    "8. NEVER add 'Verified by:' or source citations in your response."
+                    "5. For hypothetical/future mission planning questions (e.g., 'improvements for Chandrayaan-4', 'what would make mission X better'), use context from existing missions to provide informed suggestions based on documented lessons learned and technical capabilities. These questions ARE about ISRO and should be answered.\n"
+                    "6. If asked about non-ISRO topics (other universities, companies, unrelated subjects), respond: 'This question is outside my scope. I can only answer questions about ISRO missions and space technology.'\n"
+                    "7. If context is empty or irrelevant, respond: 'No documentation found in the local archive for this query.'\n"
+                    "8. NEVER fabricate technical specifications, dates, or names not in the context.\n"
+                    "9. NEVER add 'Verified by:' or source citations in your response."
                 )
 
             # Construct message list
@@ -192,10 +193,11 @@ async def generate_response_stream(query: str, context_chunks: List, history: Li
                     "2. Use information from the provided context to answer questions.\n"
                     "3. For general questions about ISRO (achievements, missions, capabilities), synthesize information from the context.\n"
                     "4. For specific technical questions (specifications, dates, names), ONLY use exact information from context.\n"
-                    "5. If asked about non-ISRO topics (other universities, companies, unrelated subjects), respond: 'This question is outside my scope. I can only answer questions about ISRO missions and space technology.'\n"
-                    "6. If context is empty or irrelevant, respond: 'No documentation found in the local archive for this query.'\n"
-                    "7. NEVER fabricate technical specifications, dates, or names not in the context.\n"
-                    "8. NEVER add 'Verified by:' or source citations in your response."
+                    "5. For hypothetical/future mission planning questions (e.g., 'improvements for Chandrayaan-4', 'what would make mission X better'), use context from existing missions to provide informed suggestions based on documented lessons learned and technical capabilities. These questions ARE about ISRO and should be answered.\n"
+                    "6. If asked about non-ISRO topics (other universities, companies, unrelated subjects), respond: 'This question is outside my scope. I can only answer questions about ISRO missions and space technology.'\n"
+                    "7. If context is empty or irrelevant, respond: 'No documentation found in the local archive for this query.'\n"
+                    "8. NEVER fabricate technical specifications, dates, or names not in the context.\n"
+                    "9. NEVER add 'Verified by:' or source citations in your response."
                 )
 
             prompt_messages = [("system", system_instr)]

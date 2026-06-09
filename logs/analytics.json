@@ -1303,8 +1303,878 @@
       "status": "Success",
       "response_time_ms": 33262.04,
       "cached": false
+    },
+    {
+      "timestamp": 1780999586.346015,
+      "datetime": "2026-06-09T15:36:26.346016",
+      "user_id": "test_public",
+      "role": "Public",
+      "query": "What is Chandrayaan-3?",
+      "query_length": 22,
+      "response_length": 664,
+      "sources_count": 9,
+      "sources": [
+        "Mann_ki_baat_August_2023_English.pdf",
+        "Space_Research_July_2020_2021_040625.pdf",
+        "publication(6).pdf",
+        "publication(6).pdf",
+        "Annual_Report_2024_25_Eng.pdf",
+        "Annual_Report_2023_24_English.pdf",
+        "Chandrayaan-1.pdf",
+        "Annual_Report_2024_25_Eng.pdf",
+        "Annual_Report_2024_25_Eng.pdf"
+      ],
+      "status": "Success",
+      "response_time_ms": 14435.51,
+      "cached": false
+    },
+    {
+      "timestamp": 1780999598.502301,
+      "datetime": "2026-06-09T15:36:38.502302",
+      "user_id": "test_analyst",
+      "role": "Analyst",
+      "query": "Tell me about ISRO's satellite launches",
+      "query_length": 39,
+      "response_length": 2010,
+      "sources_count": 7,
+      "sources": [
+        "ssrn-3017161.pdf",
+        "Annual_Report_2023_24_English.pdf",
+        "Annual_Report_2024_25_Eng.pdf",
+        "Annual_Report_2022_23_Eng.pdf",
+        "ssrn-3017161.pdf",
+        "technology_transfer_august_2022.pdf",
+        "Annual_Report_2023_24_English.pdf"
+      ],
+      "status": "Success",
+      "response_time_ms": 12153.81,
+      "cached": false
+    },
+    {
+      "timestamp": 1780999604.332358,
+      "datetime": "2026-06-09T15:36:44.332359",
+      "user_id": "test_engineer",
+      "role": "Engineer",
+      "query": "What are the specifications of GSLV?",
+      "query_length": 36,
+      "response_length": 678,
+      "sources_count": 10,
+      "sources": [
+        "Annual_Report_2022_23_Eng.pdf",
+        "ssrn-3017161.pdf",
+        "Annual_Report_2024_25_Eng.pdf",
+        "Chandrayaan-1.pdf",
+        "Annual_Report_2022_23_Eng.pdf",
+        "Annual_Report_2023_24_English.pdf",
+        "Annual_Report_2024_25_Eng.pdf",
+        "Annual_Report_2024_25_Eng.pdf",
+        "Annual_Report_2024_25_Eng.pdf",
+        "gslv_f10_-_eos-03_mission_brochure.pdf"
+      ],
+      "status": "Success",
+      "response_time_ms": 5826.63,
+      "cached": false
+    },
+    {
+      "timestamp": 1781004144.642816,
+      "datetime": "2026-06-09T16:52:24.642817",
+      "user_id": "demo_user",
+      "role": "Public",
+      "query": "Tell me about the chandrayaan-3 in detail ?",
+      "query_length": 43,
+      "response_length": 2216,
+      "sources_count": 9,
+      "sources": [
+        "Annual_Report_2024_25_Eng.pdf",
+        "Annual_Report_2023_24_English.pdf",
+        "publication(6).pdf",
+        "Mann_ki_baat_August_2023_English.pdf",
+        "Annual_Report_2024_25_Eng.pdf",
+        "Space_Research_July_2020_2021_040625.pdf",
+        "Mann_ki_baat_August_2023_English.pdf",
+        "Mann_ki_baat_August_2023_English.pdf",
+        "publication(6).pdf"
+      ],
+      "status": "Success",
+      "response_time_ms": 39661.33,
+      "cached": false
+    },
+    {
+      "timestamp": 1781004442.704067,
+      "datetime": "2026-06-09T16:57:22.704068",
+      "user_id": "demo_user",
+      "role": "Public",
+      "query": "Tell me about the Aditya L-1 in detail ?",
+      "query_length": 40,
+      "response_length": 408,
+      "sources_count": 9,
+      "sources": [
+        "Annual_Report_2024_25_Eng.pdf",
+        "ssrn-3017161.pdf",
+        "Research_Areas_Space_Doc2025.pdf",
+        "Annual_Report_2024_25_Eng.pdf",
+        "Annual_Report_2023_24_English.pdf",
+        "Space_Research_July_2020_2021_040625.pdf",
+        "ssrn-3017161.pdf",
+        "Annual_Report_2022_23_Eng.pdf",
+        "Annual_Report_2024_25_Eng.pdf"
+      ],
+      "status": "Success",
+      "response_time_ms": 19527.31,
+      "cached": false
+    },
+    {
+      "timestamp": 1781004537.0247428,
+      "datetime": "2026-06-09T16:58:57.024744",
+      "user_id": "demo_user",
+      "role": "Public",
+      "query": "if i able to make the chandrayaan -4 what are the things i need to make better for this missions which is able to improves the chandrayaan -3 mission ?",
+      "query_length": 151,
+      "response_length": 104,
+      "sources_count": 10,
+      "sources": [
+        "Annual_Report_2023_24_English.pdf",
+        "publication(6).pdf",
+        "Mann_ki_baat_August_2023_English.pdf",
+        "publication(6).pdf",
+        "Annual_Report_2023_24_English.pdf",
+        "Mann_ki_baat_August_2023_English.pdf",
+        "Chandrayaan-1.pdf",
+        "Mann_ki_baat_August_2023_English.pdf",
+        "Annual_Report_2024_25_Eng.pdf",
+        "publication(6).pdf"
+      ],
+      "status": "Success",
+      "response_time_ms": 16876.16,
+      "cached": false
+    },
+    {
+      "timestamp": 1781004625.4655402,
+      "datetime": "2026-06-09T17:00:25.465540",
+      "user_id": "demo_user",
+      "role": "Scientist",
+      "query": "if i able to make the chandrayaan -4 what are the things i need to make better for this missions which is able to improves the chandrayaan -3 mission ?",
+      "query_length": 151,
+      "response_length": 104,
+      "sources_count": 10,
+      "sources": [
+        "Annual_Report_2023_24_English.pdf",
+        "publication(6).pdf",
+        "Mann_ki_baat_August_2023_English.pdf",
+        "publication(6).pdf",
+        "Annual_Report_2023_24_English.pdf",
+        "Mann_ki_baat_August_2023_English.pdf",
+        "Chandrayaan-1.pdf",
+        "Mann_ki_baat_August_2023_English.pdf",
+        "Annual_Report_2024_25_Eng.pdf",
+        "publication(6).pdf"
+      ],
+      "status": "Success",
+      "response_time_ms": 287.73,
+      "cached": false
+    },
+    {
+      "timestamp": 1781005228.602162,
+      "datetime": "2026-06-09T17:10:28.602163",
+      "user_id": "demo_user",
+      "role": "Public",
+      "query": "if i able to make the chandrayaan -4 what are the things i need to make better for this missions which is able to improves the chandrayaan -3 mission and please give me in detail for the new mission of chandrayaan-4 ?",
+      "query_length": 217,
+      "response_length": 2824,
+      "sources_count": 10,
+      "sources": [
+        "Mann_ki_baat_August_2023_English.pdf",
+        "Mann_ki_baat_August_2023_English.pdf",
+        "Annual_Report_2023_24_English.pdf",
+        "Annual_Report_2023_24_English.pdf",
+        "Annual_Report_2024_25_Eng.pdf",
+        "publication(6).pdf",
+        "Chandrayaan-1.pdf",
+        "publication(6).pdf",
+        "Mann_ki_baat_August_2023_English.pdf",
+        "Annual_Report_2023_24_English.pdf"
+      ],
+      "status": "Success",
+      "response_time_ms": 45308.79,
+      "cached": false
     }
   ],
-  "hallucination_logs": [],
+  "hallucination_logs": [
+    {
+      "timestamp": 1780999694.4817972,
+      "datetime": "2026-06-09T15:38:14.481798",
+      "query": "What is PSLV?",
+      "response_preview": "PSLV (Polar Satellite Launch Vehicle) is a four-stage rocket. Verified by: Annual_Report_2024.pdf",
+      "reason": "False Source Attribution: Verified by: Annual_Report_2024.pdf",
+      "role": "unknown",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999739.5832288,
+      "datetime": "2026-06-09T15:38:59.583230",
+      "query": "What is PSLV?",
+      "response_preview": "PSLV (Polar Satellite Launch Vehicle) is a four-stage rocket. Verified by: Annual_Report_2024.pdf",
+      "reason": "False Source Attribution: Verified by: Annual_Report_2024.pdf",
+      "role": "unknown",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999945.811753,
+      "datetime": "2026-06-09T15:42:25.811754",
+      "query": "Tell me about Chandrayaan-3",
+      "response_preview": "Chandrayaan-3 uses nuclear propulsion for its lander descent.",
+      "reason": "Chandrayaan doesn't use nuclear propulsion",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999945.812608,
+      "datetime": "2026-06-09T15:42:25.812609",
+      "query": "Tell me about GSLV",
+      "response_preview": "GSLV uses nuclear thermal propulsion in its third stage for better efficiency.",
+      "reason": "GSLV uses chemical propulsion, not nuclear",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999945.8133419,
+      "datetime": "2026-06-09T15:42:25.813342",
+      "query": "How does PSLV work?",
+      "response_preview": "PSLV uses nuclear engine technology which was developed in 2015.",
+      "reason": "ISRO doesn't use nuclear propulsion",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999945.814055,
+      "datetime": "2026-06-09T15:42:25.814055",
+      "query": "Tell me about Chandrayaan-1",
+      "response_preview": "Chandrayaan-1 successfully landed on the Moon in 2008 with its lander module.",
+      "reason": "Chandrayaan-1 was an orbiter, not a lander",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999945.814765,
+      "datetime": "2026-06-09T15:42:25.814765",
+      "query": "What was Chandrayaan-1?",
+      "response_preview": "Chandrayaan-1 achieved a soft landing on the lunar surface.",
+      "reason": "Chandrayaan-1 was an orbiter, not a lander",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999945.815635,
+      "datetime": "2026-06-09T15:42:25.815635",
+      "query": "What is Chandrayaan-5?",
+      "response_preview": "Chandrayaan-5 was launched in 2025 to explore the far side of the Moon.",
+      "reason": "Chandrayaan-5 doesn't exist",
+      "role": "fake_mission",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999945.816597,
+      "datetime": "2026-06-09T15:42:25.816597",
+      "query": "Tell me about Gaganyaan-3",
+      "response_preview": "Gaganyaan-3 is planned for 2026 as a manned mission to Mars.",
+      "reason": "Gaganyaan-3 doesn't exist",
+      "role": "fake_mission",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999945.8175879,
+      "datetime": "2026-06-09T15:42:25.817589",
+      "query": "What is PSLV?",
+      "response_preview": "PSLV is a four-stage rocket. Verified by: Annual_Report_2024.pdf",
+      "reason": "False Source Attribution: Verified by: Annual_Report_2024.pdf",
+      "role": "unknown",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999945.818335,
+      "datetime": "2026-06-09T15:42:25.818335",
+      "query": "Tell me about GSLV",
+      "response_preview": "According to ISRO_Technical_Manual_2023.pdf, GSLV uses cryogenic engines.",
+      "reason": "False Source Attribution: According to ISRO_Technical_Manual_2023.pdf",
+      "role": "unknown",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999945.819061,
+      "datetime": "2026-06-09T15:42:25.819062",
+      "query": "How does Chandrayaan navigate?",
+      "response_preview": "Chandrayaan uses quantum computing for autonomous navigation and landing.",
+      "reason": "ISRO doesn't use quantum computing in spacecraft",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999945.81978,
+      "datetime": "2026-06-09T15:42:25.819780",
+      "query": "What technology does ISRO use?",
+      "response_preview": "ISRO developed warp drive technology for interstellar missions.",
+      "reason": "Warp drive is science fiction",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999996.1271622,
+      "datetime": "2026-06-09T15:43:16.127164",
+      "query": "Tell me about Chandrayaan-3",
+      "response_preview": "Chandrayaan-3 uses nuclear propulsion for its lander.",
+      "reason": "Chandrayaan doesn't use nuclear propulsion",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999996.128054,
+      "datetime": "2026-06-09T15:43:16.128054",
+      "query": "Tell me about GSLV",
+      "response_preview": "GSLV uses nuclear thermal propulsion in its third stage.",
+      "reason": "GSLV uses chemical propulsion, not nuclear",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999996.1288981,
+      "datetime": "2026-06-09T15:43:16.128898",
+      "query": "How does PSLV work?",
+      "response_preview": "PSLV uses nuclear engine technology developed in 2015.",
+      "reason": "ISRO doesn't use nuclear propulsion",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999996.1295779,
+      "datetime": "2026-06-09T15:43:16.129578",
+      "query": "Tell me about Chandrayaan-1",
+      "response_preview": "Chandrayaan-1 successfully landed on the Moon in 2008.",
+      "reason": "Chandrayaan-1 was an orbiter, not a lander",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999996.130307,
+      "datetime": "2026-06-09T15:43:16.130307",
+      "query": "What was Chandrayaan-1?",
+      "response_preview": "Chandrayaan-1 achieved a soft landing on the lunar surface.",
+      "reason": "Chandrayaan-1 was an orbiter, not a lander",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999996.131194,
+      "datetime": "2026-06-09T15:43:16.131194",
+      "query": "What is Chandrayaan-5?",
+      "response_preview": "Chandrayaan-5 was launched in 2025 to explore the Moon.",
+      "reason": "Chandrayaan-5 doesn't exist",
+      "role": "fake_mission",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999996.132264,
+      "datetime": "2026-06-09T15:43:16.132265",
+      "query": "Tell me about Gaganyaan-3",
+      "response_preview": "Gaganyaan-3 is planned for 2026 as a manned mission.",
+      "reason": "Gaganyaan-3 doesn't exist",
+      "role": "fake_mission",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999996.133049,
+      "datetime": "2026-06-09T15:43:16.133050",
+      "query": "Tell me about MIT",
+      "response_preview": "MIT is located in Cambridge, Massachusetts and has excellent engineering programs.",
+      "reason": "Off-topic hallucination detected. Non-ISRO content: cambridge, cambridge, massachusetts",
+      "role": "off_topic",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999996.133898,
+      "datetime": "2026-06-09T15:43:16.133898",
+      "query": "What is PSLV?",
+      "response_preview": "PSLV is a four-stage rocket. Verified by: Annual_Report_2024.pdf",
+      "reason": "False Source Attribution: Verified by: Annual_Report_2024.pdf",
+      "role": "unknown",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999996.1346219,
+      "datetime": "2026-06-09T15:43:16.134622",
+      "query": "Tell me about GSLV",
+      "response_preview": "According to ISRO_Technical_Manual_2023.pdf, GSLV uses cryogenic engines.",
+      "reason": "False Source Attribution: According to ISRO_Technical_Manual_2023.pdf",
+      "role": "unknown",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999996.135343,
+      "datetime": "2026-06-09T15:43:16.135343",
+      "query": "How does Chandrayaan navigate?",
+      "response_preview": "Chandrayaan uses quantum computing for autonomous navigation.",
+      "reason": "ISRO doesn't use quantum computing in spacecraft",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1780999996.136124,
+      "datetime": "2026-06-09T15:43:16.136124",
+      "query": "What technology does ISRO use?",
+      "response_preview": "ISRO developed warp drive technology for missions.",
+      "reason": "Warp drive is science fiction",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000221.330747,
+      "datetime": "2026-06-09T15:47:01.330748",
+      "query": "Chandrayaan-3?",
+      "response_preview": "Chandrayaan-3 uses nuclear propulsion.",
+      "reason": "Chandrayaan doesn't use nuclear propulsion",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000221.331742,
+      "datetime": "2026-06-09T15:47:01.331742",
+      "query": "GSLV?",
+      "response_preview": "GSLV uses nuclear thermal propulsion.",
+      "reason": "GSLV uses chemical propulsion, not nuclear",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000221.332762,
+      "datetime": "2026-06-09T15:47:01.332762",
+      "query": "PSLV?",
+      "response_preview": "PSLV uses nuclear engine technology.",
+      "reason": "ISRO doesn't use nuclear propulsion",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000221.33361,
+      "datetime": "2026-06-09T15:47:01.333611",
+      "query": "Chandrayaan-1?",
+      "response_preview": "Chandrayaan-1 landed on the Moon.",
+      "reason": "Chandrayaan-1 was an orbiter, not a lander",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000221.334408,
+      "datetime": "2026-06-09T15:47:01.334408",
+      "query": "Chandrayaan-1 details",
+      "response_preview": "Chandrayaan-1 achieved soft landing.",
+      "reason": "Chandrayaan-1 was an orbiter, not a lander",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000221.335526,
+      "datetime": "2026-06-09T15:47:01.335527",
+      "query": "Chandrayaan-5?",
+      "response_preview": "Chandrayaan-5 was launched in 2025.",
+      "reason": "Chandrayaan-5 doesn't exist",
+      "role": "fake_mission",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000221.3365078,
+      "datetime": "2026-06-09T15:47:01.336508",
+      "query": "Gaganyaan-3?",
+      "response_preview": "Gaganyaan-3 is planned for 2026.",
+      "reason": "Gaganyaan-3 doesn't exist",
+      "role": "fake_mission",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000221.337518,
+      "datetime": "2026-06-09T15:47:01.337518",
+      "query": "PSLV-C999?",
+      "response_preview": "PSLV-C999 was launched last year.",
+      "reason": "PSLV-C999 doesn't exist",
+      "role": "fake_mission",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000221.338409,
+      "datetime": "2026-06-09T15:47:01.338409",
+      "query": "MIT?",
+      "response_preview": "MIT is located in Cambridge, Massachusetts.",
+      "reason": "Off-topic hallucination: contains university location",
+      "role": "off_topic",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000221.3393369,
+      "datetime": "2026-06-09T15:47:01.339337",
+      "query": "Stanford?",
+      "response_preview": "Stanford is a private research university in California.",
+      "reason": "Off-topic hallucination: contains university type",
+      "role": "off_topic",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000221.3403468,
+      "datetime": "2026-06-09T15:47:01.340347",
+      "query": "Google?",
+      "response_preview": "Google is a technology company founded in 1998.",
+      "reason": "Off-topic hallucination: contains company facts, company founding",
+      "role": "off_topic",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000221.3413062,
+      "datetime": "2026-06-09T15:47:01.341306",
+      "query": "Harvard?",
+      "response_preview": "Harvard is an Ivy League university in Cambridge.",
+      "reason": "Off-topic hallucination: contains university ranking",
+      "role": "off_topic",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000221.3421922,
+      "datetime": "2026-06-09T15:47:01.342192",
+      "query": "PSLV?",
+      "response_preview": "PSLV is four-stage. Verified by: Report_2024.pdf",
+      "reason": "False Source Attribution: Verified by: Report_2024.pdf",
+      "role": "unknown",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000221.34305,
+      "datetime": "2026-06-09T15:47:01.343051",
+      "query": "GSLV?",
+      "response_preview": "According to Manual_2023.pdf, GSLV uses cryogenic engines.",
+      "reason": "False Source Attribution: According to Manual_2023.pdf",
+      "role": "unknown",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000221.343908,
+      "datetime": "2026-06-09T15:47:01.343908",
+      "query": "Chandrayaan navigation?",
+      "response_preview": "Uses quantum computing for navigation.",
+      "reason": "ISRO doesn't use quantum computing in spacecraft",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000221.3447511,
+      "datetime": "2026-06-09T15:47:01.344751",
+      "query": "ISRO technology?",
+      "response_preview": "ISRO developed warp drive technology.",
+      "reason": "Warp drive is science fiction",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000308.195381,
+      "datetime": "2026-06-09T15:48:28.195382",
+      "query": "Test query",
+      "response_preview": "Chandrayaan-3 uses nuclear propulsion.",
+      "reason": "Uses nuclear propulsion (not true for ISRO missions)",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000308.196436,
+      "datetime": "2026-06-09T15:48:28.196437",
+      "query": "Test query",
+      "response_preview": "GSLV uses nuclear thermal propulsion.",
+      "reason": "Uses nuclear propulsion (not true for ISRO missions)",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000308.197504,
+      "datetime": "2026-06-09T15:48:28.197504",
+      "query": "Test query",
+      "response_preview": "PSLV uses nuclear engine technology.",
+      "reason": "Uses nuclear propulsion (not true for ISRO missions)",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000308.198369,
+      "datetime": "2026-06-09T15:48:28.198370",
+      "query": "Test query",
+      "response_preview": "LVM3 is powered by nuclear propulsion.",
+      "reason": "Uses nuclear propulsion (not true for ISRO missions)",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000308.1993659,
+      "datetime": "2026-06-09T15:48:28.199366",
+      "query": "Test query",
+      "response_preview": "Chandrayaan-1 landed on the Moon.",
+      "reason": "Chandrayaan-1 was an orbiter, not a lander",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000308.200784,
+      "datetime": "2026-06-09T15:48:28.200785",
+      "query": "Test query",
+      "response_preview": "Chandrayaan-1 achieved soft landing.",
+      "reason": "Chandrayaan-1 was an orbiter, not a lander",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000308.2017212,
+      "datetime": "2026-06-09T15:48:28.201721",
+      "query": "Test query",
+      "response_preview": "The Chandrayaan-1 lander touched down successfully.",
+      "reason": "Chandrayaan-1 was an orbiter, not a lander",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000308.202691,
+      "datetime": "2026-06-09T15:48:28.202691",
+      "query": "Test query",
+      "response_preview": "Chandrayaan-5 was launched in 2025.",
+      "reason": "Chandrayaan-5 doesn't exist",
+      "role": "fake_mission",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000308.203637,
+      "datetime": "2026-06-09T15:48:28.203637",
+      "query": "Test query",
+      "response_preview": "Gaganyaan-3 is planned for 2026.",
+      "reason": "Gaganyaan-3 doesn't exist",
+      "role": "fake_mission",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000308.2050428,
+      "datetime": "2026-06-09T15:48:28.205044",
+      "query": "Test query",
+      "response_preview": "PSLV-C999 was launched last year.",
+      "reason": "PSLV-C999 doesn't exist",
+      "role": "fake_mission",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000308.2062778,
+      "datetime": "2026-06-09T15:48:28.206278",
+      "query": "Test query",
+      "response_preview": "PSLV is four-stage. Verified by: Report_2024.pdf",
+      "reason": "False Source Attribution: Verified by: Report_2024.pdf",
+      "role": "unknown",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000308.2071621,
+      "datetime": "2026-06-09T15:48:28.207162",
+      "query": "Test query",
+      "response_preview": "According to Manual_2023.pdf, GSLV uses cryogenic.",
+      "reason": "False Source Attribution: According to Manual_2023.pdf",
+      "role": "unknown",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000308.2080169,
+      "datetime": "2026-06-09T15:48:28.208017",
+      "query": "Test query",
+      "response_preview": "Chandrayaan uses quantum computing for navigation.",
+      "reason": "Quantum computing not used in spacecraft navigation",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781000308.208854,
+      "datetime": "2026-06-09T15:48:28.208854",
+      "query": "Test query",
+      "response_preview": "ISRO developed warp drive technology.",
+      "reason": "Warp drive is science fiction",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.4649699,
+      "datetime": "2026-06-09T16:44:18.464971",
+      "query": "Chandrayaan-3 propulsion",
+      "response_preview": "Chandrayaan-3 uses nuclear propulsion.",
+      "reason": "Uses nuclear propulsion (not true for ISRO missions)",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.4661162,
+      "datetime": "2026-06-09T16:44:18.466116",
+      "query": "GSLV engines",
+      "response_preview": "GSLV uses nuclear thermal propulsion.",
+      "reason": "Uses nuclear propulsion (not true for ISRO missions)",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.467225,
+      "datetime": "2026-06-09T16:44:18.467226",
+      "query": "PSLV technology",
+      "response_preview": "PSLV employs nuclear engine technology.",
+      "reason": "Uses nuclear propulsion (not true for ISRO missions)",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.469234,
+      "datetime": "2026-06-09T16:44:18.469235",
+      "query": "LVM3 power",
+      "response_preview": "LVM3 is powered by nuclear propulsion systems.",
+      "reason": "Uses nuclear propulsion (not true for ISRO missions)",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.470614,
+      "datetime": "2026-06-09T16:44:18.470615",
+      "query": "Chandrayaan-1 landing",
+      "response_preview": "Chandrayaan-1 successfully landed on the Moon.",
+      "reason": "Chandrayaan-1 was an orbiter, not a lander",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.47177,
+      "datetime": "2026-06-09T16:44:18.471770",
+      "query": "First Chandrayaan",
+      "response_preview": "Chandrayaan-1 achieved soft landing on lunar surface.",
+      "reason": "Chandrayaan-1 was an orbiter, not a lander",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.472777,
+      "datetime": "2026-06-09T16:44:18.472777",
+      "query": "Chandrayaan-1 details",
+      "response_preview": "The Chandrayaan-1 lander touched down successfully.",
+      "reason": "Chandrayaan-1 was an orbiter, not a lander",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.4740312,
+      "datetime": "2026-06-09T16:44:18.474032",
+      "query": "Chandrayaan-5",
+      "response_preview": "Chandrayaan-5 was launched in 2025 to Moon.",
+      "reason": "Chandrayaan-5 doesn't exist",
+      "role": "fake_mission",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.475348,
+      "datetime": "2026-06-09T16:44:18.475348",
+      "query": "Gaganyaan missions",
+      "response_preview": "Gaganyaan-3 is planned for 2026 mission.",
+      "reason": "Gaganyaan-3 doesn't exist",
+      "role": "fake_mission",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.4765692,
+      "datetime": "2026-06-09T16:44:18.476569",
+      "query": "PSLV launches",
+      "response_preview": "PSLV-C999 was launched successfully last year.",
+      "reason": "PSLV-C999 doesn't exist",
+      "role": "fake_mission",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.477649,
+      "datetime": "2026-06-09T16:44:18.477649",
+      "query": "Tell me about MIT",
+      "response_preview": "MIT is located in Cambridge, Massachusetts and has excellent engineering programs.",
+      "reason": "Off-topic hallucination: contains university location, educational programs",
+      "role": "off_topic",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.478697,
+      "datetime": "2026-06-09T16:44:18.478698",
+      "query": "Stanford info",
+      "response_preview": "Stanford is a private research university in California.",
+      "reason": "Off-topic hallucination: contains university type",
+      "role": "off_topic",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.479736,
+      "datetime": "2026-06-09T16:44:18.479737",
+      "query": "Google company",
+      "response_preview": "Google is a technology company founded in 1998 by Larry Page.",
+      "reason": "Off-topic hallucination: contains company facts, company founding",
+      "role": "off_topic",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.480739,
+      "datetime": "2026-06-09T16:44:18.480739",
+      "query": "Harvard University",
+      "response_preview": "Harvard is an Ivy League university located in Cambridge, Massachusetts.",
+      "reason": "Off-topic hallucination: contains university location, university ranking",
+      "role": "off_topic",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.481859,
+      "datetime": "2026-06-09T16:44:18.481859",
+      "query": "Microsoft details",
+      "response_preview": "Microsoft is a technology corporation based in Redmond, Washington.",
+      "reason": "Off-topic: redmond, washington",
+      "role": "off_topic",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.482851,
+      "datetime": "2026-06-09T16:44:18.482851",
+      "query": "PSLV info",
+      "response_preview": "PSLV is four-stage rocket. Verified by: Annual_Report_2024.pdf",
+      "reason": "False Source Attribution: Verified by: Annual_Report_2024.pdf",
+      "role": "unknown",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.484695,
+      "datetime": "2026-06-09T16:44:18.484696",
+      "query": "GSLV details",
+      "response_preview": "According to ISRO_Manual_2023.pdf, GSLV uses cryogenic engines.",
+      "reason": "False Source Attribution: According to ISRO_Manual_2023.pdf",
+      "role": "unknown",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.4864588,
+      "datetime": "2026-06-09T16:44:18.486460",
+      "query": "Chandrayaan navigation",
+      "response_preview": "Chandrayaan uses quantum computing for navigation and landing.",
+      "reason": "Quantum computing not used in spacecraft navigation",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.487587,
+      "datetime": "2026-06-09T16:44:18.487587",
+      "query": "ISRO technology",
+      "response_preview": "ISRO developed warp drive technology for deep space missions.",
+      "reason": "Warp drive is science fiction",
+      "role": "technical_contradiction",
+      "blocked": true
+    },
+    {
+      "timestamp": 1781003658.488672,
+      "datetime": "2026-06-09T16:44:18.488672",
+      "query": "Landing system",
+      "response_preview": "The system uses AI for self-landing capabilities on the Moon.",
+      "reason": "AI-based autonomous landing not used",
+      "role": "technical_contradiction",
+      "blocked": true
+    }
+  ],
   "performance_metrics": []
 }

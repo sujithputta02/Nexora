@@ -14,6 +14,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, StreamingResponse
 from pydantic import BaseModel
 from starlette.requests import Request
+import base64
 
 from backend.main_engine import rag_system
 from backend.session_store import session_store
@@ -33,11 +34,74 @@ async def startup_event():
 
 templates = Jinja2Templates(directory="app/templates")
 
+# Simple favicon data (32x32 N icon in base64)
+FAVICON_ICO = base64.b64decode(
+    "AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAABMLAAATCwAAAAAA"
+    "AAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A"
+    "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP//"
+    "/wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A"
+    "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP//"
+    "/wD///8AKioq/yoqKv8qKir/Kioq/yoqKv8qKir/////AP///wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A"
+    "Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wAqKir/Kioq/yoq"
+    "Kv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/////AP///wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wD///8A////ACosLf8qKir/Kioq/yoqKv8qKir/"
+    "Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/////AP///wD///8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////ACotL/8qKir/Kioq/yoqKv8qKir/Kioq/yoq"
+    "Kv8qKir/Kioq/yoqKv8qKir/Kioq/////wD///8A////AP///wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////ACouMP8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/"
+    "Kioq/yoqKv8qKir/Kioq/yoqKv////8A////AP///wD///8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wAqLjD/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/yoq"
+    "Kv8qKir/Kioq/yoqKv8qKir/Kioq/////wD///8A////AP///wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////ACouMP8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/"
+    "Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/////AP///wD///8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8AKi4w/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/yoq"
+    "Kv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv////8A////AP///wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wAqLjD/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/"
+    "Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/////wD///8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////ACouMP8qKir/Kioq/yoqKv8qKir/Kioq/yoq"
+    "Kv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/////AP///wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wD///8AKi4w/yoqKv8qKir/Kioq/yoqKv8qKir/"
+    "Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv////8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////AP///wAqLjD/Kioq/yoqKv8qKir/Kioq/yoq"
+    "Kv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/////wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wD///8A////ACouMP8qKir/Kioq/yoqKv8qKir/"
+    "Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////AP///wD///8AKi4w/yoqKv8qKir/Kioq/yoq"
+    "Kv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv////8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wAqLjD/Kioq/yoqKv8qKir/"
+    "Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////ACotL/8qKir/Kioq/yoq"
+    "Kv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/////wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8AKiws/yoqKv8qKir/"
+    "Kioq/yoqKv8qKir/Kioq/yoqKv8qKir/Kioq/yoqKv////8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP//"
+    "/wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A"
+    "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP//"
+    "/wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////"
+    "AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A"
+    "////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD/"
+    "//8A////AP///wD///8A////AP///wD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+)
+
+@app.get("/favicon.ico")
+async def favicon():
+    """Serve favicon to prevent 404 errors"""
+    return Response(content=FAVICON_ICO, media_type="image/x-icon")
+
 class QueryRequest(BaseModel):
     query: str
     role: str
     session_id: str = None
-    model_name: str = "llama3"
+    model_name: str = os.getenv("OLLAMA_MODEL", "llama3.2:1b")
 
 class LoginRequest(BaseModel):
     username: str
@@ -53,8 +117,17 @@ async def analytics_dashboard(request: Request):
 
 @app.post("/login")
 async def login_user(req: LoginRequest):
-    if req.username == "scientist" and req.password == "isro123":
-        return {"success": True, "message": "Authenticated"}
+    # Define user credentials for different roles
+    USERS = {
+        "scientist": {"password": "isro123", "role": "Scientist"},
+        "engineer": {"password": "tech456", "role": "Engineer"},
+        "analyst": {"password": "data789", "role": "Analyst"},
+        "public": {"password": "guest", "role": "Public"}
+    }
+    
+    user = USERS.get(req.username)
+    if user and user["password"] == req.password:
+        return {"success": True, "message": "Authenticated", "role": user["role"]}
     raise HTTPException(status_code=401, detail="Invalid credentials")
 
 @app.get("/sessions")

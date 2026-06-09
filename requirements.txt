@@ -2,7 +2,7 @@ pypdf
 langchain
 langchain-community
 sentence-transformers
-faiss-cpu
+faiss-gpu  # Changed from faiss-cpu for CUDA acceleration
 neo4j
 fastapi
 uvicorn
@@ -11,3 +11,6 @@ sqlalchemy
 python-dotenv
 langchain-ollama
 langchain-huggingface
+torch  # PyTorch with CUDA support
+transformers  # For GPU-accelerated embeddings
+accelerate  # For optimized GPU inference
