@@ -10,12 +10,48 @@ import os
 import logging
 import torch
 from typing import List, Optional
+from functools import lru_cache
+import threading
+import hashlib
+from collections import OrderedDict
 
 # Configure logging
 logger = logging.getLogger(__name__)
 
-# Global Cache for frequent queries
-QUERY_CACHE = {}
+# Thread-safe bounded cache for query results
+class BoundedCache:
+    """
+    LRU Cache with size limit to prevent memory exhaustion.
+    Thread-safe for concurrent access in FastAPI.
+    """
+    def __init__(self, maxsize=1000):
+        self.cache = OrderedDict()
+        self.maxsize = maxsize
+        self.lock = threading.Lock()
+    
+    def __contains__(self, key):
+        with self.lock:
+            return key in self.cache
+    
+    def __getitem__(self, key):
+        with self.lock:
+            self.cache.move_to_end(key)  # LRU update
+            return self.cache[key]
+    
+    def __setitem__(self, key, value):
+        with self.lock:
+            if key in self.cache:
+                self.cache.move_to_end(key)
+            self.cache[key] = value
+            if len(self.cache) > self.maxsize:
+                self.cache.popitem(last=False)  # Remove oldest
+
+# Bounded cache for query results (max 1000 entries)
+QUERY_CACHE = BoundedCache(maxsize=1000)
+
+# Thread-safe backend initialization
+_init_lock = threading.Lock()
+_backend_initialized = False
 
 # Check CUDA availability
 USE_CUDA = torch.cuda.is_available()
@@ -45,7 +81,10 @@ try:
     HAS_VLLM = True
 except ImportError:
     HAS_VLLM = False
-    logger.warning("vLLM not found. Install with: pip install vllm")
+    # NOTE: vLLM is OPTIONAL and only works on NVIDIA GPUs with CUDA.
+    # This system works perfectly fine without it using Ollama + MPS (Apple Silicon)
+    # or Ollama + CPU. vLLM is only for users with NVIDIA GPUs who want maximum speed.
+    logger.warning("vLLM not found (optional). Using Ollama backend instead.")
 
 # Backend selection priority: vLLM > Transformers > Ollama > Fallback
 BACKEND = None
@@ -55,81 +94,88 @@ _TOKENIZER = None
 def initialize_backend(backend_type: str = "auto", model_name: str = None):
     """
     Initialize the LLM backend with CUDA acceleration.
+    Thread-safe initialization using lock.
     
     Args:
         backend_type: "auto", "vllm", "transformers", "ollama", or "fallback"
         model_name: Model name/path (e.g., "meta-llama/Llama-2-7b-chat-hf")
     """
-    global BACKEND, _LLM_MODEL, _TOKENIZER
+    global BACKEND, _LLM_MODEL, _TOKENIZER, _backend_initialized
     
-    if BACKEND is not None:
-        return BACKEND
-    
-    # Auto-detect best backend
-    if backend_type == "auto":
-        if HAS_VLLM and USE_CUDA:
-            backend_type = "vllm"
-        elif HAS_TRANSFORMERS and USE_CUDA:
-            backend_type = "transformers"
-        elif HAS_OLLAMA:
-            backend_type = "ollama"
-        else:
-            backend_type = "fallback"
-    
-    logger.info(f"🔧 Initializing backend: {backend_type}")
-    
-    # vLLM Backend (Fastest for batch inference)
-    if backend_type == "vllm" and HAS_VLLM and USE_CUDA:
-        try:
-            model_name = model_name or os.getenv("VLLM_MODEL", "meta-llama/Llama-2-7b-chat-hf")
-            logger.info(f"Loading vLLM model: {model_name}")
-            _LLM_MODEL = LLM(
-                model=model_name,
-                tensor_parallel_size=1,  # Use 1 GPU
-                gpu_memory_utilization=0.8,
-                max_model_len=2048,
-                dtype="half"  # FP16 for speed
-            )
-            BACKEND = "vllm"
-            logger.info("✅ vLLM backend initialized")
+    # Thread-safe initialization
+    with _init_lock:
+        if _backend_initialized and BACKEND is not None:
             return BACKEND
-        except Exception as e:
-            logger.error(f"vLLM initialization failed: {e}")
-    
-    # Transformers Backend (Good balance of speed and compatibility)
-    if backend_type == "transformers" and HAS_TRANSFORMERS:
-        try:
-            model_name = model_name or os.getenv("HF_MODEL", "TinyLlama/TinyLlama-1.1B-Chat-v1.0")
-            logger.info(f"Loading Transformers model: {model_name}")
-            
-            device = "cuda" if USE_CUDA else "cpu"
-            _TOKENIZER = AutoTokenizer.from_pretrained(model_name)
-            _LLM_MODEL = AutoModelForCausalLM.from_pretrained(
-                model_name,
-                torch_dtype=torch.float16 if USE_CUDA else torch.float32,
-                device_map="auto" if USE_CUDA else None,
-                low_cpu_mem_usage=True
-            )
-            
-            if not USE_CUDA:
-                _LLM_MODEL = _LLM_MODEL.to(device)
-            
-            BACKEND = "transformers"
-            logger.info(f"✅ Transformers backend initialized on {device.upper()}")
+        
+        # Auto-detect best backend
+        if backend_type == "auto":
+            if HAS_VLLM and USE_CUDA:
+                backend_type = "vllm"
+            elif HAS_TRANSFORMERS and USE_CUDA:
+                backend_type = "transformers"
+            elif HAS_OLLAMA:
+                backend_type = "ollama"
+            else:
+                backend_type = "fallback"
+        
+        logger.info(f"🔧 Initializing backend: {backend_type}")
+        
+        # vLLM Backend (Fastest for batch inference)
+        if backend_type == "vllm" and HAS_VLLM and USE_CUDA:
+            try:
+                model_name = model_name or os.getenv("VLLM_MODEL", "meta-llama/Llama-2-7b-chat-hf")
+                logger.info(f"Loading vLLM model: {model_name}")
+                _LLM_MODEL = LLM(
+                    model=model_name,
+                    tensor_parallel_size=1,  # Use 1 GPU
+                    gpu_memory_utilization=0.8,
+                    max_model_len=2048,
+                    dtype="half"  # FP16 for speed
+                )
+                BACKEND = "vllm"
+                _backend_initialized = True
+                logger.info("✅ vLLM backend initialized")
+                return BACKEND
+            except Exception as e:
+                logger.error(f"vLLM initialization failed: {e}")
+        
+        # Transformers Backend (Good balance of speed and compatibility)
+        if backend_type == "transformers" and HAS_TRANSFORMERS:
+            try:
+                model_name = model_name or os.getenv("HF_MODEL", "TinyLlama/TinyLlama-1.1B-Chat-v1.0")
+                logger.info(f"Loading Transformers model: {model_name}")
+                
+                device = "cuda" if USE_CUDA else "cpu"
+                _TOKENIZER = AutoTokenizer.from_pretrained(model_name)
+                _LLM_MODEL = AutoModelForCausalLM.from_pretrained(
+                    model_name,
+                    torch_dtype=torch.float16 if USE_CUDA else torch.float32,
+                    device_map="auto" if USE_CUDA else None,
+                    low_cpu_mem_usage=True
+                )
+                
+                if not USE_CUDA:
+                    _LLM_MODEL = _LLM_MODEL.to(device)
+                
+                BACKEND = "transformers"
+                _backend_initialized = True
+                logger.info(f"✅ Transformers backend initialized on {device.upper()}")
+                return BACKEND
+            except Exception as e:
+                logger.error(f"Transformers initialization failed: {e}")
+        
+        # Ollama Backend (with CUDA if configured)
+        if backend_type == "ollama" and HAS_OLLAMA:
+            BACKEND = "ollama"
+            _backend_initialized = True
+            logger.info("✅ Ollama backend selected")
             return BACKEND
-        except Exception as e:
-            logger.error(f"Transformers initialization failed: {e}")
-    
-    # Ollama Backend (with CUDA if configured)
-    if backend_type == "ollama" and HAS_OLLAMA:
-        BACKEND = "ollama"
-        logger.info("✅ Ollama backend selected")
+        
+        # Fallback
+        BACKEND = "fallback"
+        _backend_initialized = True
+        logger.info("⚠️  Using fallback mode (no LLM)")
         return BACKEND
-    
-    # Fallback
-    BACKEND = "fallback"
-    logger.info("⚠️  Using fallback mode (no LLM)")
-    return BACKEND
 
 
 def generate_response_cuda(

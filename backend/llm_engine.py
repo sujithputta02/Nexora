@@ -1,12 +1,38 @@
 import os
 import logging
 from typing import List
+from collections import OrderedDict
+import threading
 
 # Configure logging
 logger = logging.getLogger(__name__)
 
-# Global Cache for frequent queries
-QUERY_CACHE = {}
+# Thread-safe bounded cache to prevent memory exhaustion
+class BoundedCache:
+    """LRU Cache with size limit (max 1000 entries)"""
+    def __init__(self, maxsize=1000):
+        self.cache = OrderedDict()
+        self.maxsize = maxsize
+        self.lock = threading.Lock()
+    
+    def __contains__(self, key):
+        with self.lock:
+            return key in self.cache
+    
+    def __getitem__(self, key):
+        with self.lock:
+            self.cache.move_to_end(key)
+            return self.cache[key]
+    
+    def __setitem__(self, key, value):
+        with self.lock:
+            if key in self.cache:
+                self.cache.move_to_end(key)
+            self.cache[key] = value
+            if len(self.cache) > self.maxsize:
+                self.cache.popitem(last=False)
+
+QUERY_CACHE = BoundedCache(maxsize=1000)
 
 try:
     from langchain_ollama import ChatOllama

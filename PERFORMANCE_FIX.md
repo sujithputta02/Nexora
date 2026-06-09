@@ -60,9 +60,11 @@ ollama ps
 
 Expected output:
 ```
-NAME           ID              SIZE      PROCESSOR    
-llama3.2:1b    baf6a787fdff    1.5 GB    100% GPU
+NAME           ID              SIZE      MODIFIED
+llama3.2:1b    baf6a787fdff    1.5 GB    2 minutes ago
 ```
+
+**Note for macOS**: Ollama on Apple Silicon uses Metal Performance Shaders (MPS) for acceleration, not traditional GPU metrics. The model runs accelerated on the Neural Engine and GPU cores built into the M-series chip.
 
 ## Configuration
 

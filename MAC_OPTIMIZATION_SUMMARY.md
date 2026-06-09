@@ -83,7 +83,7 @@ EOF
 # Test full pipeline (start app first)
 curl -X POST http://localhost:5000/query \
   -H "Content-Type: application/json" \
-  -d '{"user_id": "test", "user_role": "admin", "query": "What is Chandrayaan-3?"}'
+  -d '{"user_id": "test", "user_role": "Scientist", "query": "What is Chandrayaan-3?"}'
 ```
 
 ### 3. Monitor Performance
@@ -213,14 +213,19 @@ The vector store is cached after first load. Subsequent queries are faster.
 
 ## 🔄 Switching Models On-the-Fly
 
-You can change models without restarting the app:
+You can change models by updating the .env file and restarting the app:
 
 ```bash
 # Edit .env
 echo "OLLAMA_MODEL=mistral:latest" >> .env
 
-# Ollama will automatically use the new model
-# No restart needed!
+# Restart the FastAPI server
+# The new model will be loaded on startup
+
+# Alternatively, pass model_name in the /query request body:
+curl -X POST http://localhost:8000/query \
+  -H "Content-Type: application/json" \
+  -d '{"query": "What is GSLV?", "role": "Public", "model_name": "mistral:latest"}'
 ```
 
 ## 🎓 Model Recommendations

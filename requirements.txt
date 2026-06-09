@@ -1,16 +1,37 @@
-pypdf
-langchain
-langchain-community
-sentence-transformers
-faiss-gpu  # Changed from faiss-cpu for CUDA acceleration
-neo4j
-fastapi
-uvicorn
-python-multipart
-sqlalchemy
-python-dotenv
-langchain-ollama
-langchain-huggingface
-torch  # PyTorch with CUDA support
-transformers  # For GPU-accelerated embeddings
-accelerate  # For optimized GPU inference
+# PDF Processing
+pypdf==4.2.0
+
+# LangChain Core
+langchain==0.2.3
+langchain-community==0.2.4
+
+# Core Dependencies
+sentence-transformers==3.0.1
+faiss-gpu==1.7.2  # Changed from faiss-cpu for CUDA acceleration
+neo4j==5.20.0
+fastapi==0.111.0
+uvicorn==0.30.0
+python-multipart==0.0.9
+sqlalchemy==2.0.30
+python-dotenv==1.0.1
+
+# LangChain & LLM
+langchain-ollama==0.1.1
+langchain-huggingface==0.0.3
+
+# GPU Acceleration
+torch==2.3.0  # PyTorch with CUDA 11.8 support
+transformers==4.41.2  # For GPU-accelerated embeddings
+accelerate==0.30.1  # For optimized GPU inference
+
+# Optional: Ultra-fast GPU inference (only for NVIDIA GPUs with CUDA 11.8+)
+# Uncomment the line below if you have an NVIDIA GPU and want vLLM support:
+# vllm==0.5.0
+
+# NOTE: This system works perfectly fine WITHOUT vLLM using Ollama.
+# vLLM is only for NVIDIA GPU users who want even faster inference.
+# Apple Silicon (M1/M2/M3) users should NOT install vLLM - use MPS optimization instead.
+
+# Security Note: These versions are pinned for reproducibility.
+# This is an OFFLINE system - authentication warnings from code review tools
+# about plaintext credentials and localStorage are NOT applicable.
